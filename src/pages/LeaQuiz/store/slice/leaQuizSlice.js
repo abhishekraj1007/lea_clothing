@@ -65,20 +65,21 @@ const leaQuizSlice = createSlice({
     decrementSlideCount(state) {
       state.slideCount -= 1;
     },
-    updateSingularTypeQuestion(state, action) {
-      const array = [...current(state.quizData.singularType)];
-      const { question } = action.payload;
-      //   console.log('singularType', array);
-      //   console.log('question', question);
+    updateBasicQuestion(state, action) {
+      const array = [...current(state.quizData)];
+      const { question, answer } = action.payload;
+      console.log("questionArray", array);
+      console.log("question", question);
+      console.log("question", answer);
       const isSameQuestion = array?.findIndex(
-        (ques) => ques.question === question
+        (ques) => ques.Question === question
       );
       //   console.log('isSameQuestion', isSameQuestion);
-      if (isSameQuestion === -1) {
-        array.push({ ...action.payload });
-        state.quizData.singularType = [...array];
+      if (isSameQuestion !== -1) {
+        state.quizData[isSameQuestion].Answer = answer;
+        // array[isSameQuestion] = { ...action.payload };
       } else {
-        array[isSameQuestion] = { ...action.payload };
+        console.log("question not match", isSameQuestion);
       }
     },
   },

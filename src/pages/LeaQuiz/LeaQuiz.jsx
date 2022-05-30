@@ -6,6 +6,10 @@ import {
   SizeSelectionCard,
   CardQuiz,
   ClothingFeatureCard,
+  ColorCard,
+  ClothPrintsCard,
+  ClothStyleCard,
+  PriceRangeSlider,
 } from "./components";
 import { useSelector } from "react-redux";
 
@@ -181,6 +185,17 @@ const LeaQuiz = () => {
       )}
       {slideCount === 10 && (
         <QuizLayout
+          gradientDirection={"top right"}
+          ResultComponent={
+            <ColorCard
+              headingText={"What colour palettes are you most attracted to?"}
+              instructionText={"You can select Multiple"}
+            />
+          }
+        />
+      )}
+      {slideCount === 11 && (
+        <QuizLayout
           gradientDirection={"top left"}
           balls={{
             leftBall: {
@@ -201,7 +216,67 @@ const LeaQuiz = () => {
           }
         />
       )}
-      {slideCount === 11 && (
+      {slideCount === 12 && (
+        <QuizLayout
+          gradientDirection={"top left"}
+          balls={{
+            leftBall: {
+              size: { height: "650px", width: "650px" },
+              position: { bottom: "-450px", left: "-250px" },
+            },
+            rightBall: {
+              size: { height: "300px", width: "300px" },
+              position: { bottom: "30px", right: "-200px" },
+            },
+          }}
+          ResultComponent={
+            <ClothPrintsCard
+              subHeadingText={"We love prints too!"}
+              headingText={"What kind of prints are you attracted to?"}
+              instructionText={"You can select Multiple"}
+            />
+          }
+        />
+      )}
+      {/* {slideCount === 13 && (
+        <QuizLayout
+          gradientDirection={"top left"}
+          balls={{
+            rightBall: {
+              size: { height: "500px", width: "500px" },
+              position: { bottom: "-100px", right: "-200px" },
+            },
+          }}
+          ResultComponent={
+            <PriceRangeSlider
+              headingText={"How much do you want to spend on items from these categories?"}
+            />
+          }
+        />
+      )} */}
+      {slideCount === 13 && (
+        <QuizLayout
+          gradientDirection={"top left"}
+          balls={{
+            leftBall: {
+              size: { height: "650px", width: "650px" },
+              position: { bottom: "-450px", left: "-250px" },
+            },
+            rightBall: {
+              size: { height: "300px", width: "300px" },
+              position: { bottom: "30px", right: "-200px" },
+            },
+          }}
+          ResultComponent={
+            <ClothStyleCard
+              subHeadingText={"Let’s look at some examples!"}
+              headingText={"Which one would you describe as your style?"}
+              instructionText={"You can select Multiple"}
+            />
+          }
+        />
+      )}
+      {slideCount === 14 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{
@@ -224,7 +299,7 @@ const LeaQuiz = () => {
           }
         />
       )}
-      {slideCount === 12 && (
+      {slideCount === 15 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{

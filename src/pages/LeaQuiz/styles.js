@@ -44,9 +44,9 @@ const sizeSelectCard = {
 };
 
 const outlinedCard = {
-  minHeight: "150px",
-  px: 1,
-  py: 2,
+  // minHeight: "150px",
+  height: "100%",
+  p: 2,
   backgroundColor: "transparent",
   color: "#000",
   "&:hover": {

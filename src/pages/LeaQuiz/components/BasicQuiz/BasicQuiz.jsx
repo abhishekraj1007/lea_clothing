@@ -10,15 +10,14 @@ const BasicQuiz = (props) => {
   const { subHeadingText, headingText, buttonContent, buttonDirection } = props;
   const dispatch = useDispatch();
 
-  // const handleQuestion = (content) => {
-  //   const quizObj = {
-  //     question: headingText,
-  //     answer: content,
-  //   };
-  //   dispatch(leaQuizActions.updateSingularTypeQuestion(quizObj));
-  //   dispatch(leaQuizActions.updateSlideCount());
-
-  // };
+  const handleQuestion = (content) => {
+    const quizObj = {
+      question: headingText,
+      answer: content,
+    };
+    dispatch(leaQuizActions.updateBasicQuestion(quizObj));
+    dispatch(leaQuizActions.incrementSlideCount());
+  };
   return (
     <Grid container justifyContent="center">
       <Grid
@@ -55,9 +54,9 @@ const BasicQuiz = (props) => {
                     size="large"
                     fullWidth
                     sx={styles.BasicOutlinedBtn}
-                    // onClick={() => {
-                    //   handleQuestion(content);
-                    // }}
+                    onClick={() => {
+                      handleQuestion(content);
+                    }}
                   >
                     {content}
                   </Button>
@@ -81,9 +80,9 @@ const BasicQuiz = (props) => {
                       size="large"
                       fullWidth
                       sx={styles.BasicOutlinedBtn}
-                      // onClick={() => {
-                      //   handleQuestion(content);
-                      // }}
+                      onClick={() => {
+                        handleQuestion(content);
+                      }}
                     >
                       {content}
                     </Button>

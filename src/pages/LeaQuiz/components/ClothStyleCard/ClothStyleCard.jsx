@@ -3,7 +3,8 @@ import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import sashaWhite1ImgUrl from "../../../../assets/Sasha-White-1.jpg";
 import sashaWhite2ImgUrl from "../../../../assets/Sasha-White-2.jpg";
@@ -15,9 +16,33 @@ import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
 export default function ClothStyleCard(props) {
   const { subHeadingText, headingText, instructionText } = props;
   const dispatch = useDispatch();
+  const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState("");
+
+  useEffect(() => {
+    const quesIndex = quizData?.findIndex(
+      (data) => data.Question === headingText
+    );
+    setQuestionIndex(quesIndex);
+    const answers = [...quizData[quesIndex].Answer];
+    setSelectedCards(answers);
+  }, [quizData]);
+
+  // useEffect(() => {
+  //   console.log("selectedCards->", selectedCards);
+  // }, [selectedCards]);
+
+  const handleCards = (selectedItem) => {
+    const quizObj = {
+      questionIndex,
+      answer: selectedItem,
+    };
+    dispatch(leaQuizActions.updateCardQuestion(quizObj));
+  };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" sx={{ marginTop: 6 }}>
       <Grid
         item
         xs={12}
@@ -35,7 +60,7 @@ export default function ClothStyleCard(props) {
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
       </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center">
+      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
           {subHeadingText}
         </Grid>
@@ -47,7 +72,16 @@ export default function ClothStyleCard(props) {
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 1")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 1")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -62,12 +96,21 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 1"}</Box>
               </Stack>
             </Paper>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 2")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 2")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -82,12 +125,21 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 2"}</Box>
               </Stack>
             </Paper>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 3")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 3")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -102,12 +154,21 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 3"}</Box>
               </Stack>
             </Paper>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 4")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 4")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -122,12 +183,21 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 4"}</Box>
               </Stack>
             </Paper>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 5")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 5")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -142,12 +212,21 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 5"}</Box>
               </Stack>
             </Paper>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 6")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 6")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -162,7 +241,7 @@ export default function ClothStyleCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sasha White"}</Box>
+                <Box>{"Sasha White 6"}</Box>
               </Stack>
             </Paper>
           </Grid>

@@ -11,7 +11,7 @@ export default function BasicText({ subHeadingText, headingText }) {
   };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" spacing={1}>
       <Grid item xs={12} sm={8} sx={styles.subHeadingText}>
         {subHeadingText}
       </Grid>

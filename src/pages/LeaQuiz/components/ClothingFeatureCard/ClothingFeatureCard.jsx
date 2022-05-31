@@ -3,7 +3,8 @@ import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import waistImgUrl from "../../../../assets/waist.png";
 import legsImgUrl from "../../../../assets/legs-1.png";
@@ -14,6 +15,31 @@ import backImgUrl from "../../../../assets/back.png";
 export default function ClothingFeatureCard(props) {
   const { subHeadingText, headingText } = props;
   const dispatch = useDispatch();
+  const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState("");
+
+  useEffect(() => {
+    const quesIndex = quizData?.findIndex(
+      (data) => data.Question === headingText
+    );
+    console.log("questionIndex---->", quesIndex);
+    setQuestionIndex(quesIndex);
+    const answers = [...quizData[quesIndex].Answer];
+    setSelectedCards(answers);
+  }, [quizData]);
+
+  useEffect(() => {
+    console.log("selectedCards->", selectedCards);
+  }, [selectedCards]);
+
+  const handleCards = (selectedItem) => {
+    const quizObj = {
+      questionIndex,
+      answer: selectedItem,
+    };
+    dispatch(leaQuizActions.updateCardQuestion(quizObj));
+  };
 
   return (
     <Grid container justifyContent="center">
@@ -34,7 +60,7 @@ export default function ClothingFeatureCard(props) {
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
       </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center">
+      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
           {subHeadingText}
         </Grid>
@@ -43,7 +69,16 @@ export default function ClothingFeatureCard(props) {
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
           <Grid item xs={6} md={2}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Waist")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Waist")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -62,7 +97,16 @@ export default function ClothingFeatureCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={2}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Arms")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Arms")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -81,7 +125,16 @@ export default function ClothingFeatureCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={2}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Legs")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Legs")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -100,7 +153,16 @@ export default function ClothingFeatureCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={2}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Back")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Back")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -119,7 +181,16 @@ export default function ClothingFeatureCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={2}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Collarbones")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Collarbones")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"

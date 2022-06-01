@@ -34,19 +34,21 @@ const BasicOutlinedBtn = {
 const sizeSelectCard = {
   minHeight: "200px",
   p: 2,
-  backgroundColor: "#FFE6F6",
+  backgroundColor: "transparent",
   color: "#6C4A6D",
-  "&:hover": {
-    color: "#FFF",
-    backgroundColor: "#6C4A6D",
-    transition: "all 0.4s",
-  },
+  borderColor: "#D3AED280",
+  // "&:hover": {
+  //   color: "#FFF",
+  //   backgroundColor: "#6C4A6D",
+  //   transition: "all 0.4s",
+  // },
 };
 
 const outlinedCard = {
   // minHeight: "150px",
   height: "100%",
-  p: 2,
+  px: 1,
+  py: 2,
   backgroundColor: "transparent",
   color: "#000",
   "&:hover": {
@@ -75,6 +77,16 @@ const colorPalettes = {
   boxSizing: "content-box",
 };
 
+const selectedCardStyle = {
+  // minHeight: "150px",
+  height: "100%",
+  px: 1,
+  py: 2,
+
+  color: "#FFF",
+  backgroundColor: "#6C4A6D",
+};
+
 export const styles = {
   headingText,
   subHeadingText,
@@ -83,4 +95,5 @@ export const styles = {
   outlinedCard,
   avatarBox,
   colorPalettes,
+  selectedCardStyle,
 };

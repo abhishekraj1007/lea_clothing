@@ -3,7 +3,8 @@ import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import floralPrintUrl from "../../../../assets/floral3.jpg";
 import abstractPrintUrl from "../../../../assets/abstract2.jpg";
@@ -22,9 +23,33 @@ import graphicsPrintUrl from "../../../../assets/graphics.jpg";
 export default function ClothPrintsCard(props) {
   const { subHeadingText, headingText, instructionText } = props;
   const dispatch = useDispatch();
+  const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState("");
+
+  useEffect(() => {
+    const quesIndex = quizData?.findIndex(
+      (data) => data.Question === headingText
+    );
+    setQuestionIndex(quesIndex);
+    const answers = [...quizData[quesIndex].Answer];
+    setSelectedCards(answers);
+  }, [quizData]);
+
+  // useEffect(() => {
+  //   console.log("selectedCards->", selectedCards);
+  // }, [selectedCards]);
+
+  const handleCards = (selectedItem) => {
+    const quizObj = {
+      questionIndex,
+      answer: selectedItem,
+    };
+    dispatch(leaQuizActions.updateCardQuestion(quizObj));
+  };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" sx={{ marginTop: 6 }}>
       <Grid
         item
         xs={12}
@@ -42,7 +67,7 @@ export default function ClothPrintsCard(props) {
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
       </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center">
+      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
           {subHeadingText}
         </Grid>
@@ -54,7 +79,16 @@ export default function ClothPrintsCard(props) {
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Floral")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Floral")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -74,7 +108,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Abstract")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Abstract")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -94,7 +137,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Resort")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Resort")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -114,7 +166,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Geometric")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Geometric")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -134,7 +195,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Stripes")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Stripes")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -154,7 +224,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Checkered")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Checkered")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -174,7 +253,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("Graphic")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Graphic")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -194,7 +282,16 @@ export default function ClothPrintsCard(props) {
             </Paper>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Paper sx={styles.outlinedCard} elevation={0} variant="outlined">
+            <Paper
+              sx={
+                selectedCards.includes("None")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("None")}
+            >
               <Stack
                 direction="column"
                 justifyContent="center"

@@ -6,7 +6,11 @@ const initialQuizData = [
     Question: "Are you shopping with us for the 1st time?",
     Answer: "",
   },
-  { QNo: 2, Question: "Could we get your digits?", Answer: "" },
+  {
+    QNo: 2,
+    Question: "Could we get your digits?",
+    Answer: { Bust: "", Waist: "", Hips: "" },
+  },
   { QNo: 3, Question: "How would you describe your body?", Answer: "" },
   {
     QNo: 4,
@@ -81,6 +85,47 @@ const leaQuizSlice = createSlice({
       } else {
         console.log("question not match", isSameQuestion);
       }
+    },
+    updateCardQuestion(state, action) {
+      const array = [...current(state.quizData)];
+      const { questionIndex, answer } = action.payload;
+      // console.log("questionArray", array);
+      // console.log("questionIndex--->", questionIndex);
+      // console.log("question", answer);
+      if (state.quizData[questionIndex]["Answer"] === "") {
+        state.quizData[questionIndex].Answer = [];
+      }
+
+      // console.log("------>", current(state.quizData[questionIndex]));
+      if (state.quizData[questionIndex].Answer.includes(answer)) {
+        // console.log(answer, "already selected");
+        const filteredArray = state.quizData[questionIndex].Answer.filter(
+          (item) => item !== answer
+        );
+        // console.log("filteredArray", filteredArray);
+        state.quizData[questionIndex].Answer = filteredArray;
+      } else {
+        state.quizData[questionIndex].Answer.push(answer);
+      }
+
+      if (answer === "None") {
+        state.quizData[questionIndex].Answer = [];
+      }
+
+      if (answer === "All") {
+        state.quizData[questionIndex].Answer = [
+          "Pastels",
+          "Neutrals",
+          "Earthly Tones",
+          "Bright Hues",
+          "Neons",
+        ];
+      }
+    },
+    updateSizeValues(state, action) {
+      const { questionIndex, name, value } = action.payload;
+      console.log("---->>>>>", { questionIndex, name, value });
+      state.quizData[questionIndex].Answer[name] = value;
     },
   },
 });

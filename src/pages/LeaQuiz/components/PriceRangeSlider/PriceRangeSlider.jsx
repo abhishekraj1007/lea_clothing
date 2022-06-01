@@ -19,7 +19,7 @@ export default function PriceRangeSlider(props) {
   const dispatch = useDispatch();
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" spacing={1}>
       <Grid
         item
         xs={12}

@@ -37,7 +37,7 @@ const BasicQuiz = (props) => {
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
       </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center">
+      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
           {subHeadingText}
         </Grid>
@@ -74,7 +74,7 @@ const BasicQuiz = (props) => {
                   justifyContent="center"
                   key={`button_${content}`}
                 >
-                  <Grid item xs={4}>
+                  <Grid item xs={6}>
                     <Button
                       variant="outlined"
                       size="large"

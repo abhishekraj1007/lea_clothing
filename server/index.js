@@ -4,6 +4,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import "dotenv/config";
+import "./models/questionaire.js";
 
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
@@ -112,6 +113,7 @@ export async function createServer(
    */
   let vite;
   if (!isProd) {
+    console.log("This is not production...");
     vite = await import("vite").then(({ createServer }) =>
       createServer({
         root,
@@ -148,6 +150,7 @@ export async function createServer(
     });
   }
 
+  console.log("generalized code here....");
   return { app, vite };
 }
 

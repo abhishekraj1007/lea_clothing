@@ -7,13 +7,20 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 const BasicQuiz = (props) => {
-  const { subHeadingText, headingText, buttonContent, buttonDirection } = props;
+  const {
+    subHeadingText,
+    headingText,
+    buttonContent,
+    buttonDirection,
+    values,
+  } = props;
   const dispatch = useDispatch();
 
-  const handleQuestion = (content) => {
+  const handleQuestion = (content, value) => {
     const quizObj = {
       question: headingText,
       answer: content,
+      value,
     };
     dispatch(leaQuizActions.updateBasicQuestion(quizObj));
     dispatch(leaQuizActions.incrementSlideCount());
@@ -47,7 +54,7 @@ const BasicQuiz = (props) => {
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
           {buttonDirection === "column" && (
             <>
-              {buttonContent?.map((content) => (
+              {buttonContent?.map((content, index) => (
                 <Grid item xs={4} key={`button_${content}`}>
                   <Button
                     variant="outlined"
@@ -55,7 +62,7 @@ const BasicQuiz = (props) => {
                     fullWidth
                     sx={styles.BasicOutlinedBtn}
                     onClick={() => {
-                      handleQuestion(content);
+                      handleQuestion(content, values[index]);
                     }}
                   >
                     {content}
@@ -66,7 +73,7 @@ const BasicQuiz = (props) => {
           )}
           {buttonDirection === "row" && (
             <>
-              {buttonContent?.map((content) => (
+              {buttonContent?.map((content, index) => (
                 <Grid
                   container
                   item
@@ -81,7 +88,7 @@ const BasicQuiz = (props) => {
                       fullWidth
                       sx={styles.BasicOutlinedBtn}
                       onClick={() => {
-                        handleQuestion(content);
+                        handleQuestion(content, values[index]);
                       }}
                     >
                       {content}

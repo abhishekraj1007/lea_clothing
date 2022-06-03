@@ -26,10 +26,11 @@ export default function CardQuiz(props) {
   //   console.log("selectedCards->", selectedCards);
   // }, [selectedCards]);
 
-  const handleCards = (selectedItem) => {
+  const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,
       answer: selectedItem,
+      value,
     };
     dispatch(leaQuizActions.updateCardQuestion(quizObj));
   };
@@ -70,7 +71,7 @@ export default function CardQuiz(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Hourglass")}
+              onClick={() => handleCards("Hourglass", "Hourglass")}
             >
               <Stack
                 direction="column"
@@ -99,7 +100,7 @@ export default function CardQuiz(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Rectangle")}
+              onClick={() => handleCards("Rectangle", "Rectangle")}
             >
               <Stack
                 direction="column"
@@ -128,7 +129,7 @@ export default function CardQuiz(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Pear")}
+              onClick={() => handleCards("Pear", "Pear")}
             >
               <Stack
                 direction="column"
@@ -157,7 +158,7 @@ export default function CardQuiz(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Apple")}
+              onClick={() => handleCards("Apple", "Apple")}
             >
               <Stack
                 direction="column"
@@ -186,7 +187,9 @@ export default function CardQuiz(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Inverted Triangle")}
+              onClick={() =>
+                handleCards("Inverted Triangle", "Inverted Triangle")
+              }
             >
               <Stack
                 direction="column"

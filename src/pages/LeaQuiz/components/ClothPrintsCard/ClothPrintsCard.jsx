@@ -40,10 +40,11 @@ export default function ClothPrintsCard(props) {
   //   console.log("selectedCards->", selectedCards);
   // }, [selectedCards]);
 
-  const handleCards = (selectedItem) => {
+  const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,
       answer: selectedItem,
+      value,
     };
     dispatch(leaQuizActions.updateCardQuestion(quizObj));
   };
@@ -87,7 +88,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Floral")}
+              onClick={() => handleCards("Floral", "Floral")}
             >
               <Stack
                 direction="column"
@@ -116,7 +117,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Abstract")}
+              onClick={() => handleCards("Abstract", "Abstract")}
             >
               <Stack
                 direction="column"
@@ -145,7 +146,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Resort")}
+              onClick={() => handleCards("Resort", "Resort")}
             >
               <Stack
                 direction="column"
@@ -174,7 +175,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Geometric")}
+              onClick={() => handleCards("Geometric", "Geometric")}
             >
               <Stack
                 direction="column"
@@ -203,7 +204,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Stripes")}
+              onClick={() => handleCards("Stripes", "Stripes")}
             >
               <Stack
                 direction="column"
@@ -232,7 +233,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Checkered")}
+              onClick={() => handleCards("Checkered", "Checkered")}
             >
               <Stack
                 direction="column"
@@ -261,7 +262,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Graphic")}
+              onClick={() => handleCards("Graphic", "Graphic")}
             >
               <Stack
                 direction="column"
@@ -290,7 +291,7 @@ export default function ClothPrintsCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("None")}
+              onClick={() => handleCards("None", "None")}
             >
               <Stack
                 direction="column"

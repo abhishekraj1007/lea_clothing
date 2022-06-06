@@ -14,12 +14,6 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import waistImgUrl from "../../../../assets/waist.png";
-import legsImgUrl from "../../../../assets/legs-1.png";
-import leftArmImgUrl from "../../../../assets/left-arm.png";
-import neckImgUrl from "../../../../assets/neck.png";
-import backImgUrl from "../../../../assets/back.png";
-
 export default function ColorCard(props) {
   const { instructionText, headingText } = props;
   const dispatch = useDispatch();
@@ -40,10 +34,11 @@ export default function ColorCard(props) {
   //   console.log("selectedCards->", selectedCards);
   // }, [selectedCards]);
 
-  const handleCards = (selectedItem) => {
+  const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,
       answer: selectedItem,
+      value,
     };
     dispatch(leaQuizActions.updateCardQuestion(quizObj));
   };
@@ -84,7 +79,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Pastels")}
+              onClick={() => handleCards("Pastels", "Pastels")}
             >
               <Stack
                 direction="column"
@@ -95,19 +90,19 @@ export default function ColorCard(props) {
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ marginLeft: "0px", backgroundColor: "#FCB9A9" }}
+                    style={{ marginLeft: "0px", backgroundColor: "#FFC5D1" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#8ECACA" }}
+                    style={{ backgroundColor: "#C3D7F2" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#EBD5E2" }}
+                    style={{ backgroundColor: "#FFD6DC" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#FFE3D5" }}
+                    style={{ backgroundColor: "#E1F8E8" }}
                   />
                 </Box>
                 <Box>{"Pastels"}</Box>
@@ -123,7 +118,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Neutrals")}
+              onClick={() => handleCards("Neutrals", "Neutrals")}
             >
               <Stack
                 direction="column"
@@ -134,19 +129,19 @@ export default function ColorCard(props) {
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ marginLeft: "0px", backgroundColor: "#A5ADB6" }}
+                    style={{ marginLeft: "0px", backgroundColor: "#848587" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#C0B2A6" }}
+                    style={{ backgroundColor: "#F6F4E7" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#B8A6AF" }}
+                    style={{ backgroundColor: "#1A1F32" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#C9B57E" }}
+                    style={{ backgroundColor: "#C1946D" }}
                   />
                 </Box>
                 <Box>{"Neutrals"}</Box>
@@ -162,7 +157,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Earthly Tones")}
+              onClick={() => handleCards("Earthly Tones", "Earthly Tones")}
             >
               <Stack
                 direction="column"
@@ -201,7 +196,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Bright Hues")}
+              onClick={() => handleCards("Bright Hues", "Bright Hues")}
             >
               <Stack
                 direction="column"
@@ -212,19 +207,19 @@ export default function ColorCard(props) {
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ marginLeft: "0px", backgroundColor: "#FA6E91" }}
+                    style={{ marginLeft: "0px", backgroundColor: "#FFD54D" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#0081BB" }}
+                    style={{ backgroundColor: "#F52549" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#FFE878" }}
+                    style={{ backgroundColor: "#9CBF1B" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#77DAD5" }}
+                    style={{ backgroundColor: "#FB6777" }}
                   />
                 </Box>
                 <Box>{"Bright Hues"}</Box>
@@ -240,7 +235,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Neons")}
+              onClick={() => handleCards("Neons", "Neons")}
             >
               <Stack
                 direction="column"
@@ -251,19 +246,19 @@ export default function ColorCard(props) {
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ marginLeft: "0px", backgroundColor: "#FFF205" }}
+                    style={{ marginLeft: "0px", backgroundColor: "#FF4F59" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#7CFF03" }}
+                    style={{ backgroundColor: "#FFA9D6" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#00FFF5" }}
+                    style={{ backgroundColor: "#F1FE01" }}
                   />
                   <Box
                     sx={styles.colorPalettes}
-                    style={{ backgroundColor: "#F21E6E" }}
+                    style={{ backgroundColor: "#4EC6E1" }}
                   />
                 </Box>
                 <Box>{"Neons"}</Box>
@@ -279,7 +274,7 @@ export default function ColorCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("All")}
+              onClick={() => handleCards("All", "All")}
             >
               <Stack
                 direction="column"

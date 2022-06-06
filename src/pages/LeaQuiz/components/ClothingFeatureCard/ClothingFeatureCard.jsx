@@ -33,10 +33,11 @@ export default function ClothingFeatureCard(props) {
     console.log("selectedCards->", selectedCards);
   }, [selectedCards]);
 
-  const handleCards = (selectedItem) => {
+  const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,
       answer: selectedItem,
+      value,
     };
     dispatch(leaQuizActions.updateCardQuestion(quizObj));
   };
@@ -77,7 +78,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Waist")}
+              onClick={() => handleCards("Waist", "Corset, Bodycon, Crop Top")}
             >
               <Stack
                 direction="column"
@@ -105,7 +106,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Arms")}
+              onClick={() => handleCards("Arms", "Sleeveless")}
             >
               <Stack
                 direction="column"
@@ -133,7 +134,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Legs")}
+              onClick={() => handleCards("Legs", "Mini")}
             >
               <Stack
                 direction="column"
@@ -161,7 +162,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Back")}
+              onClick={() => handleCards("Back", "Backless")}
             >
               <Stack
                 direction="column"
@@ -189,7 +190,9 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Collarbones")}
+              onClick={() =>
+                handleCards("Collarbones", "Off-Shoulder, Strapless")
+              }
             >
               <Stack
                 direction="column"

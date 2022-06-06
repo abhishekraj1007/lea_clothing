@@ -10,6 +10,7 @@ import {
   ClothPrintsCard,
   ClothStyleCard,
   PriceRangeSlider,
+  ProgessBarWithLabel,
 } from "./components";
 import { useSelector } from "react-redux";
 
@@ -18,6 +19,7 @@ const LeaQuiz = () => {
 
   return (
     <Box>
+      <ProgessBarWithLabel />
       {slideCount === 1 && (
         <QuizLayout
           gradientDirection={"top right"}
@@ -56,6 +58,7 @@ const LeaQuiz = () => {
               headingText={"Are you shopping with us for the 1st time?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
+              values={["Yes", "No"]}
             />
           }
         />
@@ -160,6 +163,7 @@ const LeaQuiz = () => {
                 "Average (5.4 - 5.7)",
                 "Tall (5.8 and above)",
               ]}
+              values={["Petite", "Average", "Tall"]}
             />
           }
         />
@@ -212,6 +216,7 @@ const LeaQuiz = () => {
               headingText={"Are you a fan of Prints?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
+              values={["Yes", "No"]}
             />
           }
         />
@@ -238,7 +243,7 @@ const LeaQuiz = () => {
           }
         />
       )}
-      {/* {slideCount === 13 && (
+      {slideCount === 13 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{
@@ -249,12 +254,14 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <PriceRangeSlider
-              headingText={"How much do you want to spend on items from these categories?"}
+              headingText={
+                "How much do you want to spend on items from these categories?"
+              }
             />
           }
         />
-      )} */}
-      {slideCount === 13 && (
+      )}
+      {slideCount === 14 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{
@@ -276,7 +283,7 @@ const LeaQuiz = () => {
           }
         />
       )}
-      {slideCount === 14 && (
+      {slideCount === 15 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{
@@ -295,11 +302,12 @@ const LeaQuiz = () => {
               headingText={"Are you shopping for a special ocassion?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
+              values={["Yes", "No"]}
             />
           }
         />
       )}
-      {slideCount === 15 && (
+      {slideCount === 16 && (
         <QuizLayout
           gradientDirection={"top left"}
           balls={{
@@ -318,6 +326,18 @@ const LeaQuiz = () => {
               headingText={"Are you shopping for a specific ocassion?"}
               buttonDirection="row"
               buttonContent={[
+                "Birthday",
+                "Graduation",
+                "Bridal Shower",
+                "Bachelorette",
+                "Date Night",
+                "Concert",
+                "Beach Vacation",
+                "Party",
+                "Elevated Basics",
+                "Others",
+              ]}
+              values={[
                 "Birthday",
                 "Graduation",
                 "Bridal Shower",

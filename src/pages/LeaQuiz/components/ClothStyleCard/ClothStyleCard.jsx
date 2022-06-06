@@ -33,10 +33,11 @@ export default function ClothStyleCard(props) {
   //   console.log("selectedCards->", selectedCards);
   // }, [selectedCards]);
 
-  const handleCards = (selectedItem) => {
+  const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,
       answer: selectedItem,
+      value,
     };
     dispatch(leaQuizActions.updateCardQuestion(quizObj));
   };
@@ -80,7 +81,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 1")}
+              onClick={() => handleCards("Sasha White 1", "Sasha White 1")}
             >
               <Stack
                 direction="column"
@@ -109,7 +110,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 2")}
+              onClick={() => handleCards("Sasha White 2", "Sasha White 2")}
             >
               <Stack
                 direction="column"
@@ -138,7 +139,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 3")}
+              onClick={() => handleCards("Sasha White 3", "Sasha White 3")}
             >
               <Stack
                 direction="column"
@@ -167,7 +168,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 4")}
+              onClick={() => handleCards("Sasha White 4", "Sasha White 4")}
             >
               <Stack
                 direction="column"
@@ -196,7 +197,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 5")}
+              onClick={() => handleCards("Sasha White 5", "Sasha White 5")}
             >
               <Stack
                 direction="column"
@@ -225,7 +226,7 @@ export default function ClothStyleCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Sasha White 6")}
+              onClick={() => handleCards("Sasha White 6", "Sasha White 6")}
             >
               <Stack
                 direction="column"

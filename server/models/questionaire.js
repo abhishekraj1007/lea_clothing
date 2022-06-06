@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const MONGO_URI =
-  "mongodb+srv://my_jurisdiction:P9N18hMrpvSWJiEy@graphql-cluster.lsiwf1p.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://leaclothing99:PJ5LgcqFMv5E5w3D@lea-clothing-cluster.cjqxv.mongodb.net/?retryWrites=true&w=majority";
+// "mongodb+srv://my_jurisdiction:P9N18hMrpvSWJiEy@graphql-cluster.lsiwf1p.mongodb.net/?retryWrites=true&w=majority";
 if (!MONGO_URI) {
   throw new Error("You must provide a MongoLab URI");
 }

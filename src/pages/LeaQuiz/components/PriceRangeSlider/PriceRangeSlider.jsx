@@ -13,7 +13,7 @@ import loungewearImgUrl from "../../../../assets/Loungewear.png";
 import accessoriesImgUrl from "../../../../assets/accessories.png";
 
 export default function PriceRangeSlider(props) {
-  const { headingText } = props;
+  const { subHeadingText, headingText, progress, prevProgress } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
 
@@ -61,12 +61,19 @@ export default function PriceRangeSlider(props) {
       >
         <IconButton
           sx={{ color: "#D3AED2" }}
-          onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.decrementSlideCount());
+            if (prevProgress)
+              dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+          }}
         >
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
       </Grid>
       <Grid item container xs={12} sm={8} justifyContent="center" spacing={2}>
+        <Grid item xs={12} sx={styles.subHeadingText}>
+          {subHeadingText}
+        </Grid>
         <Grid item xs={12} sx={styles.headingText}>
           {headingText}
         </Grid>
@@ -281,7 +288,11 @@ export default function PriceRangeSlider(props) {
       >
         <IconButton
           sx={{ color: "#6C4A6D" }}
-          onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
+          }}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

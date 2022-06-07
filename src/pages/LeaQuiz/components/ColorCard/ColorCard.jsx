@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 export default function ColorCard(props) {
-  const { instructionText, headingText } = props;
+  const { instructionText, headingText, progress } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -301,7 +301,11 @@ export default function ColorCard(props) {
       >
         <IconButton
           sx={{ color: "#6C4A6D" }}
-          onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
+          }}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

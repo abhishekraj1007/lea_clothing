@@ -14,7 +14,13 @@ import sashaWhite5ImgUrl from "../../../../assets/Sasha-White-5.jpg";
 import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
 
 export default function ClothStyleCard(props) {
-  const { subHeadingText, headingText, instructionText } = props;
+  const {
+    subHeadingText,
+    headingText,
+    instructionText,
+    progress,
+    prevProgress,
+  } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -56,7 +62,11 @@ export default function ClothStyleCard(props) {
       >
         <IconButton
           sx={{ color: "#D3AED2" }}
-          onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.decrementSlideCount());
+            if (prevProgress)
+              dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+          }}
         >
           <ArrowCircleLeftIcon fontSize="large" />
         </IconButton>
@@ -260,7 +270,11 @@ export default function ClothStyleCard(props) {
       >
         <IconButton
           sx={{ color: "#6C4A6D" }}
-          onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
+          }}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

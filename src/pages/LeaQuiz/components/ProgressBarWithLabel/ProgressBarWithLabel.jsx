@@ -2,6 +2,7 @@ import * as React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 function LinearProgressWithLabel(props) {
   return (
@@ -37,18 +38,18 @@ function LinearProgressWithLabel(props) {
 }
 
 export default function ProgressBarWithLabel() {
-  const [progress, setProgress] = React.useState(10);
+  const progress = useSelector((state) => state.leaQuiz.progressStatus);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 10 : prevProgress + 10
-      );
-    }, 800);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  // React.useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setProgress((prevProgress) =>
+  //       prevProgress >= 100 ? 10 : prevProgress + 10
+  //     );
+  //   }, 800);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
 
   return (
     <Box

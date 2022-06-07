@@ -4,7 +4,8 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const BasicQuiz = (props) => {
   const {
@@ -13,8 +14,13 @@ const BasicQuiz = (props) => {
     buttonContent,
     buttonDirection,
     values,
+    progress,
+    prevProgress,
   } = props;
   const dispatch = useDispatch();
+  const slideCount = useSelector((state) => state.leaQuiz.slideCount);
+
+  useEffect(() => console.log("---->>>", slideCount), [slideCount]);
 
   const handleQuestion = (content, value) => {
     const quizObj = {
@@ -24,6 +30,7 @@ const BasicQuiz = (props) => {
     };
     dispatch(leaQuizActions.updateBasicQuestion(quizObj));
     dispatch(leaQuizActions.incrementSlideCount());
+    if (progress) dispatch(leaQuizActions.incrementProgress({ progress }));
   };
   return (
     <Grid container justifyContent="center">
@@ -37,12 +44,18 @@ const BasicQuiz = (props) => {
           alignItems: "center",
         }}
       >
-        <IconButton
-          sx={{ color: "#D3AED2" }}
-          onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
-        >
-          <ArrowCircleLeftIcon fontSize="large" />
-        </IconButton>
+        {slideCount !== 1 && (
+          <IconButton
+            sx={{ color: "#D3AED2" }}
+            onClick={() => {
+              dispatch(leaQuizActions.decrementSlideCount());
+              if (prevProgress)
+                dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+            }}
+          >
+            <ArrowCircleLeftIcon fontSize="large" />
+          </IconButton>
+        )}
       </Grid>
       <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
@@ -112,7 +125,11 @@ const BasicQuiz = (props) => {
       >
         <IconButton
           sx={{ color: "#6C4A6D" }}
-          onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
+          }}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

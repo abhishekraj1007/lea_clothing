@@ -30,9 +30,23 @@ const LeaQuiz = () => {
             },
           }}
           ResultComponent={
-            <BasicText
-              subHeadingText={"You on Pedestal"}
-              headingText={"Let’s Start Easy"}
+            <BasicQuiz
+              subHeadingText={"Life is too short to wear boring clothes."}
+              headingText={"Let's start easy, what brings you here today?"}
+              buttonDirection="row"
+              buttonContent={[
+                "I'm interested in trying corsets.",
+                "I've worn all my clothes to death and need an upgrade.",
+                "I've recently had new changes to my body and am looking to find my ideal fit.",
+                "Just browsing.",
+              ]}
+              values={[
+                "I'm interested in trying corsets.",
+                "I've worn all my clothes to death and need an upgrade.",
+                "I've recently had new changes to my body and am looking to find my ideal fit.",
+                "Just browsing.",
+              ]}
+              progress={5}
             />
           }
         />
@@ -59,6 +73,8 @@ const LeaQuiz = () => {
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
+              progress={5}
+              prevProgress={5}
             />
           }
         />
@@ -75,7 +91,7 @@ const LeaQuiz = () => {
           ResultComponent={
             <BasicText
               subHeadingText={"Alright!"}
-              headingText={"Let’s find you a perfect fit!."}
+              headingText={"Let’s find your perfect fit!."}
             />
           }
         />
@@ -91,10 +107,12 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <SizeSelectionCard
-              headingText={"Could we get your digits?"}
-              instructionText={
-                "Select sizes for all Parts - All sizes are in Inches"
+              subHeadingText={
+                "I would call my fashion style “clothes that fit!”"
               }
+              headingText={"Could we get your digits?"}
+              instructionText={"All sizes are in Inches"}
+              progress={10}
             />
           }
         />
@@ -110,8 +128,10 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <CardQuiz
-              subHeadingText={"Bodies have many shapes"}
-              headingText={"How would you describe your body?"}
+              subHeadingText={"Bodies come in many shapes"}
+              headingText={"How would you describe yours?"}
+              progress={10}
+              prevProgress={10}
             />
           }
         />
@@ -125,6 +145,8 @@ const LeaQuiz = () => {
               headingText={
                 "Your favourite features that you like to accentuate with your clothing?"
               }
+              progress={5}
+              prevProgress={10}
             />
           }
         />
@@ -138,6 +160,8 @@ const LeaQuiz = () => {
               headingText={
                 "Some features that you're not-so-comfortable showcasing in your clothing?"
               }
+              progress={5}
+              prevProgress={5}
             />
           }
         />
@@ -153,7 +177,6 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <BasicQuiz
-              subHeadingText={"Bodies have many shapes"}
               headingText={
                 "Would you say you're vertically gifted or efficient?"
               }
@@ -164,6 +187,8 @@ const LeaQuiz = () => {
                 "Tall (5.8 and above)",
               ]}
               values={["Petite", "Average", "Tall"]}
+              progress={10}
+              prevProgress={5}
             />
           }
         />
@@ -193,7 +218,8 @@ const LeaQuiz = () => {
           ResultComponent={
             <ColorCard
               headingText={"What colour palettes are you most attracted to?"}
-              instructionText={"You can select Multiple"}
+              instructionText={"Pick as many as you'd like!"}
+              progress={10}
             />
           }
         />
@@ -217,6 +243,8 @@ const LeaQuiz = () => {
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
+              progress={5}
+              prevProgress={10}
             />
           }
         />
@@ -238,7 +266,9 @@ const LeaQuiz = () => {
             <ClothPrintsCard
               subHeadingText={"We love prints too!"}
               headingText={"What kind of prints are you attracted to?"}
-              instructionText={"You can select Multiple"}
+              instructionText={"No pressure, you can select more than one."}
+              progress={5}
+              prevProgress={5}
             />
           }
         />
@@ -254,9 +284,14 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <PriceRangeSlider
+              subHeadingText={
+                "I like my money right where I can see it, hanging in my closet. - Carrie Bradshaw"
+              }
               headingText={
                 "How much do you want to spend on items from these categories?"
               }
+              progress={10}
+              prevProgress={5}
             />
           }
         />
@@ -276,9 +311,13 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <ClothStyleCard
-              subHeadingText={"Let’s look at some examples!"}
+              subHeadingText={
+                "Style is a way to say who you are without having to speak. - Rachel Zoe "
+              }
               headingText={"Which one would you describe as your style?"}
-              instructionText={"You can select Multiple"}
+              instructionText={"No pressure, you can select more than one."}
+              progress={10}
+              prevProgress={10}
             />
           }
         />
@@ -298,11 +337,13 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <BasicQuiz
-              subHeadingText={"Ocassion or not, you deserve the best!"}
+              subHeadingText={"Main character Energy TM"}
               headingText={"Are you shopping for a special ocassion?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
+              progress={5}
+              prevProgress={10}
             />
           }
         />
@@ -322,7 +363,9 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <BasicQuiz
-              subHeadingText={"What’s the special ocassion?"}
+              subHeadingText={
+                "There are exactly as many special occasions in life as we choose to celebrate. - Robert Breault"
+              }
               headingText={"Are you shopping for a specific ocassion?"}
               buttonDirection="row"
               buttonContent={[
@@ -349,6 +392,8 @@ const LeaQuiz = () => {
                 "Elevated Basics",
                 "Others",
               ]}
+              progress={5}
+              prevProgress={5}
             />
           }
         />

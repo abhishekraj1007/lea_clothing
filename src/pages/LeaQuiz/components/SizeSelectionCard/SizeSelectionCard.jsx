@@ -88,7 +88,7 @@ const LayoutRoot = styled("MenuItem")(({ theme }) => ({
 }));
 
 export default function SizeSelectionCard(props) {
-  const { headingText, instructionText } = props;
+  const { subHeadingText, headingText, instructionText, progress } = props;
   const dispatch = useDispatch();
   const [topSelectSize, setTopSelectSize] = useState("");
   const quizData = useSelector((state) => state.leaQuiz.quizData);
@@ -196,6 +196,9 @@ export default function SizeSelectionCard(props) {
           </IconButton>
         </Grid>
         <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
+          <Grid item xs={12} sx={styles.subHeadingText}>
+            {subHeadingText}
+          </Grid>
           <Grid item xs={12} sx={styles.headingText}>
             {headingText}
           </Grid>
@@ -418,7 +421,11 @@ export default function SizeSelectionCard(props) {
         >
           <IconButton
             sx={{ color: "#6C4A6D" }}
-            onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+            onClick={() => {
+              dispatch(leaQuizActions.incrementSlideCount());
+              if (progress)
+                dispatch(leaQuizActions.incrementProgress({ progress }));
+            }}
           >
             <ArrowCircleRightIcon fontSize="large" />
           </IconButton>

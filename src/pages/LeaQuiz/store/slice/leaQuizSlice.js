@@ -3,27 +3,34 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const initialQuizData = [
   {
     QNo: 1,
+    Name: "start easy",
+    Question: "Let's start easy, what brings you here today?",
+    Answer: "",
+    Value: "",
+  },
+  {
+    QNo: 2,
     Name: "first time",
     Question: "Are you shopping with us for the 1st time?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 2,
+    QNo: 3,
     Name: "size",
     Question: "Could we get your digits?",
     Answer: { Bust: "", Waist: "", Hips: "" },
     Value: { Bust: "", Waist: "", Hips: "" },
   },
   {
-    QNo: 3,
+    QNo: 4,
     Name: "Bodies",
-    Question: "How would you describe your body?",
+    Question: "How would you describe yours?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 4,
+    QNo: 5,
     Name: "accentuate",
     Question:
       "Your favourite features that you like to accentuate with your clothing?",
@@ -31,7 +38,7 @@ const initialQuizData = [
     Value: "",
   },
   {
-    QNo: 5,
+    QNo: 6,
     Name: "uncomfortable",
     Question:
       "Some features that you're not-so-comfortable showcasing in your clothing?",
@@ -39,35 +46,35 @@ const initialQuizData = [
     Value: "",
   },
   {
-    QNo: 6,
+    QNo: 7,
     Name: "height",
     Question: "Would you say you're vertically gifted or efficient?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 7,
+    QNo: 8,
     Name: "colour palettes",
     Question: "What colour palettes are you most attracted to?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 8,
+    QNo: 9,
     Name: "prints_fan",
     Question: "Are you a fan of Prints?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 9,
+    QNo: 10,
     Name: "prints",
     Question: "What kind of prints are you attracted to?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 10,
+    QNo: 11,
     Name: "spend categories",
     Question: "How much do you want to spend on items from these categories?",
     Answer: {
@@ -86,21 +93,21 @@ const initialQuizData = [
     },
   },
   {
-    QNo: 11,
+    QNo: 12,
     Name: "styles",
     Question: "Which one would you describe as your style?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 12,
+    QNo: 13,
     Name: "occasion specific",
     Question: "Are you shopping for a special ocassion?",
     Answer: "",
     Value: "",
   },
   {
-    QNo: 13,
+    QNo: 14,
     Name: "occasion",
     Question: "Are you shopping for a specific ocassion?",
     Answer: "",
@@ -111,6 +118,7 @@ const initialQuizData = [
 const initialState = {
   slideCount: 1,
   quizData: initialQuizData,
+  progressStatus: 0,
 };
 
 const leaQuizSlice = createSlice({
@@ -229,6 +237,12 @@ const leaQuizSlice = createSlice({
       console.log("---->>>>>", { questionIndex, name, value });
       state.quizData[questionIndex].Answer[name] = value;
       state.quizData[questionIndex].Value[name] = value;
+    },
+    incrementProgress(state, action) {
+      state.progressStatus += action.payload.progress;
+    },
+    decrementProgress(state, action) {
+      state.progressStatus -= action.payload.prevProgress;
     },
   },
 });

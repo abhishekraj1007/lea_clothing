@@ -115,10 +115,92 @@ const initialQuizData = [
   },
 ];
 
+const initialFinalData = {
+  "first time": {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  size: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  Bodies: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  accentuate: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  uncomfortable: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  height: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  "colour palettes": {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  prints_fan: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  prints: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  "spend categories": {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  styles: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  "occasion specific": {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+  occasion: {
+    qno: "",
+    question: "",
+    attribute: "",
+    value: "",
+  },
+};
+
 const initialState = {
   slideCount: 1,
   quizData: initialQuizData,
   progressStatus: 0,
+  finalQuizData: initialFinalData,
 };
 
 const leaQuizSlice = createSlice({
@@ -243,6 +325,25 @@ const leaQuizSlice = createSlice({
     },
     decrementProgress(state, action) {
       state.progressStatus -= action.payload.prevProgress;
+    },
+    updateFinalQuizData(state, action) {
+      const quizArr = [...current(state.quizData)];
+      let obj = { ...state.finalQuizData };
+      console.log("obj", obj);
+      for (let i = 0; i < quizArr.length; i++) {
+        // const { Name, Question, Answer, Value} = quizArr[i];
+        if (quizArr[i].Name !== "start easy") {
+          obj[`${quizArr[i].Name}`] = {
+            qno: i,
+            question: quizArr[i].Question,
+            attribute: quizArr[i].Answer,
+            value: quizArr[i].Value,
+          };
+        }
+        console.log("--->", obj[`${quizArr[i].Name}`]);
+      }
+      console.log("<<<----", obj);
+      state.finalQuizData = obj;
     },
   },
 });

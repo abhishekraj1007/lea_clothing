@@ -111,7 +111,8 @@ const LeaQuiz = () => {
                 "I would call my fashion style “clothes that fit!”"
               }
               headingText={"Could we get your digits?"}
-              instructionText={"All sizes are in Inches"}
+              instructionText={"All sizes are in"}
+              boldText={"Inches"}
               progress={10}
             />
           }
@@ -147,6 +148,13 @@ const LeaQuiz = () => {
               }
               progress={5}
               prevProgress={10}
+              values={[
+                "Corset, Bodycon, Crop Top",
+                "Sleeveless",
+                "Mini",
+                "Backless",
+                "Off-Shoulder, Strapless",
+              ]}
             />
           }
         />
@@ -162,6 +170,7 @@ const LeaQuiz = () => {
               }
               progress={5}
               prevProgress={5}
+              values={["Waist", "Arms", "Legs", "Back", "Collarbones"]}
             />
           }
         />
@@ -337,7 +346,8 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <BasicQuiz
-              subHeadingText={"Main character Energy TM"}
+              subHeadingText={"Main Character Energy"}
+              supScriptTag={"TM"}
               headingText={"Are you shopping for a special ocassion?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}

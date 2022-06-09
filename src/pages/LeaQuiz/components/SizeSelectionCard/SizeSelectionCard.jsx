@@ -88,7 +88,8 @@ const LayoutRoot = styled("MenuItem")(({ theme }) => ({
 }));
 
 export default function SizeSelectionCard(props) {
-  const { subHeadingText, headingText, instructionText, progress } = props;
+  const { subHeadingText, headingText, instructionText, progress, boldText } =
+    props;
   const dispatch = useDispatch();
   const [topSelectSize, setTopSelectSize] = useState("");
   const quizData = useSelector((state) => state.leaQuiz.quizData);
@@ -137,7 +138,19 @@ export default function SizeSelectionCard(props) {
     );
   };
 
-  const topSizes = [
+  const bustSize = [
+    "32-33.5",
+    "34-35",
+    "35.5-37",
+    "37.5-39.5",
+    "40-42",
+    "42.5-45.5",
+    "46-48",
+    "48.5-50.5",
+    "51-53",
+  ];
+
+  const waistSize = [
     "23-24.5",
     "25-26.5",
     "27-28.5",
@@ -147,6 +160,18 @@ export default function SizeSelectionCard(props) {
     "37.5-39.5",
     "40-42",
     "42.5-44.5",
+  ];
+
+  const hipSize = [
+    "34-35.5",
+    "36-37.5",
+    "38-39.5",
+    "40-42",
+    "42.5-44.5",
+    "45-47.5",
+    "48-50.5",
+    "51-53",
+    "53.5-55.5",
   ];
 
   return (
@@ -203,7 +228,7 @@ export default function SizeSelectionCard(props) {
             {headingText}
           </Grid>
           <Grid item xs={12} sx={styles.subHeadingText}>
-            {instructionText}
+            {instructionText} <b>{boldText}</b>
           </Grid>
           <Grid
             item
@@ -226,14 +251,6 @@ export default function SizeSelectionCard(props) {
                   spacing={2}
                 >
                   <Box>
-                    {/* <Avatar
-                    alt="Top"
-                    src={topImgUrl}
-                    sx={{ width: 56, height: 56 }}
-                  /> */}
-                    {/* <Avatar sx={{ width: 56, height: 56, backgroundColor: '#fff', color: '#6C4A6D' }}>
-                    <TopIcon />
-                  </Avatar> */}
                     <Box sx={styles.avatarBox}>
                       <img src={dressesImgUrl} alt="Top" width="50%" />
                     </Box>
@@ -273,7 +290,7 @@ export default function SizeSelectionCard(props) {
                       <MenuItem disabled value="">
                         Select
                       </MenuItem>
-                      {topSizes?.map((size) => (
+                      {bustSize?.map((size) => (
                         <MenuItem value={size} key={`topSelectSize_${size}`}>
                           {size}
                         </MenuItem>
@@ -335,7 +352,7 @@ export default function SizeSelectionCard(props) {
                       <MenuItem disabled value="">
                         Select
                       </MenuItem>
-                      {topSizes?.map((size) => (
+                      {waistSize?.map((size) => (
                         <MenuItem value={size} key={`topSelectSize_${size}`}>
                           {size}
                         </MenuItem>
@@ -397,7 +414,7 @@ export default function SizeSelectionCard(props) {
                       <MenuItem disabled value="">
                         Select
                       </MenuItem>
-                      {topSizes?.map((size) => (
+                      {hipSize?.map((size) => (
                         <MenuItem value={size} key={`HipSize_${size}`}>
                           {size}
                         </MenuItem>

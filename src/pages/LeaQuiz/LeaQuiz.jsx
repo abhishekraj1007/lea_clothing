@@ -11,11 +11,17 @@ import {
   ClothStyleCard,
   PriceRangeSlider,
   ProgessBarWithLabel,
+  UserDetails,
 } from "./components";
 import { useSelector } from "react-redux";
 
 const LeaQuiz = () => {
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
+
+  const validateRegex = (value, regex) => {
+    const re = new RegExp(regex);
+    return re.test(value);
+  };
 
   return (
     <Box>
@@ -228,7 +234,7 @@ const LeaQuiz = () => {
             <ColorCard
               headingText={"What colour palettes are you most attracted to?"}
               instructionText={"Pick as many as you'd like!"}
-              progress={10}
+              progress={5}
             />
           }
         />
@@ -253,7 +259,7 @@ const LeaQuiz = () => {
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
               progress={5}
-              prevProgress={10}
+              prevProgress={5}
             />
           }
         />
@@ -325,7 +331,7 @@ const LeaQuiz = () => {
               }
               headingText={"Which one would you describe as your style?"}
               instructionText={"No pressure, you can select more than one."}
-              progress={10}
+              progress={5}
               prevProgress={10}
             />
           }
@@ -353,7 +359,7 @@ const LeaQuiz = () => {
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
               progress={5}
-              prevProgress={10}
+              prevProgress={5}
             />
           }
         />
@@ -404,6 +410,35 @@ const LeaQuiz = () => {
               ]}
               progress={5}
               prevProgress={5}
+            />
+          }
+        />
+      )}
+      {slideCount === 17 && (
+        <QuizLayout
+          gradientDirection={"top left"}
+          balls={{
+            leftBall: {
+              size: { height: "650px", width: "650px" },
+              position: { bottom: "-450px", left: "-250px" },
+            },
+            rightBall: {
+              size: { height: "300px", width: "300px" },
+              position: { bottom: "30px", right: "-200px" },
+            },
+          }}
+          ResultComponent={
+            <UserDetails
+              subHeadingText={"It's the start of something new..."}
+              headingText={"Can we be friends?"}
+              instructionText={
+                "Get Birthday love from Lea + first time customers get 10% off their first purchase!"
+              }
+              // buttonDirection="column"
+              // buttonContent={["Yes", "No"]}
+              // values={["Yes", "No"]}
+              prevProgress={5}
+              validateRegex={validateRegex}
             />
           }
         />

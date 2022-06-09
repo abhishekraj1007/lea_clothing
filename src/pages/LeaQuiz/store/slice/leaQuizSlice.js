@@ -194,6 +194,10 @@ const initialFinalData = {
     attribute: "",
     value: "",
   },
+  user: {
+    email: "",
+    dob: "",
+  },
 };
 
 const initialState = {
@@ -201,6 +205,7 @@ const initialState = {
   quizData: initialQuizData,
   progressStatus: 0,
   finalQuizData: initialFinalData,
+  userDeatils: { Email: "", DOB: "" },
 };
 
 const leaQuizSlice = createSlice({
@@ -342,8 +347,19 @@ const leaQuizSlice = createSlice({
         }
         console.log("--->", obj[`${quizArr[i].Name}`]);
       }
+      obj.user = {
+        email: state.userDeatils.Email,
+        dob: state.userDeatils.DOB,
+      };
       console.log("<<<----", obj);
       state.finalQuizData = obj;
+    },
+    updateUserDetails(state, action) {
+      const { email, dob } = action.payload;
+      state.userDeatils = {
+        Email: email,
+        DOB: dob,
+      };
     },
   },
 });

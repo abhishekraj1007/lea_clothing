@@ -1,4 +1,4 @@
-import { Grid, Box, IconButton, Paper, Stack, Avatar } from "@mui/material";
+import { Grid, Box, IconButton, Paper, Stack } from "@mui/material";
 import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
@@ -6,14 +6,21 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import waistImgUrl from "../../../../assets/waist.png";
-import legsImgUrl from "../../../../assets/legs-1.png";
-import leftArmImgUrl from "../../../../assets/left-arm.png";
-import neckImgUrl from "../../../../assets/neck.png";
-import backImgUrl from "../../../../assets/back.png";
+import sashaWhite1ImgUrl from "../../../../assets/Sasha-White-1.jpg";
+import sashaWhite2ImgUrl from "../../../../assets/Sasha-White-2.jpg";
+import sashaWhite3ImgUrl from "../../../../assets/Sasha-White-3.jpg";
+import sashaWhite4ImgUrl from "../../../../assets/Sasha-White-4.jpg";
+import sashaWhite5ImgUrl from "../../../../assets/Sasha-White-5.jpg";
+import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
 
-export default function ClothingFeatureCard(props) {
-  const { subHeadingText, headingText, progress, prevProgress } = props;
+export default function ClothStyleCard(props) {
+  const {
+    subHeadingText,
+    headingText,
+    instructionText,
+    progress,
+    prevProgress,
+  } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -23,15 +30,14 @@ export default function ClothingFeatureCard(props) {
     const quesIndex = quizData?.findIndex(
       (data) => data.Question === headingText
     );
-    console.log("questionIndex---->", quesIndex);
     setQuestionIndex(quesIndex);
     const answers = [...quizData[quesIndex].Answer];
     setSelectedCards(answers);
   }, [quizData]);
 
-  useEffect(() => {
-    console.log("selectedCards->", selectedCards);
-  }, [selectedCards]);
+  // useEffect(() => {
+  //   console.log("selectedCards->", selectedCards);
+  // }, [selectedCards]);
 
   const handleCards = (selectedItem, value) => {
     const quizObj = {
@@ -43,7 +49,7 @@ export default function ClothingFeatureCard(props) {
   };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" sx={{ marginTop: 6 }}>
       <Grid
         item
         xs={12}
@@ -72,17 +78,20 @@ export default function ClothingFeatureCard(props) {
         <Grid item xs={12} sx={styles.headingText}>
           {headingText}
         </Grid>
+        <Grid item xs={12} sx={styles.subHeadingText}>
+          {instructionText}
+        </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Waist")
+                selectedCards.includes("Sasha White 1")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Waist", "Corset, Bodycon, Crop Top")}
+              onClick={() => handleCards("Sasha White 1", "Sasha White 1")}
             >
               <Stack
                 direction="column"
@@ -90,27 +99,28 @@ export default function ClothingFeatureCard(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Avatar
-                    alt="waist"
-                    src={waistImgUrl}
-                    sx={{ width: 56, height: 56 }}
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite1ImgUrl}
+                    alt="Sasha White 1"
+                    width="100%"
+                    height="100%"
                   />
                 </Box>
-                <Box>{"Waist"}</Box>
+                <Box>{"Sasha White 1"}</Box>
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Arms")
+                selectedCards.includes("Sasha White 2")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Arms", "Sleeveless")}
+              onClick={() => handleCards("Sasha White 2", "Sasha White 2")}
             >
               <Stack
                 direction="column"
@@ -118,27 +128,28 @@ export default function ClothingFeatureCard(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Avatar
-                    alt="left-Arm"
-                    src={leftArmImgUrl}
-                    sx={{ width: 56, height: 56 }}
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite2ImgUrl}
+                    alt="Sasha White 2"
+                    width="100%"
+                    height="100%"
                   />
                 </Box>
-                <Box>{"Arms"}</Box>
+                <Box>{"Sasha White 2"}</Box>
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Legs")
+                selectedCards.includes("Sasha White 3")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Legs", "Mini")}
+              onClick={() => handleCards("Sasha White 3", "Sasha White 3")}
             >
               <Stack
                 direction="column"
@@ -146,27 +157,28 @@ export default function ClothingFeatureCard(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Avatar
-                    alt="legs"
-                    src={legsImgUrl}
-                    sx={{ width: 56, height: 56 }}
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite3ImgUrl}
+                    alt="Sasha White 3"
+                    width="100%"
+                    height="100%"
                   />
                 </Box>
-                <Box>{"Legs"}</Box>
+                <Box>{"Sasha White 3"}</Box>
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Back")
+                selectedCards.includes("Sasha White 4")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Back", "Backless")}
+              onClick={() => handleCards("Sasha White 4", "Sasha White 4")}
             >
               <Stack
                 direction="column"
@@ -174,29 +186,28 @@ export default function ClothingFeatureCard(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Avatar
-                    alt="Back"
-                    src={backImgUrl}
-                    sx={{ width: 56, height: 56 }}
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite4ImgUrl}
+                    alt="Sasha White 4"
+                    width="100%"
+                    height="100%"
                   />
                 </Box>
-                <Box>{"Back"}</Box>
+                <Box>{"Sasha White 4"}</Box>
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Collarbones")
+                selectedCards.includes("Sasha White 5")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() =>
-                handleCards("Collarbones", "Off-Shoulder, Strapless")
-              }
+              onClick={() => handleCards("Sasha White 5", "Sasha White 5")}
             >
               <Stack
                 direction="column"
@@ -204,14 +215,44 @@ export default function ClothingFeatureCard(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Avatar
-                    alt="Collarbones"
-                    src={neckImgUrl}
-                    sx={{ width: 56, height: 56 }}
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite5ImgUrl}
+                    alt="Sasha White 5"
+                    width="100%"
+                    height="100%"
                   />
                 </Box>
-                <Box>{"Collarbones"}</Box>
+                <Box>{"Sasha White 5"}</Box>
+              </Stack>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <Paper
+              sx={
+                selectedCards.includes("Sasha White 6")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() => handleCards("Sasha White 6", "Sasha White 6")}
+            >
+              <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                spacing={2}
+              >
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={sashaWhite6ImgUrl}
+                    alt="Sasha White 6"
+                    width="100%"
+                    height="100%"
+                  />
+                </Box>
+                <Box>{"Sasha White 6"}</Box>
               </Stack>
             </Paper>
           </Grid>

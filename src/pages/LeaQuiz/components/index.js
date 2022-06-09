@@ -3,3 +3,8 @@ export { default as BasicQuiz } from "./BasicQuiz/BasicQuiz";
 export { default as SizeSelectionCard } from "./SizeSelectionCard/SizeSelectionCard";
 export { default as CardQuiz } from "./CardQuiz/CardQuiz";
 export { default as ClothingFeatureCard } from "./ClothingFeatureCard/ClothingFeatureCard";
+export { default as ColorCard } from "./ColorCard/ColorCard";
+export { default as ClothPrintsCard } from "./ClothPrintsCard/ClothPrintsCard";
+export { default as ClothStyleCard } from "./ClothStyleCard/ClothStyleCard";
+export { default as PriceRangeSlider } from "./PriceRangeSlider/PriceRangeSlider";
+export { default as ProgessBarWithLabel } from "./ProgressBarWithLabel/ProgressBarWithLabel";

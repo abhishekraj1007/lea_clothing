@@ -4,21 +4,34 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const BasicQuiz = (props) => {
-  const { subHeadingText, headingText, buttonContent, buttonDirection } = props;
+  const {
+    subHeadingText,
+    headingText,
+    buttonContent,
+    buttonDirection,
+    values,
+    progress,
+    prevProgress,
+  } = props;
   const dispatch = useDispatch();
+  const slideCount = useSelector((state) => state.leaQuiz.slideCount);
 
-  // const handleQuestion = (content) => {
-  //   const quizObj = {
-  //     question: headingText,
-  //     answer: content,
-  //   };
-  //   dispatch(leaQuizActions.updateSingularTypeQuestion(quizObj));
-  //   dispatch(leaQuizActions.updateSlideCount());
+  useEffect(() => console.log("---->>>", slideCount), [slideCount]);
 
-  // };
+  const handleQuestion = (content, value) => {
+    const quizObj = {
+      question: headingText,
+      answer: content,
+      value,
+    };
+    dispatch(leaQuizActions.updateBasicQuestion(quizObj));
+    dispatch(leaQuizActions.incrementSlideCount());
+    if (progress) dispatch(leaQuizActions.incrementProgress({ progress }));
+  };
   return (
     <Grid container justifyContent="center">
       <Grid
@@ -31,14 +44,20 @@ const BasicQuiz = (props) => {
           alignItems: "center",
         }}
       >
-        <IconButton
-          sx={{ color: "#D3AED2" }}
-          onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
-        >
-          <ArrowCircleLeftIcon fontSize="large" />
-        </IconButton>
+        {slideCount !== 1 && (
+          <IconButton
+            sx={{ color: "#D3AED2" }}
+            onClick={() => {
+              dispatch(leaQuizActions.decrementSlideCount());
+              if (prevProgress)
+                dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+            }}
+          >
+            <ArrowCircleLeftIcon fontSize="large" />
+          </IconButton>
+        )}
       </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center">
+      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
         <Grid item xs={12} sx={styles.subHeadingText}>
           {subHeadingText}
         </Grid>
@@ -48,16 +67,16 @@ const BasicQuiz = (props) => {
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
           {buttonDirection === "column" && (
             <>
-              {buttonContent?.map((content) => (
+              {buttonContent?.map((content, index) => (
                 <Grid item xs={4} key={`button_${content}`}>
                   <Button
                     variant="outlined"
                     size="large"
                     fullWidth
                     sx={styles.BasicOutlinedBtn}
-                    // onClick={() => {
-                    //   handleQuestion(content);
-                    // }}
+                    onClick={() => {
+                      handleQuestion(content, values[index]);
+                    }}
                   >
                     {content}
                   </Button>
@@ -67,7 +86,7 @@ const BasicQuiz = (props) => {
           )}
           {buttonDirection === "row" && (
             <>
-              {buttonContent?.map((content) => (
+              {buttonContent?.map((content, index) => (
                 <Grid
                   container
                   item
@@ -75,15 +94,15 @@ const BasicQuiz = (props) => {
                   justifyContent="center"
                   key={`button_${content}`}
                 >
-                  <Grid item xs={4}>
+                  <Grid item xs={6}>
                     <Button
                       variant="outlined"
                       size="large"
                       fullWidth
                       sx={styles.BasicOutlinedBtn}
-                      // onClick={() => {
-                      //   handleQuestion(content);
-                      // }}
+                      onClick={() => {
+                        handleQuestion(content, values[index]);
+                      }}
                     >
                       {content}
                     </Button>
@@ -106,7 +125,11 @@ const BasicQuiz = (props) => {
       >
         <IconButton
           sx={{ color: "#6C4A6D" }}
-          onClick={() => dispatch(leaQuizActions.incrementSlideCount())}
+          onClick={() => {
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
+          }}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

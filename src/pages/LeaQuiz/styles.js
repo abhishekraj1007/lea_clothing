@@ -34,17 +34,13 @@ const BasicOutlinedBtn = {
 const sizeSelectCard = {
   minHeight: "200px",
   p: 2,
-  backgroundColor: "#FFE6F6",
+  backgroundColor: "transparent",
   color: "#6C4A6D",
-  "&:hover": {
-    color: "#FFF",
-    backgroundColor: "#6C4A6D",
-    transition: "all 0.4s",
-  },
+  borderColor: "#D3AED280",
 };
 
 const outlinedCard = {
-  minHeight: "150px",
+  height: "100%",
   px: 1,
   py: 2,
   backgroundColor: "transparent",
@@ -75,6 +71,65 @@ const colorPalettes = {
   boxSizing: "content-box",
 };
 
+const selectedCardStyle = {
+  height: "100%",
+  px: 1,
+  py: 2,
+
+  color: "#FFF",
+  backgroundColor: "#6C4A6D",
+};
+
+const sliderPrice = {
+  width: "20%",
+  textAlign: "center",
+  color: "#6C4A6D",
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "1rem",
+  fontWeight: "500",
+};
+
+const rangeCard = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+  borderColor: "#6C4A6D",
+  backgroundColor: "transparent",
+};
+
+const rangeChip = {
+  display: "flex",
+  position: "absolute",
+  top: "-20px",
+  backgroundColor: "#6C4A6D",
+  borderRadius: "30px",
+  width: "35%",
+};
+
+const rangeChipAvatar = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "40px",
+  height: "40px",
+  backgroundColor: "#fff",
+  color: "#6C4A6D",
+  borderRadius: "50%",
+  margin: 0.5,
+};
+
+const rangeChipText = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "50%",
+  color: "#fff",
+  fontFamily: "Karla, sans-serif",
+  fontSize: "1rem",
+  fontWeight: "400",
+};
+
 export const styles = {
   headingText,
   subHeadingText,
@@ -83,4 +138,10 @@ export const styles = {
   outlinedCard,
   avatarBox,
   colorPalettes,
+  selectedCardStyle,
+  sliderPrice,
+  rangeCard,
+  rangeChip,
+  rangeChipAvatar,
+  rangeChipText,
 };

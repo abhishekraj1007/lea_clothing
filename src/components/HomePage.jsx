@@ -18,10 +18,10 @@ import LeaQuiz from "../pages/LeaQuiz/LeaQuiz";
 import { Box, Button, Fab } from "@mui/material";
 
 export function HomePage() {
-  const [popupBtn, setPopupBtn] = useState(false);
-  const handleModal = () => {
-    setPopupBtn(!popupBtn);
-  };
+  // const [popupBtn, setPopupBtn] = useState(false);
+  // const handleModal = () => {
+  //   setPopupBtn(!popupBtn);
+  // };
   // useEffect(() => {
   //   fetch("https://www.google.com", {
   //     method: "GET",
@@ -36,7 +36,7 @@ export function HomePage() {
 
   return (
     <Box>
-      <Box
+      {/* <Box
         sx={{ position: "fixed", bottom: "24px", right: "24px", zIndex: "10" }}
       >
         <Fab
@@ -53,8 +53,8 @@ export function HomePage() {
         >
           {"Quiz"}
         </Fab>
-      </Box>
-      {popupBtn && <LeaQuiz />}
+      </Box> */}
+      <LeaQuiz />
     </Box>
   );
 }

@@ -8,3 +8,4 @@ export { default as ClothPrintsCard } from "./ClothPrintsCard/ClothPrintsCard";
 export { default as ClothStyleCard } from "./ClothStyleCard/ClothStyleCard";
 export { default as PriceRangeSlider } from "./PriceRangeSlider/PriceRangeSlider";
 export { default as ProgessBarWithLabel } from "./ProgressBarWithLabel/ProgressBarWithLabel";
+export { default as UserDetails } from "./UserDetails/UserDetails";

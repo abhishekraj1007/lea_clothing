@@ -13,7 +13,7 @@ import neckImgUrl from "../../../../assets/neck.png";
 import backImgUrl from "../../../../assets/back.png";
 
 export default function ClothingFeatureCard(props) {
-  const { subHeadingText, headingText, progress, prevProgress } = props;
+  const { subHeadingText, headingText, progress, prevProgress, values } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -82,7 +82,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Waist", "Corset, Bodycon, Crop Top")}
+              onClick={() => handleCards("Waist", values[0])}
             >
               <Stack
                 direction="column"
@@ -110,7 +110,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Arms", "Sleeveless")}
+              onClick={() => handleCards("Arms", values[1])}
             >
               <Stack
                 direction="column"
@@ -138,7 +138,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Legs", "Mini")}
+              onClick={() => handleCards("Legs", values[2])}
             >
               <Stack
                 direction="column"
@@ -166,7 +166,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Back", "Backless")}
+              onClick={() => handleCards("Back", values[3])}
             >
               <Stack
                 direction="column"
@@ -194,9 +194,7 @@ export default function ClothingFeatureCard(props) {
               }
               elevation={0}
               variant="outlined"
-              onClick={() =>
-                handleCards("Collarbones", "Off-Shoulder, Strapless")
-              }
+              onClick={() => handleCards("Collarbones", values[4])}
             >
               <Stack
                 direction="column"

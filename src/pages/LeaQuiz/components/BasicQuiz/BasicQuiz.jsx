@@ -16,6 +16,7 @@ const BasicQuiz = (props) => {
     values,
     progress,
     prevProgress,
+    supScriptTag,
   } = props;
   const dispatch = useDispatch();
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
@@ -58,9 +59,15 @@ const BasicQuiz = (props) => {
         )}
       </Grid>
       <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
-        <Grid item xs={12} sx={styles.subHeadingText}>
-          {subHeadingText}
-        </Grid>
+        {supScriptTag ? (
+          <Grid item xs={12} sx={styles.subHeadingText}>
+            {subHeadingText} <sup>{supScriptTag}</sup>
+          </Grid>
+        ) : (
+          <Grid item xs={12} sx={styles.subHeadingText}>
+            {subHeadingText}
+          </Grid>
+        )}
         <Grid item xs={12} sx={styles.headingText}>
           {headingText}
         </Grid>

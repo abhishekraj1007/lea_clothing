@@ -23,6 +23,7 @@ const subHeadingText = {
 const BasicOutlinedBtn = {
   borderColor: "#D3AED2",
   color: "#000",
+  textTransform: "none",
   "&:hover": {
     color: "#000",
     backgroundColor: "#D3AED2",

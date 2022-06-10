@@ -434,9 +434,7 @@ const LeaQuiz = () => {
               instructionText={
                 "Get Birthday love from Lea + first time customers get 10% off their first purchase!"
               }
-              // buttonDirection="column"
-              // buttonContent={["Yes", "No"]}
-              // values={["Yes", "No"]}
+              progress={10}
               prevProgress={5}
               validateRegex={validateRegex}
             />

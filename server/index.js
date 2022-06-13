@@ -150,7 +150,6 @@ export async function createServer(
     });
   }
 
-  console.log("generalized code here....");
   return { app, vite };
 }
 

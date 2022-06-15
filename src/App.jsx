@@ -15,6 +15,7 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "./store/index";
+import { BrowserRouter } from "react-router-dom";
 
 import { HomePage } from "./components/HomePage";
 
@@ -29,9 +30,11 @@ export default function App() {
         }}
       > */}
       {/* <MyProvider> */}
-      <ReduxProvider store={store}>
-        <HomePage />
-      </ReduxProvider>
+      <BrowserRouter>
+        <ReduxProvider store={store}>
+          <HomePage />
+        </ReduxProvider>
+      </BrowserRouter>
       {/* </MyProvider> */}
       {/* </AppBridgeProvider> */}
     </PolarisProvider>

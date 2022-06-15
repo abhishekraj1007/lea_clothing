@@ -15,9 +15,17 @@ import { useEffect, useState } from "react";
 
 // import { ProductsCard } from "./ProductsCard";
 import LeaQuiz from "../pages/LeaQuiz/LeaQuiz";
+import ProductRecommendation from "../pages/ProductRecommendation/ProductRecommendation";
 import { Box, Button, Fab } from "@mui/material";
+import { useRoutes } from "react-router-dom";
+import routes from "../routes";
+import { useDispatch, useSelector } from "react-redux";
 
 export function HomePage() {
+  const content = useRoutes(routes);
+  const isQuizTaken = useSelector((state) => state.leaQuiz.isQuizTaken);
+
+  // useEffect(() => console.log("content", content), []);
   // const [popupBtn, setPopupBtn] = useState(false);
   // const handleModal = () => {
   //   setPopupBtn(!popupBtn);
@@ -54,7 +62,10 @@ export function HomePage() {
           {"Quiz"}
         </Fab>
       </Box> */}
-      <LeaQuiz />
+      {/* <LeaQuiz /> */}
+      {/* {content} */}
+      {isQuizTaken && <ProductRecommendation />}
+      {!isQuizTaken && <LeaQuiz />}
     </Box>
   );
 }

@@ -53,27 +53,29 @@ export default function UserDetails(props) {
     setBirthDate(datestring);
   }, [value]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (finalQuizData.email.value !== "") {
       try {
         setIsLoading(true);
-        const recommendationData = await LeaQuizApi.getRecommendation(
-          finalQuizData
-        );
-        console.log("---->Data", recommendationData);
-        if (recommendationData) {
-          let prevProgress = 100;
-          dispatch(leaQuizActions.decrementSlideCount(1));
-          dispatch(leaQuizActions.decrementProgress({ prevProgress }));
-          setIsLoading(false);
-          dispatch(leaQuizActions.updateQuizStatus(true));
-
-          dispatch(
-            recommendationActions.updateRecommendationData({
-              recommendationData,
-            })
+        (async function () {
+          const recommendationData = await LeaQuizApi.getRecommendation(
+            finalQuizData
           );
-        }
+          console.log("---->Data", recommendationData);
+          if (recommendationData) {
+            let prevProgress = 100;
+            dispatch(leaQuizActions.decrementSlideCount(1));
+            dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+            setIsLoading(false);
+            dispatch(leaQuizActions.updateQuizStatus(true));
+
+            dispatch(
+              recommendationActions.updateRecommendationData({
+                recommendationData,
+              })
+            );
+          }
+        })();
       } catch (error) {
         console.log(error);
       }

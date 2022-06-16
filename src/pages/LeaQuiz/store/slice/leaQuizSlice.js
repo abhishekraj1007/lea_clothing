@@ -194,9 +194,8 @@ const initialFinalData = {
     attribute: "",
     value: "",
   },
-  user: {
-    email: "",
-    dob: "",
+  email: {
+    value: "",
   },
 };
 
@@ -206,17 +205,27 @@ const initialState = {
   progressStatus: 0,
   finalQuizData: initialFinalData,
   userDeatils: { Email: "", DOB: "" },
+  isQuizTaken: false,
+  loading: false,
 };
 
 const leaQuizSlice = createSlice({
   name: "leaQuiz",
   initialState,
   reducers: {
-    incrementSlideCount(state) {
-      state.slideCount += 1;
+    incrementSlideCount(state, action) {
+      if (action.payload) {
+        state.slideCount = action.payload;
+      } else {
+        state.slideCount += 1;
+      }
     },
-    decrementSlideCount(state) {
-      state.slideCount -= 1;
+    decrementSlideCount(state, action) {
+      if (action.payload) {
+        state.slideCount = action.payload;
+      } else {
+        state.slideCount -= 1;
+      }
     },
     updateBasicQuestion(state, action) {
       const array = [...current(state.quizData)];
@@ -347,9 +356,8 @@ const leaQuizSlice = createSlice({
         }
         console.log("--->", obj[`${quizArr[i].Name}`]);
       }
-      obj.user = {
-        email: state.userDeatils.Email,
-        dob: state.userDeatils.DOB,
+      obj.email = {
+        value: state.userDeatils.Email,
       };
       console.log("<<<----", obj);
       state.finalQuizData = obj;
@@ -360,6 +368,12 @@ const leaQuizSlice = createSlice({
         Email: email,
         DOB: dob,
       };
+    },
+    updateQuizStatus(state, action) {
+      state.isQuizTaken = action.payload;
+    },
+    updateLoadingStatus(state, action) {
+      state.loading = action.payload;
     },
   },
 });

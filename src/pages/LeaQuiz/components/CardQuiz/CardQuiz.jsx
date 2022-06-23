@@ -1,10 +1,22 @@
-import { Grid, Box, IconButton, Paper, Stack } from "@mui/material";
+import { Grid, Box, IconButton, Paper, Stack, Avatar } from "@mui/material";
 import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+
+import hourglassImgUrl from "../../../../assets/Hourglass.png";
+import rectangleImgUrl from "../../../../assets/Rectangle.png";
+import pearImgUrl from "../../../../assets/Pear.png";
+import appleImgUrl from "../../../../assets/Apple.png";
+import triangleImgUrl from "../../../../assets/Inverted-Triangle.png";
+
+import hourglassShapImg from "../../../../assets/hourglass-shap.png";
+import rectangleShapImg from "../../../../assets/rectangle-shap.png";
+import pearShapImg from "../../../../assets/pear-shap.png";
+import appleShapImg from "../../../../assets/apple-shap.png";
+import triangleShapImg from "../../../../assets/triangle-shap.png";
 
 export default function CardQuiz(props) {
   const { subHeadingText, headingText, progress, prevProgress } = props;
@@ -83,13 +95,23 @@ export default function CardQuiz(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Box
-                    sx={styles.avatarBox}
-                    style={{ backgroundColor: "#C4C4C4" }}
-                  >
-                    {/* <img src={topImgUrl} alt="Top" width="65%" /> */}
-                  </Box>
+                <Box sx={{ position: "relative" }}>
+                  <img src={hourglassImgUrl} height="100" width="50" />
+                  <img
+                    src={hourglassShapImg}
+                    style={{
+                      position: "absolute",
+                      zIndex: "2",
+                      // rigth: "20px",
+                      height: "100px",
+                      width: "50px",
+                      left: "50%",
+                      marginLeft: "-25px",
+                      top: "50%",
+                      marginTop: "-50px",
+                      opacity: "0.65",
+                    }}
+                  />
                 </Box>
                 <Box>{"Hourglass"}</Box>
               </Stack>
@@ -112,14 +134,25 @@ export default function CardQuiz(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Box
-                    sx={styles.avatarBox}
-                    style={{ backgroundColor: "#C4C4C4" }}
-                  >
-                    {/* <img src={waistImgUrl} alt="Top" width="50%" /> */}
-                  </Box>
+                <Box sx={{ position: "relative" }}>
+                  <img src={rectangleImgUrl} height="100" width="50" />
+                  <img
+                    src={rectangleShapImg}
+                    style={{
+                      position: "absolute",
+                      zIndex: "2",
+                      // rigth: "20px",
+                      height: "100px",
+                      width: "50px",
+                      left: "50%",
+                      marginLeft: "-25px",
+                      top: "50%",
+                      marginTop: "-50px",
+                      opacity: "0.65",
+                    }}
+                  />
                 </Box>
+
                 <Box>{"Rectangle"}</Box>
               </Stack>
             </Paper>
@@ -141,13 +174,23 @@ export default function CardQuiz(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Box
-                    sx={styles.avatarBox}
-                    style={{ backgroundColor: "#C4C4C4" }}
-                  >
-                    {/* <img src={dressesImgUrl} alt="Top" width="50%" /> */}
-                  </Box>
+                <Box sx={{ position: "relative" }}>
+                  <img src={pearImgUrl} height="100" width="50" />
+                  <img
+                    src={pearShapImg}
+                    style={{
+                      position: "absolute",
+                      zIndex: "2",
+                      // rigth: "20px",
+                      height: "100px",
+                      width: "50px",
+                      left: "50%",
+                      marginLeft: "-25px",
+                      top: "50%",
+                      marginTop: "-50px",
+                      opacity: "0.65",
+                    }}
+                  />
                 </Box>
                 <Box>{"Pear"}</Box>
               </Stack>
@@ -170,14 +213,25 @@ export default function CardQuiz(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Box
-                    sx={styles.avatarBox}
-                    style={{ backgroundColor: "#C4C4C4" }}
-                  >
-                    {/* <img src={legsImgUrl} alt="Top" width="50%" /> */}
-                  </Box>
+                <Box sx={{ position: "relative" }}>
+                  <img src={appleImgUrl} height="100" width="50" />
+                  <img
+                    src={appleShapImg}
+                    style={{
+                      position: "absolute",
+                      zIndex: "2",
+                      // rigth: "20px",
+                      height: "100px",
+                      width: "50px",
+                      left: "50%",
+                      marginLeft: "-25px",
+                      top: "50%",
+                      marginTop: "-50px",
+                      opacity: "0.65",
+                    }}
+                  />
                 </Box>
+
                 <Box>{"Apple"}</Box>
               </Stack>
             </Paper>
@@ -201,14 +255,25 @@ export default function CardQuiz(props) {
                 alignItems="center"
                 spacing={2}
               >
-                <Box>
-                  <Box
-                    sx={styles.avatarBox}
-                    style={{ backgroundColor: "#C4C4C4" }}
-                  >
-                    {/* <img src={legsImgUrl} alt="Top" width="50%" /> */}
-                  </Box>
+                <Box sx={{ position: "relative" }}>
+                  <img src={triangleImgUrl} height="100" width="50" />
+                  <img
+                    src={triangleShapImg}
+                    style={{
+                      position: "absolute",
+                      zIndex: "2",
+                      // rigth: "20px",
+                      height: "100px",
+                      width: "50px",
+                      left: "50%",
+                      marginLeft: "-25px",
+                      top: "50%",
+                      marginTop: "-50px",
+                      opacity: "0.65",
+                    }}
+                  />
                 </Box>
+
                 <Box>{"Inverted Triangle"}</Box>
               </Stack>
             </Paper>

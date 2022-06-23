@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import QuizLayout from "../../components/layout/QuizLayout/QuizLayout";
+import GlobalLoading from "../../components/ui/GlobalLoading";
 import {
   BasicText,
   BasicQuiz,
@@ -14,9 +15,15 @@ import {
   UserDetails,
 } from "./components";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const LeaQuiz = () => {
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
+  const loading = useSelector((state) => state.leaQuiz.loading);
+
+  useEffect(() => {
+    console.log("global loading", loading);
+  }, [loading]);
 
   const validateRegex = (value, regex) => {
     const re = new RegExp(regex);
@@ -25,7 +32,7 @@ const LeaQuiz = () => {
 
   return (
     <Box>
-      <ProgessBarWithLabel />
+      {loading ? <GlobalLoading /> : <ProgessBarWithLabel />}
       {slideCount === 1 && (
         <QuizLayout
           gradientDirection={"top right"}

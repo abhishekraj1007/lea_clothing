@@ -341,26 +341,27 @@ const leaQuizSlice = createSlice({
       state.progressStatus -= action.payload.prevProgress;
     },
     updateFinalQuizData(state, action) {
-      const quizArr = [...current(state.quizData)];
-      let obj = { ...state.finalQuizData };
-      console.log("obj", obj);
-      for (let i = 0; i < quizArr.length; i++) {
-        // const { Name, Question, Answer, Value} = quizArr[i];
-        if (quizArr[i].Name !== "start easy") {
-          obj[`${quizArr[i].Name}`] = {
-            qno: i,
-            question: quizArr[i].Question,
-            attribute: quizArr[i].Answer,
-            value: quizArr[i].Value,
-          };
-        }
-        console.log("--->", obj[`${quizArr[i].Name}`]);
-      }
-      obj.email = {
-        value: state.userDeatils.Email,
-      };
-      console.log("<<<----", obj);
-      state.finalQuizData = obj;
+      state.finalQuizData = action.payload.finalQuizObj;
+      // const quizArr = [...current(state.quizData)];
+      // let obj = { ...state.finalQuizData };
+      // console.log("obj", obj);
+      // for (let i = 0; i < quizArr.length; i++) {
+      //   // const { Name, Question, Answer, Value} = quizArr[i];
+      //   if (quizArr[i].Name !== "start easy") {
+      //     obj[`${quizArr[i].Name}`] = {
+      //       qno: i,
+      //       question: quizArr[i].Question,
+      //       attribute: quizArr[i].Answer,
+      //       value: quizArr[i].Value,
+      //     };
+      //   }
+      //   console.log("--->", obj[`${quizArr[i].Name}`]);
+      // }
+      // obj.email = {
+      //   value: state.userDeatils.Email,
+      // };
+      // console.log("<<<----", obj);
+      // state.finalQuizData = obj;
     },
     updateUserDetails(state, action) {
       const { email, dob } = action.payload;

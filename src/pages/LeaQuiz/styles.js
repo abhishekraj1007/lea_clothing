@@ -10,6 +10,17 @@ const headingText = {
   cursor: "pointer",
 };
 
+const mobileHeadingText = {
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "1.5rem",
+  color: "#6C4A6D",
+  fontStyle: "normal",
+  letterSpacing: "-0.035em",
+  fontWeight: "500",
+  textAlign: "center",
+  lineHeight: "1.8rem",
+};
+
 const subHeadingText = {
   fontFamily: "Karla, sans-serif",
   fontSize: "1.2rem",
@@ -18,6 +29,17 @@ const subHeadingText = {
   letterSpacing: "-0.035em",
   fontWeight: "400",
   textAlign: "center",
+};
+
+const mobileSubHeadingText = {
+  fontFamily: "Karla, sans-serif",
+  fontSize: "0.8rem",
+  color: "#6C4A6D",
+  fontStyle: "normal",
+  letterSpacing: "-0.035em",
+  fontWeight: "400",
+  textAlign: "center",
+  lineHeight: "1rem",
 };
 
 const BasicOutlinedBtn = {
@@ -145,4 +167,6 @@ export const styles = {
   rangeChip,
   rangeChipAvatar,
   rangeChipText,
+  mobileHeadingText,
+  mobileSubHeadingText,
 };

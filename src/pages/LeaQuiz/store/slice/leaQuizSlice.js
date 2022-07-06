@@ -78,18 +78,18 @@ const initialQuizData = [
     Name: "spend categories",
     Question: "How much do you want to spend on items from these categories?",
     Answer: {
-      Tops: [2000, 10000],
-      Dresses: [2000, 10000],
-      Bottoms: [2000, 10000],
-      Loungewear: [2000, 10000],
-      Accessories: [2000, 10000],
+      Tops: [100, 10000],
+      Dresses: [100, 10000],
+      Bottoms: [100, 10000],
+      Loungewear: [100, 10000],
+      Accessories: [100, 10000],
     },
     Value: {
-      Tops: [2000, 10000],
-      Dresses: [2000, 10000],
-      Bottoms: [2000, 10000],
-      Loungewear: [2000, 10000],
-      Accessories: [2000, 10000],
+      Tops: [100, 10000],
+      Dresses: [100, 10000],
+      Bottoms: [100, 10000],
+      Loungewear: [100, 10000],
+      Accessories: [100, 10000],
     },
   },
   {
@@ -195,6 +195,9 @@ const initialFinalData = {
     value: "",
   },
   email: {
+    value: "",
+  },
+  dob: {
     value: "",
   },
 };
@@ -342,26 +345,6 @@ const leaQuizSlice = createSlice({
     },
     updateFinalQuizData(state, action) {
       state.finalQuizData = action.payload.finalQuizObj;
-      // const quizArr = [...current(state.quizData)];
-      // let obj = { ...state.finalQuizData };
-      // console.log("obj", obj);
-      // for (let i = 0; i < quizArr.length; i++) {
-      //   // const { Name, Question, Answer, Value} = quizArr[i];
-      //   if (quizArr[i].Name !== "start easy") {
-      //     obj[`${quizArr[i].Name}`] = {
-      //       qno: i,
-      //       question: quizArr[i].Question,
-      //       attribute: quizArr[i].Answer,
-      //       value: quizArr[i].Value,
-      //     };
-      //   }
-      //   console.log("--->", obj[`${quizArr[i].Name}`]);
-      // }
-      // obj.email = {
-      //   value: state.userDeatils.Email,
-      // };
-      // console.log("<<<----", obj);
-      // state.finalQuizData = obj;
     },
     updateUserDetails(state, action) {
       const { email, dob } = action.payload;
@@ -375,6 +358,85 @@ const leaQuizSlice = createSlice({
     },
     updateLoadingStatus(state, action) {
       state.loading = action.payload;
+    },
+    updateQuizData(state, action) {
+      const { fromData } = action.payload;
+      console.log("fromData:::", fromData);
+      let newData = [...current(state.quizData)];
+      console.log("new data", newData);
+      for (let i = 0; i < newData.length; i++) {
+        const qName = newData[i]["Name"];
+        // if (newData[i].Name !== "start easy") {
+        // console.log("//***", qName);
+
+        // newData[i] = {
+        //   Answer: fromData[`${qName}`]["attribute"],
+        //   Value: fromData[`${qName}`]["value"],
+
+        // };
+
+        newData[i] = {
+          QNo: fromData[`${qName}`]["qno"] + 1,
+          Name: `${qName}`,
+          Question: fromData[`${qName}`]["question"],
+          Answer: fromData[`${qName}`]["attribute"],
+          Value: fromData[`${qName}`]["value"],
+        };
+        // }
+      }
+      console.log("filled Data:", newData);
+      state.quizData = [...newData];
+    },
+
+    updateCardQuiz(state, action) {
+      const array = [...current(state.quizData)];
+      const { questionIndex, answer, value } = action.payload;
+      if (answer) {
+        if (state.quizData[questionIndex].Answer === answer) {
+          state.quizData[questionIndex].Answer = "";
+        } else {
+          state.quizData[questionIndex].Answer = answer;
+        }
+      }
+
+      if (value) {
+        if (state.quizData[questionIndex].Value === value) {
+          state.quizData[questionIndex].Value = "";
+        } else {
+          state.quizData[questionIndex].Value = value;
+        }
+      }
+    },
+    updateMultipleSelectBasicQuestion(state, action) {
+      const array = [...current(state.quizData)];
+      const { questionIndex, answer, value } = action.payload;
+
+      if (state.quizData[questionIndex]["Answer"] === "") {
+        state.quizData[questionIndex].Answer = [];
+      }
+      if (state.quizData[questionIndex]["Value"] === "") {
+        state.quizData[questionIndex].Value = [];
+      }
+
+      if (state.quizData[questionIndex].Answer.includes(answer)) {
+        const filteredArray = state.quizData[questionIndex].Answer.filter(
+          (item) => item !== answer
+        );
+        state.quizData[questionIndex].Answer = filteredArray;
+      } else {
+        state.quizData[questionIndex].Answer.push(answer);
+      }
+
+      if (value) {
+        if (state.quizData[questionIndex].Value.includes(value)) {
+          const filteredArray = state.quizData[questionIndex].Value.filter(
+            (item) => item !== value
+          );
+          state.quizData[questionIndex].Value = filteredArray;
+        } else {
+          state.quizData[questionIndex].Value.push(value);
+        }
+      }
     },
   },
 });

@@ -15,11 +15,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 export default function ColorCard(props) {
-  const { instructionText, headingText, progress } = props;
+  const { instructionText, headingText, progress, isSkippable } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
   const [questionIndex, setQuestionIndex] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (isSkippable === false && selectedCards.length === 0) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [selectedCards]);
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(
@@ -306,6 +315,7 @@ export default function ColorCard(props) {
             if (progress)
               dispatch(leaQuizActions.incrementProgress({ progress }));
           }}
+          disabled={isDisabled}
         >
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>

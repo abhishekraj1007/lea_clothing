@@ -6,12 +6,12 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import sashaWhite1ImgUrl from "../../../../assets/Sasha-White-1.jpg";
-import sashaWhite2ImgUrl from "../../../../assets/Sasha-White-2.jpg";
-import sashaWhite3ImgUrl from "../../../../assets/Sasha-White-3.jpg";
-import sashaWhite4ImgUrl from "../../../../assets/Sasha-White-4.jpg";
-import sashaWhite5ImgUrl from "../../../../assets/Sasha-White-5.jpg";
-import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
+// import PixieBabyBlue from "../../../../assets/Pixie Baby Blue.webp";
+// import sashaWhite2ImgUrl from "../../../../assets/Sasha-White-2.jpg";
+// import sashaWhite3ImgUrl from "../../../../assets/Sasha-White-3.jpg";
+// import sashaWhite4ImgUrl from "../../../../assets/Sasha-White-4.jpg";
+// import sashaWhite5ImgUrl from "../../../../assets/Sasha-White-5.jpg";
+// import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
 
 export default function ClothStyleCard(props) {
   const {
@@ -20,6 +20,7 @@ export default function ClothStyleCard(props) {
     instructionText,
     progress,
     prevProgress,
+    items,
   } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
@@ -35,9 +36,9 @@ export default function ClothStyleCard(props) {
     setSelectedCards(answers);
   }, [quizData]);
 
-  // useEffect(() => {
-  //   console.log("selectedCards->", selectedCards);
-  // }, [selectedCards]);
+  useEffect(() => {
+    console.log("items", items);
+  }, [items]);
 
   const handleCards = (selectedItem, value) => {
     const quizObj = {
@@ -82,192 +83,38 @@ export default function ClothStyleCard(props) {
           {instructionText}
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 1")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 1", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
+          {items?.map((item) => (
+            <Grid item xs={6} md={4} key={`${item.value.replace(/ /g, "")}`}>
+              <Paper
+                sx={
+                  selectedCards.includes(item.attribute)
+                    ? styles.selectedCardStyle
+                    : styles.outlinedCard
+                }
+                elevation={0}
+                variant="outlined"
+                onClick={() => handleCards(item.attribute, item.value)}
               >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite1ImgUrl}
-                    alt="Sasha White 1"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 1"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 2")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 2", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite2ImgUrl}
-                    alt="Sasha White 2"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 2"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 3")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 3", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite3ImgUrl}
-                    alt="Sasha White 3"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 3"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 4")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 4", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite4ImgUrl}
-                    alt="Sasha White 4"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 4"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 5")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 5", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite5ImgUrl}
-                    alt="Sasha White 5"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 5"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <Paper
-              sx={
-                selectedCards.includes("Sasha White 6")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() =>
-                handleCards("Sasha White 6", "Naomi White Crochet Cover-Up Set")
-              }
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={sashaWhite6ImgUrl}
-                    alt="Sasha White 6"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Sasha White 6"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
+                <Stack
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={2}
+                  sx={{ textTransform: "capitalize", textAlign: "center" }}
+                >
+                  <Box sx={{ width: "100%" }}>
+                    <img
+                      src={item.imgUrl}
+                      alt={item.attribute}
+                      width="100%"
+                      height="100%"
+                    />
+                  </Box>
+                  <Box>{item.attribute}</Box>
+                </Stack>
+              </Paper>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
       <Grid

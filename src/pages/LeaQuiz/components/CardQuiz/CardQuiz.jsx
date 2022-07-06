@@ -22,7 +22,7 @@ export default function CardQuiz(props) {
   const { subHeadingText, headingText, progress, prevProgress } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
-  const [selectedCards, setSelectedCards] = useState([]);
+  const [selectedCards, setSelectedCards] = useState("");
   const [questionIndex, setQuestionIndex] = useState("");
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function CardQuiz(props) {
       (data) => data.Question === headingText
     );
     setQuestionIndex(quesIndex);
-    const answers = [...quizData[quesIndex].Answer];
+    const answers = quizData[quesIndex].Answer;
     setSelectedCards(answers);
   }, [quizData]);
 
@@ -44,7 +44,7 @@ export default function CardQuiz(props) {
       answer: selectedItem,
       value,
     };
-    dispatch(leaQuizActions.updateCardQuestion(quizObj));
+    dispatch(leaQuizActions.updateCardQuiz(quizObj));
   };
 
   return (
@@ -81,7 +81,7 @@ export default function CardQuiz(props) {
           <Grid item xs={6} md={2}>
             <Paper
               sx={
-                selectedCards.includes("Hourglass")
+                selectedCards === "Hourglass"
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -120,7 +120,7 @@ export default function CardQuiz(props) {
           <Grid item xs={6} md={2}>
             <Paper
               sx={
-                selectedCards.includes("Rectangle")
+                selectedCards === "Rectangle"
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -160,7 +160,7 @@ export default function CardQuiz(props) {
           <Grid item xs={6} md={2}>
             <Paper
               sx={
-                selectedCards.includes("Pear")
+                selectedCards === "Pear"
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -199,7 +199,7 @@ export default function CardQuiz(props) {
           <Grid item xs={6} md={2}>
             <Paper
               sx={
-                selectedCards.includes("Apple")
+                selectedCards === "Apple"
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -239,7 +239,7 @@ export default function CardQuiz(props) {
           <Grid item xs={6} md={2}>
             <Paper
               sx={
-                selectedCards.includes("Inverted Triangle")
+                selectedCards === "Inverted Triangle"
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }

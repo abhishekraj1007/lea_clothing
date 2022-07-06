@@ -54,6 +54,19 @@ const BasicOutlinedBtn = {
   },
 };
 
+const BasicSelectedOutlinedBtn = {
+  color: "#000",
+  backgroundColor: "#D3AED2",
+  borderColor: "#D3AED2",
+  textTransform: "none",
+  "&:hover": {
+    color: "#000",
+    backgroundColor: "#D3AED2",
+    borderColor: "#D3AED2",
+    transition: "all 0.4s",
+  },
+};
+
 const sizeSelectCard = {
   minHeight: "200px",
   p: 2,
@@ -169,4 +182,5 @@ export const styles = {
   rangeChipText,
   mobileHeadingText,
   mobileSubHeadingText,
+  BasicSelectedOutlinedBtn,
 };

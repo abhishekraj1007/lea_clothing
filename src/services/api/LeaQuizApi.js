@@ -1,10 +1,10 @@
 import axios from "axios";
-
+import { BASE_API_URL } from "/globalVariables";
 const baseUrl = "https://python-model1.herokuapp.com";
 
 const getRecommendation = async ({ ...finalQuizData }) => {
   try {
-    const response = await axios.post(`${baseUrl}/personalize`, {
+    const response = await axios.post(`${BASE_API_URL}/personalize`, {
       finalQuizData: {
         ...finalQuizData,
       },

@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const BasicQuiz = (props) => {
+const MultipleSelectBasicQuiz = (props) => {
   const {
     subHeadingText,
     headingText,
@@ -22,69 +22,44 @@ const BasicQuiz = (props) => {
   const dispatch = useDispatch();
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
   const quizData = useSelector((state) => state.leaQuiz.quizData);
-  const [selectedCards, setSelectedCards] = useState("");
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
-    if (isSkippable === false && selectedCards === "") {
+    console.log("ss---->>>", selectedCards.length);
+    console.log("isSkippable", isSkippable);
+    if (isSkippable === false && selectedCards.length === 0) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
   }, [selectedCards]);
 
+  //   useEffect(() => {
+  //     const quesIndex = quizData?.findIndex(
+  //       (data) => data.Question === headingText
+  //     );
+  //     const answers = quizData[quesIndex].Answer;
+  //     setSelectedCards(`${answers}`);
+  //   }, [quizData]);
+
   useEffect(() => {
     const quesIndex = quizData?.findIndex(
       (data) => data.Question === headingText
     );
-    const answers = quizData[quesIndex].Answer;
-    setSelectedCards(`${answers}`);
+    setQuestionIndex(quesIndex);
+    const answers = [...quizData[quesIndex].Answer];
+    setSelectedCards(answers);
   }, [quizData]);
-
-  const checkAns = (content) => {
-    console.log("content:", content);
-    if (headingText === "Are you a fan of Prints?") {
-      if (content === "Yes") {
-        dispatch(leaQuizActions.incrementSlideCount());
-        if (progress) {
-          dispatch(leaQuizActions.incrementProgress({ progress }));
-        }
-      }
-      if (content === "No") {
-        dispatch(leaQuizActions.incrementSlideCount(13));
-        if (progress) {
-          let progress = 5;
-          dispatch(leaQuizActions.incrementProgress({ progress }));
-        }
-      }
-    } else if (headingText === "Are you shopping for a special ocassion?") {
-      if (content === "Yes") {
-        dispatch(leaQuizActions.incrementSlideCount());
-        if (progress) {
-          dispatch(leaQuizActions.incrementProgress({ progress }));
-        }
-      }
-      if (content === "No") {
-        dispatch(leaQuizActions.incrementSlideCount(22));
-        if (progress) {
-          let progress = 5;
-          dispatch(leaQuizActions.incrementProgress({ progress }));
-        }
-      }
-    } else {
-      dispatch(leaQuizActions.incrementSlideCount());
-      if (progress) dispatch(leaQuizActions.incrementProgress({ progress }));
-    }
-  };
 
   const handleQuestion = (content, value) => {
     const quizObj = {
-      question: headingText,
+      questionIndex,
       answer: content,
       value,
     };
-    dispatch(leaQuizActions.updateBasicQuestion(quizObj));
-    checkAns(content);
+    dispatch(leaQuizActions.updateMultipleSelectBasicQuestion(quizObj));
   };
   return (
     <Grid container justifyContent="center">
@@ -125,30 +100,6 @@ const BasicQuiz = (props) => {
           {headingText}
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
-          {buttonDirection === "column" && (
-            <>
-              {buttonContent?.map((content, index) => (
-                <Grid item xs={4} key={`button_${content}`}>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    fullWidth
-                    sx={
-                      (selectedCards === "true" && content === "Yes") ||
-                      (selectedCards === "false" && content === "No")
-                        ? styles.BasicSelectedOutlinedBtn
-                        : styles.BasicOutlinedBtn
-                    }
-                    onClick={() => {
-                      handleQuestion(content, values[index]);
-                    }}
-                  >
-                    {content}
-                  </Button>
-                </Grid>
-              ))}
-            </>
-          )}
           {buttonDirection === "row" && (
             <>
               {buttonContent?.map((content, index) => (
@@ -165,7 +116,7 @@ const BasicQuiz = (props) => {
                       size="large"
                       fullWidth
                       sx={
-                        selectedCards === content
+                        selectedCards?.includes(content)
                           ? styles.BasicSelectedOutlinedBtn
                           : styles.BasicOutlinedBtn
                       }
@@ -195,13 +146,9 @@ const BasicQuiz = (props) => {
         <IconButton
           sx={{ color: "#6C4A6D" }}
           onClick={() => {
-            if (selectedCards === "true") {
-              checkAns("Yes");
-            } else if (selectedCards === "false") {
-              checkAns("No");
-            } else {
-              checkAns("");
-            }
+            dispatch(leaQuizActions.incrementSlideCount());
+            if (progress)
+              dispatch(leaQuizActions.incrementProgress({ progress }));
           }}
           disabled={isDisabled}
         >
@@ -212,9 +159,9 @@ const BasicQuiz = (props) => {
   );
 };
 
-BasicQuiz.propTypes = {
+MultipleSelectBasicQuiz.propTypes = {
   buttonDirection: PropTypes.string.isRequired,
   buttonContent: PropTypes.array.isRequired,
 };
 
-export default BasicQuiz;
+export default MultipleSelectBasicQuiz;

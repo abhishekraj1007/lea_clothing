@@ -88,8 +88,14 @@ const LayoutRoot = styled("MenuItem")(({ theme }) => ({
 }));
 
 export default function SizeSelectionCard(props) {
-  const { subHeadingText, headingText, instructionText, progress, boldText } =
-    props;
+  const {
+    subHeadingText,
+    headingText,
+    instructionText,
+    progress,
+    boldText,
+    isSkippable,
+  } = props;
   const dispatch = useDispatch();
   const [topSelectSize, setTopSelectSize] = useState("");
   const quizData = useSelector((state) => state.leaQuiz.quizData);
@@ -99,8 +105,23 @@ export default function SizeSelectionCard(props) {
     Hips: "",
   });
   const [questionIndex, setQuestionIndex] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const classes = useStyles();
+
+  useEffect(() => {
+    console.log("selectedSizes:", selectedSizes);
+    if (
+      isSkippable === false &&
+      selectedSizes.Bust !== "" &&
+      selectedSizes.Waist !== "" &&
+      selectedSizes.Hips !== ""
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [selectedSizes]);
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(
@@ -443,6 +464,7 @@ export default function SizeSelectionCard(props) {
               if (progress)
                 dispatch(leaQuizActions.incrementProgress({ progress }));
             }}
+            disabled={isDisabled}
           >
             <ArrowCircleRightIcon fontSize="large" />
           </IconButton>

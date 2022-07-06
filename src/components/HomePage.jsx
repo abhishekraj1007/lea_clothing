@@ -20,10 +20,20 @@ import { Box, Button, Fab } from "@mui/material";
 import { useRoutes } from "react-router-dom";
 import routes from "../routes";
 import { useDispatch, useSelector } from "react-redux";
+import { leaQuizActions } from "../pages/LeaQuiz/store/slice/leaQuizSlice";
 
 export function HomePage() {
+  // const dispatch = useDispatch();
+
   const content = useRoutes(routes);
-  const isQuizTaken = useSelector((state) => state.leaQuiz.isQuizTaken);
+  // const isQuizTaken = useSelector((state) => state.leaQuiz.isQuizTaken);
+
+  // useEffect(() => {
+  //   const userEmail = localStorage.getItem("userEmailId");
+  //   if (userEmail) {
+  //     dispatch(leaQuizActions.updateQuizStatus(true));
+  //   }
+  // }, [])
 
   // useEffect(() => console.log("content", content), []);
   // const [popupBtn, setPopupBtn] = useState(false);
@@ -63,9 +73,9 @@ export function HomePage() {
         </Fab>
       </Box> */}
       {/* <LeaQuiz /> */}
-      {/* {content} */}
-      {isQuizTaken && <ProductRecommendation />}
-      {!isQuizTaken && <LeaQuiz />}
+      {content}
+      {/* {isQuizTaken && <ProductRecommendation />}
+      {!isQuizTaken && <LeaQuiz />} */}
     </Box>
   );
 }

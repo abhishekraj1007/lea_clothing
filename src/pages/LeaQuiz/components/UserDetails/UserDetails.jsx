@@ -59,7 +59,7 @@ export default function UserDetails(props) {
     console.log("loading", loading);
   }, [loading]);
 
-  const recommend = async (finalQuizObj) => {
+  const recommend = async (finalQuizObj, userEmail) => {
     dispatch(leaQuizActions.updateLoadingStatus(true));
     try {
       const recommendationData = await LeaQuizApi.getRecommendation(
@@ -67,6 +67,7 @@ export default function UserDetails(props) {
       );
       console.log("---->Data", recommendationData);
       if (recommendationData) {
+        localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 90;
         dispatch(leaQuizActions.decrementSlideCount(1));
         // dispatch(leaQuizActions.incrementProgress({ progress }));
@@ -86,67 +87,40 @@ export default function UserDetails(props) {
     dispatch(leaQuizActions.updateLoadingStatus(false));
   };
 
-  const getQuizPayload = (userEmail) => {
+  const getQuizPayload = (userEmail, birthDate) => {
     let obj = { ...finalQuizData };
     console.log("obj", obj);
     for (let i = 0; i < quizData.length; i++) {
       // const { Name, Question, Answer, Value} = quizData[i];
-      if (quizData[i].Name !== "start easy") {
-        obj[`${quizData[i].Name}`] = {
-          qno: i,
-          question: quizData[i].Question,
-          attribute: quizData[i].Answer,
-          value: quizData[i].Value,
-        };
-      }
+      // if (quizData[i].Name !== "start easy") {
+      obj[`${quizData[i].Name}`] = {
+        qno: i + 1,
+        question: quizData[i].Question,
+        attribute: quizData[i].Answer,
+        value: quizData[i].Value,
+      };
+      // }
       console.log("--->", obj[`${quizData[i].Name}`]);
     }
     obj.email = {
       value: userEmail,
     };
+    obj.dob = {
+      value: birthDate,
+    };
     console.log("<<<----", obj);
     return obj;
   };
 
-  // useEffect(() => {
-  //   if (finalQuizData.email.value !== "" && !isQuizTaken) {
-  //     dispatch(leaQuizActions.updateLoadingStatus(true));
-  //     try {
-  //       (async function () {
-  //         const recommendationData = await LeaQuizApi.getRecommendation(
-  //           finalQuizData
-  //         );
-  //         console.log("---->Data", recommendationData);
-  //         if (recommendationData) {
-  //           let prevProgress = 100;
-  //           dispatch(leaQuizActions.decrementSlideCount(1));
-  //           dispatch(leaQuizActions.decrementProgress({ prevProgress }));
-  //           dispatch(leaQuizActions.updateLoadingStatus(false));
-  //           dispatch(leaQuizActions.updateQuizStatus(true));
-
-  //           dispatch(
-  //             recommendationActions.updateRecommendationData({
-  //               recommendationData,
-  //             })
-  //           );
-  //         }
-  //       })();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //     setIsLoading(false);
-  //   }
-  // }, [finalQuizData]);
-
   const handleSubmit = () => {
     if (userEmail === "") setIsSubmit(true);
     if (!isError) {
-      const finalQuizObj = getQuizPayload(userEmail);
+      const finalQuizObj = getQuizPayload(userEmail, birthDate);
       dispatch(
         leaQuizActions.updateUserDetails({ email: userEmail, dob: birthDate })
       );
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
-      recommend(finalQuizObj);
+      recommend(finalQuizObj, userEmail);
       // dispatch(leaQuizActions.incrementProgress({ progress }));
       // dispatch(leaQuizActions.incrementSlideCount());
       // navigate("/recommendation");
@@ -189,11 +163,23 @@ export default function UserDetails(props) {
               <IconButton
                 sx={{ color: "#D3AED2" }}
                 onClick={() => {
-                  dispatch(leaQuizActions.decrementSlideCount());
-                  if (prevProgress)
-                    dispatch(
-                      leaQuizActions.decrementProgress({ prevProgress })
-                    );
+                  if (quizData[12].Answer === true) {
+                    dispatch(leaQuizActions.decrementSlideCount());
+                    if (prevProgress) {
+                      dispatch(
+                        leaQuizActions.decrementProgress({ prevProgress })
+                      );
+                    }
+                  }
+                  if (quizData[12].Answer === false) {
+                    dispatch(leaQuizActions.decrementSlideCount(20));
+                    if (prevProgress) {
+                      let prevProgress = 5;
+                      dispatch(
+                        leaQuizActions.decrementProgress({ prevProgress })
+                      );
+                    }
+                  }
                 }}
               >
                 <ArrowCircleLeftIcon fontSize="large" />

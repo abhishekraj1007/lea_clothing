@@ -2,7 +2,7 @@ import { Divider, Grid, Stack, Box, Button } from "@mui/material";
 import { styles } from "./styles";
 import { styled } from "@mui/material/styles";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Fragment, useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,6 +11,10 @@ import measureIcon from "../../assets/measure-icon.png";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
 import star1 from "../../assets/Star-1.png";
+import { recommendationActions } from "./store/slice/recommendationSlice";
+import UserDataApi from "../../services/api/UserDataApi";
+import GlobalLoading from "../../components/ui/GlobalLoading";
+import { leaQuizActions } from "../LeaQuiz/store/slice/leaQuizSlice";
 
 const CenterBall = styled("div")(({ theme }) => ({
   position: "fixed",
@@ -26,6 +30,9 @@ const CenterBall = styled("div")(({ theme }) => ({
 }));
 
 export default function ProductRecommendation() {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.leaRecommendation.loading);
+
   const recommendations = useSelector(
     (state) => state.leaRecommendation.recommendationData
   );
@@ -34,16 +41,70 @@ export default function ProductRecommendation() {
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
 
+  const getUserInfo = async (emailId) => {
+    console.log("+++", emailId);
+    dispatch(recommendationActions.updateLoadingStatus(true));
+    try {
+      const data = await UserDataApi.getUserData(emailId);
+      console.log("---->Data", data);
+      if (data) {
+        dispatch(recommendationActions.updateLoadingStatus(false));
+
+        dispatch(
+          recommendationActions.updateUserData({
+            data,
+          })
+        );
+
+        dispatch(
+          recommendationActions.updateRecommendationData({
+            recommendationData: data.response,
+          })
+        );
+
+        dispatch(leaQuizActions.updateQuizData({ fromData: data.form_data }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    dispatch(recommendationActions.updateLoadingStatus(false));
+  };
+
   useEffect(() => {
+    const emailId = localStorage.getItem("userEmailId");
+    console.log(emailId);
+    if (emailId) {
+      getUserInfo(emailId);
+    }
+    // fetch(
+    //   `https://6c14-2401-4900-1c37-d6a3-3a2c-82fa-b733-680f.in.ngrok.io/check-user?` +
+    //     new URLSearchParams({
+    //       email: "chandan.roy@algoscale.com",
+    //     }),
+    //   {
+    //     mode : 'cors',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((error) => console.log(error));
     // From a child iframe
     const message = JSON.stringify({
-      channel: "Quiz Taken",
+      userEmail: emailId,
     });
-    window.parent.postMessage(message, "https://dev-store-1196.myshopify.com/");
+    window.parent.postMessage(message, "*");
   }, []);
+
+  const handleRetake = () => {
+    dispatch(leaQuizActions.updateQuizStatus(false));
+  };
 
   return (
     <>
+      {loading && <GlobalLoading />}
       <Grid id="lea-recommendation" container marginY={2} spacing={6}>
         <Grid item container justifyContent="center" xs={12} spacing={1}>
           <Grid
@@ -75,37 +136,43 @@ export default function ProductRecommendation() {
             md={3}
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={{ xs: 1, md: 2 }}
-              padding={1}
-              sx={{ bgcolor: "#FFEBF8", borderRadius: "5rem", width: "100%" }}
-            >
-              <Box sx={{ width: "20%" }}>
-                <Box
-                  component="img"
-                  alt="measure"
-                  src={measureIcon}
-                  sx={
-                    !mobileView
-                      ? { height: "56", width: "56" }
-                      : { height: "30px", width: "30px" }
-                  }
-                />
-              </Box>
-              <Box
-                sx={
-                  mobileView ? styles.mobileIdealSizeText : styles.idealSizeText
-                }
+            {recommendations[0]?.Size && (
+              <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={{ xs: 1, md: 2 }}
+                padding={1}
+                sx={{ bgcolor: "#FFEBF8", borderRadius: "5rem", width: "100%" }}
               >
-                {"Your Ideal Size"}
-              </Box>
-              <Box sx={mobileView ? styles.mobileIdealSize : styles.idealSize}>
-                {"XL"}
-              </Box>
-            </Stack>
+                <Box sx={{ width: "20%" }}>
+                  <Box
+                    component="img"
+                    alt="measure"
+                    src={measureIcon}
+                    sx={
+                      !mobileView
+                        ? { height: "56", width: "56" }
+                        : { height: "30px", width: "30px" }
+                    }
+                  />
+                </Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.mobileIdealSizeText
+                      : styles.idealSizeText
+                  }
+                >
+                  {"Your Ideal Size"}
+                </Box>
+                <Box
+                  sx={mobileView ? styles.mobileIdealSize : styles.idealSize}
+                >
+                  {`${recommendations[0]?.Size}`}
+                </Box>
+              </Stack>
+            )}
           </Grid>
           {!mobileView && (
             <Divider
@@ -131,6 +198,7 @@ export default function ProductRecommendation() {
             sx={styles.retakeBtn}
             variant="outlined"
             startIcon={<RefreshIcon />}
+            onClick={handleRetake}
           >
             {"Retake Quiz"}
           </Button>
@@ -144,7 +212,7 @@ export default function ProductRecommendation() {
           marginX={6}
         >
           {recommendations?.map((product, index) => (
-            <Fragment key={`${product["Handle"]}`}>
+            <Fragment key={`${product["Title"]}`}>
               {index + 1 <= productCount && (
                 <Grid item xs={12} md={4}>
                   <Stack
@@ -154,19 +222,26 @@ export default function ProductRecommendation() {
                     // spacing={2}
                     sx={{ position: "relative", zIndex: 2, cursor: "pointer" }}
                     onClick={() => {
+                      let data = {
+                        email: "niyantasingh@yahoo.co.in",
+                        product_title: "arla Mauve Silk Corset Top",
+                      };
+                      dispatch(
+                        recommendationActions.updateSingleProductRecommned({
+                          data,
+                        })
+                      );
                       window.open(`${product["URL"]}`, "_blank");
+                      window.open(
+                        `https://614a-2409-4065-85-3fe7-19a4-6903-3400-5b71.ngrok.io/recommend/${product["Title"]}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <Box
                       sx={styles.outlinedCard}
                       // elevation={0}
                       // variant="outlined"
-                      onClick={() =>
-                        handleCards(
-                          "Sasha White 5",
-                          "Naomi White Crochet Cover-Up Set"
-                        )
-                      }
                     >
                       <img
                         src={star1}
@@ -183,16 +258,14 @@ export default function ProductRecommendation() {
                     </Box>
                     <Box sx={{ width: "100%" }}>
                       <img
-                        src={
-                          "https://cdn.shopify.com/s/files/1/0518/6768/0952/products/image_61826f31-6ad8-4226-93c2-fd9a0f54aee7.jpg?v=1650548477"
-                        }
-                        alt="Sasha White 1"
+                        src={`${product["IMGURL"]}`}
+                        alt={product["Title"]}
                         width="100%"
                         height="100%"
                       />
                     </Box>
-                    <Box sx={styles.productTitle}>{product["Handle"]}</Box>
-                    <Box sx={styles.productPrice}>{"₹4899"}</Box>
+                    <Box sx={styles.productTitle}>{product["Title"]}</Box>
+                    <Box sx={styles.productPrice}>{product["Price"]}</Box>
                   </Stack>
                 </Grid>
               )}
@@ -200,8 +273,8 @@ export default function ProductRecommendation() {
           ))}
         </Grid>
         <Grid item container justifyContent="center" xs={12} mb={6}>
-          {productCount !== recommendations.length &&
-            productCount < recommendations.length && (
+          {productCount !== recommendations?.length &&
+            productCount < recommendations?.length && (
               <Button
                 sx={styles.loadProductBtn}
                 variant="outlined"

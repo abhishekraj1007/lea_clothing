@@ -18,11 +18,11 @@ export default function PriceRangeSlider(props) {
   const quizData = useSelector((state) => state.leaQuiz.quizData);
 
   const initialRangeData = {
-    Tops: [2000, 10000],
-    Dresses: [2000, 10000],
-    Bottoms: [2000, 10000],
-    Loungewear: [2000, 10000],
-    Accessories: [2000, 10000],
+    Tops: [100, 10000],
+    Dresses: [100, 10000],
+    Bottoms: [100, 10000],
+    Loungewear: [100, 10000],
+    Accessories: [100, 10000],
   };
   const [rangeData, setRangeData] = useState(initialRangeData);
   const [questionIndex, setQuestionIndex] = useState("");
@@ -62,9 +62,19 @@ export default function PriceRangeSlider(props) {
         <IconButton
           sx={{ color: "#D3AED2" }}
           onClick={() => {
-            dispatch(leaQuizActions.decrementSlideCount());
-            if (prevProgress)
-              dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+            if (quizData[8].Answer === true) {
+              dispatch(leaQuizActions.decrementSlideCount());
+              if (prevProgress) {
+                dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+              }
+            }
+            if (quizData[8].Answer === false) {
+              dispatch(leaQuizActions.decrementSlideCount(11));
+              if (prevProgress) {
+                let prevProgress = 5;
+                dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+              }
+            }
           }}
         >
           <ArrowCircleLeftIcon fontSize="large" />
@@ -102,7 +112,7 @@ export default function PriceRangeSlider(props) {
                   <Slider
                     value={rangeData["Tops"]}
                     name="Tops"
-                    min={2000}
+                    min={100}
                     max={10000}
                     onChange={handleChange}
                     getAriaLabel={() => "Minimum distance"}
@@ -140,7 +150,7 @@ export default function PriceRangeSlider(props) {
                   <Slider
                     value={rangeData["Dresses"]}
                     name="Dresses"
-                    min={2000}
+                    min={100}
                     max={10000}
                     onChange={handleChange}
                     getAriaLabel={() => "Minimum distance"}
@@ -180,7 +190,7 @@ export default function PriceRangeSlider(props) {
                   <Slider
                     value={rangeData["Bottoms"]}
                     name="Bottoms"
-                    min={2000}
+                    min={100}
                     max={10000}
                     onChange={handleChange}
                     getAriaLabel={() => "Minimum distance"}
@@ -220,7 +230,7 @@ export default function PriceRangeSlider(props) {
                   <Slider
                     value={rangeData["Loungewear"]}
                     name="Loungewear"
-                    min={2000}
+                    min={100}
                     max={10000}
                     onChange={handleChange}
                     getAriaLabel={() => "Minimum distance"}
@@ -260,7 +270,7 @@ export default function PriceRangeSlider(props) {
                   <Slider
                     value={rangeData["Accessories"]}
                     name="Accessories"
-                    min={2000}
+                    min={100}
                     max={10000}
                     onChange={handleChange}
                     getAriaLabel={() => "Minimum distance"}

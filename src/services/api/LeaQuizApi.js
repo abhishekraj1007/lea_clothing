@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_API_URL } from "/globalVariables";
-const baseUrl = "https://python-model1.herokuapp.com";
+const baseUrl = "https://736f-2401-4900-1c36-1510-5672-41f8-18ee-b41c.in.ngrok.io";
 
 const getRecommendation = async ({ ...finalQuizData }) => {
   try {

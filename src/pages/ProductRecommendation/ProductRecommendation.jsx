@@ -76,21 +76,6 @@ export default function ProductRecommendation() {
     if (emailId) {
       getUserInfo(emailId);
     }
-    // fetch(
-    //   `https://6c14-2401-4900-1c37-d6a3-3a2c-82fa-b733-680f.in.ngrok.io/check-user?` +
-    //     new URLSearchParams({
-    //       email: "chandan.roy@algoscale.com",
-    //     }),
-    //   {
-    //     mode : 'cors',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.log(error));
     // From a child iframe
     const message = JSON.stringify({
       userEmail: emailId,
@@ -233,7 +218,7 @@ export default function ProductRecommendation() {
                       );
                       window.open(`${product["URL"]}`, "_blank");
                       window.open(
-                        `https://614a-2409-4065-85-3fe7-19a4-6903-3400-5b71.ngrok.io/recommend/${product["Title"]}`,
+                        `https://51c1-2409-4065-e99-c021-c04-ff72-9aba-ce5f.ngrok.io/recommend/${product["Title"]}`,
                         "_blank"
                       );
                     }}

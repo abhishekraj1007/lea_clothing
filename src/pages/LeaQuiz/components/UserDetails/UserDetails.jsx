@@ -26,6 +26,9 @@ export default function UserDetails(props) {
   const finalQuizData = useSelector((state) => state.leaQuiz.finalQuizData);
   const loading = useSelector((state) => state.leaQuiz.loading);
   const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const userDetailsEmail = useSelector(
+    (state) => state.leaQuiz.userDeatils.Email
+  );
 
   const [userEmail, setUserEmail] = useState("");
   const [birthDate, setBirthDate] = useState("");
@@ -35,6 +38,10 @@ export default function UserDetails(props) {
   // const [isLoading, setIsLoading] = useState(false);
 
   const EMAIL_REGEX = /\S+@\S+\.\S+/;
+
+  useEffect(() => {
+    setUserEmail(userDetailsEmail);
+  }, [userDetailsEmail]);
 
   useEffect(() => {
     if (validateRegex(userEmail, EMAIL_REGEX)) {

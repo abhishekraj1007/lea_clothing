@@ -1,2 +1,2 @@
 export const BASE_API_URL =
-  "https://9101-2401-4900-1c37-b043-1d0a-b2ab-df6b-3b7b.in.ngrok.io";
+  "https://736f-2401-4900-1c36-1510-5672-41f8-18ee-b41c.in.ngrok.io";

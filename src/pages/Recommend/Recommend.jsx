@@ -51,7 +51,7 @@ export default function Recommend() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `https://9101-2401-4900-1c37-b043-1d0a-b2ab-df6b-3b7b.in.ngrok.io/recommend`,
+        `https://736f-2401-4900-1c36-1510-5672-41f8-18ee-b41c.in.ngrok.io/recommend`,
         {
           email,
           product_title: productTitle,

@@ -386,6 +386,7 @@ const leaQuizSlice = createSlice({
       }
       console.log("filled Data:", newData);
       state.quizData = [...newData];
+      state.userDeatils.Email = fromData.email.value;
     },
 
     updateCardQuiz(state, action) {

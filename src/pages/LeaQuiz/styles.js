@@ -54,6 +54,16 @@ const BasicOutlinedBtn = {
   },
 };
 
+const mobileBasicOutlinedBtn = {
+  borderColor: "#D3AED2",
+  color: "#000",
+  textTransform: "none",
+  "&:hover": {
+    borderColor: "#D3AED2",
+    transition: "all 0.4s",
+  },
+};
+
 const BasicSelectedOutlinedBtn = {
   color: "#000",
   backgroundColor: "#D3AED2",
@@ -62,6 +72,17 @@ const BasicSelectedOutlinedBtn = {
   "&:hover": {
     color: "#000",
     backgroundColor: "#D3AED2",
+    borderColor: "#D3AED2",
+    transition: "all 0.4s",
+  },
+};
+
+const mobileBasicSelectedOutlinedBtn = {
+  color: "#000",
+  backgroundColor: "#D3AED2 !important",
+  borderColor: "#D3AED2",
+  textTransform: "none",
+  "&:hover": {
     borderColor: "#D3AED2",
     transition: "all 0.4s",
   },
@@ -183,4 +204,6 @@ export const styles = {
   mobileHeadingText,
   mobileSubHeadingText,
   BasicSelectedOutlinedBtn,
+  mobileBasicOutlinedBtn,
+  mobileBasicSelectedOutlinedBtn,
 };

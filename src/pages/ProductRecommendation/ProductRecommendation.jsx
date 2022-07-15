@@ -39,7 +39,8 @@ export default function ProductRecommendation() {
   const [productCount, setProductCount] = useState(3);
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
+  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
 
   const getUserInfo = async (emailId) => {
     console.log("+++", emailId);
@@ -52,17 +53,19 @@ export default function ProductRecommendation() {
 
         dispatch(
           recommendationActions.updateUserData({
-            data,
+            data: data.response,
           })
         );
 
         dispatch(
           recommendationActions.updateRecommendationData({
-            recommendationData: data.response,
+            recommendationData: data.response.recos,
           })
         );
 
-        dispatch(leaQuizActions.updateQuizData({ fromData: data.form_data }));
+        dispatch(
+          leaQuizActions.updateQuizData({ fromData: data.response.form_data })
+        );
       }
     } catch (error) {
       console.log(error);
@@ -98,7 +101,7 @@ export default function ProductRecommendation() {
             sm={12}
             md={8}
             sx={
-              mobileView ? styles.mobileSubHeadingText : styles.subHeadingText
+              tabletView ? styles.mobileSubHeadingText : styles.subHeadingText
             }
           >
             {"Thanks for taking the quiz, sunshine"}
@@ -108,7 +111,7 @@ export default function ProductRecommendation() {
             xs={10}
             sm={12}
             md={8}
-            sx={mobileView ? styles.mobileHeadingText : styles.headingText}
+            sx={tabletView ? styles.mobileHeadingText : styles.headingText}
           >
             {"Here are our hand-picked #LeaLooks for YOU!"}
           </Grid>
@@ -136,7 +139,7 @@ export default function ProductRecommendation() {
                     alt="measure"
                     src={measureIcon}
                     sx={
-                      !mobileView
+                      !tabletView
                         ? { height: "56", width: "56" }
                         : { height: "30px", width: "30px" }
                     }
@@ -144,7 +147,7 @@ export default function ProductRecommendation() {
                 </Box>
                 <Box
                   sx={
-                    mobileView
+                    tabletView
                       ? styles.mobileIdealSizeText
                       : styles.idealSizeText
                   }
@@ -152,14 +155,14 @@ export default function ProductRecommendation() {
                   {"Your Ideal Size"}
                 </Box>
                 <Box
-                  sx={mobileView ? styles.mobileIdealSize : styles.idealSize}
+                  sx={tabletView ? styles.mobileIdealSize : styles.idealSize}
                 >
                   {`${recommendations[0]?.Size}`}
                 </Box>
               </Stack>
             )}
           </Grid>
-          {!mobileView && (
+          {!tabletView && (
             <Divider
               orientation="vertical"
               flexItem
@@ -171,7 +174,7 @@ export default function ProductRecommendation() {
             xs={10}
             sm={10}
             md={3}
-            sx={mobileView ? styles.mobileSizeText : styles.sizeText}
+            sx={tabletView ? styles.mobileSizeText : styles.sizeText}
           >
             {
               "Taking all your fit and style preferences into consideration, we've carefully curated some looks we think you'd love, in the perfect size for you!"
@@ -193,13 +196,13 @@ export default function ProductRecommendation() {
           container
           justifyContent="center"
           xs={12}
-          spacing={4}
-          marginX={6}
+          spacing={mobileView ? 0 : 4}
+          mx={{ xs: 0, sm: 2, md: 6 }}
         >
           {recommendations?.map((product, index) => (
             <Fragment key={`${product["Title"]}`}>
               {index + 1 <= productCount && (
-                <Grid item xs={12} md={4}>
+                <Grid item xs={10} sm={4} md={4} mt={{ xs: 4, sm: 2, md: 0 }}>
                   <Stack
                     direction="column"
                     justifyContent="center"
@@ -272,7 +275,7 @@ export default function ProductRecommendation() {
             )}
         </Grid>
       </Grid>
-      {!mobileView && <CenterBall />}
+      {!tabletView && <CenterBall />}
     </>
   );
 }

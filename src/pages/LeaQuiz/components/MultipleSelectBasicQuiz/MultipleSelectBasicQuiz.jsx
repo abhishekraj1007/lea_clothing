@@ -57,7 +57,7 @@ const MultipleSelectBasicQuiz = (props) => {
     dispatch(leaQuizActions.updateMultipleSelectBasicQuestion(quizObj));
   };
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" my={{ xs: 6, md: 6 }}>
       {!mobileView && (
         <Grid
           item
@@ -83,11 +83,20 @@ const MultipleSelectBasicQuiz = (props) => {
           )}
         </Grid>
       )}
-      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
+      <Grid
+        item
+        container
+        xs={12}
+        sm={10}
+        md={8}
+        justifyContent="center"
+        spacing={1}
+      >
         {supScriptTag ? (
           <Grid
             item
             xs={10}
+            sm={11}
             md={12}
             sx={
               mobileView ? styles.mobileSubHeadingText : styles.subHeadingText
@@ -99,6 +108,7 @@ const MultipleSelectBasicQuiz = (props) => {
           <Grid
             item
             xs={10}
+            sm={11}
             md={12}
             sx={
               mobileView ? styles.mobileSubHeadingText : styles.subHeadingText
@@ -110,6 +120,7 @@ const MultipleSelectBasicQuiz = (props) => {
         <Grid
           item
           xs={10}
+          sm={11}
           md={12}
           sx={mobileView ? styles.mobileHeadingText : styles.headingText}
         >
@@ -128,7 +139,7 @@ const MultipleSelectBasicQuiz = (props) => {
                       justifyContent="center"
                       key={`button_${content}`}
                     >
-                      <Grid item xs={10} sm={6}>
+                      <Grid item xs={10} sm={8}>
                         <Button
                           variant="outlined"
                           size="large"
@@ -155,10 +166,11 @@ const MultipleSelectBasicQuiz = (props) => {
                       container
                       item
                       xs={12}
+                      md={12}
                       justifyContent="center"
                       key={`button_${content}`}
                     >
-                      <Grid item xs={10} sm={6}>
+                      <Grid item xs={10} sm={6} md={6}>
                         <Button
                           variant="outlined"
                           size="large"
@@ -182,59 +194,60 @@ const MultipleSelectBasicQuiz = (props) => {
             </>
           )}
         </Grid>
-      </Grid>
-      {mobileView && (
-        <Grid item container xs={12} justifyContent="center" my={2}>
-          {slideCount !== 1 && (
+
+        {mobileView && (
+          <Grid item container xs={12} justifyContent="center" my={2}>
+            {slideCount !== 1 && (
+              <Grid
+                item
+                xs={5}
+                sm={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  sx={{ color: "#D3AED2" }}
+                  onClick={() => {
+                    dispatch(leaQuizActions.decrementSlideCount());
+                    if (prevProgress)
+                      dispatch(
+                        leaQuizActions.decrementProgress({ prevProgress })
+                      );
+                  }}
+                >
+                  <ArrowCircleLeftIcon fontSize="large" />
+                </IconButton>
+              </Grid>
+            )}
+
             <Grid
               item
               xs={5}
-              sm={5}
+              sm={4}
               sx={{
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: slideCount === 1 ? "center" : "flex-end",
                 alignItems: "center",
               }}
             >
               <IconButton
-                sx={{ color: "#D3AED2" }}
+                sx={{ color: "#6C4A6D" }}
                 onClick={() => {
-                  dispatch(leaQuizActions.decrementSlideCount());
-                  if (prevProgress)
-                    dispatch(
-                      leaQuizActions.decrementProgress({ prevProgress })
-                    );
+                  dispatch(leaQuizActions.incrementSlideCount());
+                  if (progress)
+                    dispatch(leaQuizActions.incrementProgress({ progress }));
                 }}
+                disabled={isDisabled}
               >
-                <ArrowCircleLeftIcon fontSize="large" />
+                <ArrowCircleRightIcon fontSize="large" />
               </IconButton>
             </Grid>
-          )}
-
-          <Grid
-            item
-            xs={5}
-            sm={5}
-            sx={{
-              display: "flex",
-              justifyContent: slideCount === 1 ? "center" : "flex-end",
-              alignItems: "center",
-            }}
-          >
-            <IconButton
-              sx={{ color: "#6C4A6D" }}
-              onClick={() => {
-                dispatch(leaQuizActions.incrementSlideCount());
-                if (progress)
-                  dispatch(leaQuizActions.incrementProgress({ progress }));
-              }}
-              disabled={isDisabled}
-            >
-              <ArrowCircleRightIcon fontSize="large" />
-            </IconButton>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Grid>
       {!mobileView && (
         <Grid
           item

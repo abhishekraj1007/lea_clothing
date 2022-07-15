@@ -22,39 +22,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import waistImgUrl from "../../../../assets/waist.png";
 import dressesImgUrl from "../../../../assets/dress-2.png";
 import legsImgUrl from "../../../../assets/legs-2.png";
-
-// const useStyles = makeStyles({
-//   root: {
-//     width: 200,
-//     "& .MuiOutlinedInput-input": {
-//       color: "green"
-//     },
-//     "& .MuiInputLabel-root": {
-//       color: "green"
-//     },
-//     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "green"
-//     },
-//     "&:hover .MuiOutlinedInput-input": {
-//       color: "red"
-//     },
-//     "&:hover .MuiInputLabel-root": {
-//       color: "red"
-//     },
-//     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "red"
-//     },
-//     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-//       color: "purple"
-//     },
-//     "& .MuiInputLabel-root.Mui-focused": {
-//       color: "purple"
-//     },
-//     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-//       borderColor: "purple"
-//     }
-//   }
-// });
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles({
   select: {
@@ -107,6 +76,10 @@ export default function SizeSelectionCard(props) {
   const [questionIndex, setQuestionIndex] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
+  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -136,20 +109,8 @@ export default function SizeSelectionCard(props) {
     console.log("top Select Size", topSelectSize);
   }, [topSelectSize]);
 
-  // const handleQuestion = (content) => {
-  //   const quizObj = {
-  //     question: headingText,
-  //     answer: content,
-  //   };
-  //   dispatch(leaQuizActions.updateSingularTypeQuestion(quizObj));
-  //   dispatch(leaQuizActions.updateSlideCount());
-
-  // };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // setTopSelectSize(event.target.value);
-    // console.log(event.target.name);
     dispatch(
       leaQuizActions.updateValues({
         name,
@@ -223,32 +184,64 @@ export default function SizeSelectionCard(props) {
         },
       })}
     >
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" my={{ xs: 6, md: 6 }}>
+        {!tabletView && (
+          <Grid
+            item
+            xs={12}
+            sm={2}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IconButton
+              sx={{ color: "#D3AED2" }}
+              onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+            >
+              <ArrowCircleLeftIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+        )}
         <Grid
           item
+          container
           xs={12}
-          sm={2}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          sm={10}
+          md={8}
+          justifyContent="center"
+          spacing={1}
         >
-          <IconButton
-            sx={{ color: "#D3AED2" }}
-            onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+          <Grid
+            item
+            xs={10}
+            sm={11}
+            md={12}
+            sx={
+              tabletView ? styles.mobileSubHeadingText : styles.subHeadingText
+            }
           >
-            <ArrowCircleLeftIcon fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
-          <Grid item xs={12} sx={styles.subHeadingText}>
             {subHeadingText}
           </Grid>
-          <Grid item xs={12} sx={styles.headingText}>
+          <Grid
+            item
+            xs={10}
+            sm={11}
+            md={12}
+            sx={tabletView ? styles.mobileHeadingText : styles.headingText}
+          >
             {headingText}
           </Grid>
-          <Grid item xs={12} sx={styles.subHeadingText}>
+          <Grid
+            item
+            xs={10}
+            sm={11}
+            md={12}
+            sx={
+              tabletView ? styles.mobileSubHeadingText : styles.subHeadingText
+            }
+          >
             {instructionText} <b>{boldText}</b>
           </Grid>
           <Grid
@@ -259,216 +252,473 @@ export default function SizeSelectionCard(props) {
             justifyContent="center"
             my={2}
           >
-            <Grid item xs={6} md={3}>
-              <Paper
-                sx={styles.sizeSelectCard}
-                elevation={0}
-                variant="outlined"
-              >
-                <Stack
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={2}
-                >
-                  <Box>
-                    <Box sx={styles.avatarBox}>
-                      <img src={dressesImgUrl} alt="Top" width="50%" />
+            <Grid
+              item
+              xs={11}
+              sm={4}
+              md={3}
+              sx={{ marginY: `${mobileView ? "1rem" : "0"}` }}
+            >
+              {mobileView ? (
+                <Paper sx={styles.rangeCard} elevation={0} variant="outlined">
+                  <Box sx={styles.mobileSizeSelectionChip}>
+                    <Box sx={{ width: "30%" }}>
+                      <Box sx={styles.rangeChipAvatar}>
+                        <img src={dressesImgUrl} alt="Bust" width="60%" />
+                      </Box>
                     </Box>
+                    <Box sx={styles.mobileRangeChipText}>{"Bust"}</Box>
                   </Box>
-                  <Box>{"Bust"}</Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "100%",
-                    }}
+
+                  <Stack
+                    direction="column"
+                    sx={{ width: "100%", color: "#6C4A6D" }}
+                    justifyContent="center"
+                    alignItems="center"
+                    paddingY={5}
                   >
-                    <Select
-                      value={selectedSizes["Bust"]}
-                      name="Bust"
-                      onChange={handleChange}
-                      displayEmpty
+                    <Box
                       sx={{
-                        width: "90%",
-                        backgroundColor: "#6C4A6D",
-                        borderRadius: "30px",
-                        padding: "0",
-                        paddingBottom: "0px",
-                        paddingTop: "0px",
-                        borderColor: "purple",
-                        color: "#fff",
-                        "&:hover": {
-                          color: "#6C4A6D",
-                          backgroundColor: "#FFE6F6",
-                          transition: "all 0.4s",
-                        },
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
                       }}
-                      variant="outlined"
-                      // className={classes.root}
-                      // disableUnderline
                     >
-                      <MenuItem disabled value="">
-                        Select
-                      </MenuItem>
-                      {bustSize?.map((size) => (
-                        <MenuItem value={size} key={`topSelectSize_${size}`}>
-                          {size}
+                      <Select
+                        value={selectedSizes["Bust"]}
+                        name="Bust"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                      >
+                        <MenuItem disabled value="">
+                          Select
                         </MenuItem>
-                      ))}
-                    </Select>
-                  </Box>
-                </Stack>
-              </Paper>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Paper
-                sx={styles.sizeSelectCard}
-                elevation={0}
-                variant="outlined"
-              >
-                <Stack
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={2}
-                >
-                  <Box>
-                    <Box sx={styles.avatarBox}>
-                      <img src={waistImgUrl} alt="Top" width="50%" />
+                        {bustSize?.map((size) => (
+                          <MenuItem value={size} key={`topSelectSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
                     </Box>
-                  </Box>
-                  <Box>{"Waist"}</Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "100%",
-                    }}
-                  >
-                    <Select
-                      value={selectedSizes["Waist"]}
-                      name="Waist"
-                      onChange={handleChange}
-                      displayEmpty
-                      sx={{
-                        width: "90%",
-                        backgroundColor: "#6C4A6D",
-                        borderRadius: "30px",
-                        padding: "0",
-                        paddingBottom: "0px",
-                        paddingTop: "0px",
-                        borderColor: "purple",
-                        color: "#fff",
-                        "&:hover": {
-                          color: "#6C4A6D",
-                          backgroundColor: "#FFE6F6",
-                          transition: "all 0.4s",
-                        },
-                      }}
-                      variant="outlined"
-                      // className={classes.root}
-                      // disableUnderline
-                    >
-                      <MenuItem disabled value="">
-                        Select
-                      </MenuItem>
-                      {waistSize?.map((size) => (
-                        <MenuItem value={size} key={`topSelectSize_${size}`}>
-                          {size}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </Box>
-                </Stack>
-              </Paper>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Paper
-                sx={styles.sizeSelectCard}
-                elevation={0}
-                variant="outlined"
-              >
-                <Stack
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={2}
+                  </Stack>
+                </Paper>
+              ) : (
+                <Paper
+                  sx={styles.sizeSelectCard}
+                  elevation={0}
+                  variant="outlined"
                 >
-                  <Box>
-                    <Box sx={styles.avatarBox}>
-                      <img src={legsImgUrl} alt="Top" width="60%" />
-                    </Box>
-                  </Box>
-                  <Box>{"Hips"}</Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      width: "100%",
-                    }}
+                  <Stack
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}
                   >
-                    <Select
-                      value={selectedSizes["Hips"]}
-                      name="Hips"
-                      onChange={handleChange}
-                      displayEmpty
+                    <Box>
+                      <Box sx={styles.avatarBox}>
+                        <img src={dressesImgUrl} alt="Top" width="50%" />
+                      </Box>
+                    </Box>
+                    <Box>{"Bust"}</Box>
+                    <Box
                       sx={{
-                        width: "90%",
-                        backgroundColor: "#6C4A6D",
-                        borderRadius: "30px",
-                        padding: "0",
-                        paddingBottom: "0px",
-                        paddingTop: "0px",
-                        borderColor: "purple",
-                        color: "#fff",
-                        "&:hover": {
-                          color: "#6C4A6D",
-                          backgroundColor: "#FFE6F6",
-                          transition: "all 0.4s",
-                        },
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
                       }}
-                      variant="outlined"
-                      // className={classes.root}
-                      // disableUnderline
                     >
-                      <MenuItem disabled value="">
-                        Select
-                      </MenuItem>
-                      {hipSize?.map((size) => (
-                        <MenuItem value={size} key={`HipSize_${size}`}>
-                          {size}
+                      <Select
+                        value={selectedSizes["Bust"]}
+                        name="Bust"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                        // className={classes.root}
+                        // disableUnderline
+                      >
+                        <MenuItem disabled value="">
+                          Select
                         </MenuItem>
-                      ))}
-                    </Select>
-                  </Box>
-                </Stack>
-              </Paper>
+                        {bustSize?.map((size) => (
+                          <MenuItem value={size} key={`topSelectSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  </Stack>
+                </Paper>
+              )}
             </Grid>
+            <Grid
+              item
+              xs={11}
+              sm={4}
+              md={3}
+              sx={{ marginY: `${mobileView ? "1rem" : "0"}` }}
+            >
+              {mobileView ? (
+                <Paper sx={styles.rangeCard} elevation={0} variant="outlined">
+                  <Box sx={styles.mobileSizeSelectionChip}>
+                    <Box sx={{ width: "30%" }}>
+                      <Box sx={styles.rangeChipAvatar}>
+                        <img src={waistImgUrl} alt="Waist" width="60%" />
+                      </Box>
+                    </Box>
+                    <Box sx={styles.mobileRangeChipText}>{"Waist"}</Box>
+                  </Box>
+
+                  <Stack
+                    direction="column"
+                    sx={{ width: "100%", color: "#6C4A6D" }}
+                    justifyContent="center"
+                    alignItems="center"
+                    paddingY={5}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Select
+                        value={selectedSizes["Waist"]}
+                        name="Waist"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                      >
+                        <MenuItem disabled value="">
+                          Select
+                        </MenuItem>
+                        {waistSize?.map((size) => (
+                          <MenuItem value={size} key={`topSelectSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  </Stack>
+                </Paper>
+              ) : (
+                <Paper
+                  sx={styles.sizeSelectCard}
+                  elevation={0}
+                  variant="outlined"
+                >
+                  <Stack
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Box>
+                      <Box sx={styles.avatarBox}>
+                        <img src={waistImgUrl} alt="Top" width="50%" />
+                      </Box>
+                    </Box>
+                    <Box>{"Waist"}</Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Select
+                        value={selectedSizes["Waist"]}
+                        name="Waist"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                        // className={classes.root}
+                        // disableUnderline
+                      >
+                        <MenuItem disabled value="">
+                          Select
+                        </MenuItem>
+                        {waistSize?.map((size) => (
+                          <MenuItem value={size} key={`topSelectSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  </Stack>
+                </Paper>
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              sm={4}
+              md={3}
+              sx={{ marginY: `${mobileView ? "1rem" : "0"}` }}
+            >
+              {mobileView ? (
+                <Paper sx={styles.rangeCard} elevation={0} variant="outlined">
+                  <Box sx={styles.mobileSizeSelectionChip}>
+                    <Box sx={{ width: "30%" }}>
+                      <Box sx={styles.rangeChipAvatar}>
+                        <img src={legsImgUrl} alt="Hips" width="60%" />
+                      </Box>
+                    </Box>
+                    <Box sx={styles.mobileRangeChipText}>{"Hips"}</Box>
+                  </Box>
+
+                  <Stack
+                    direction="column"
+                    sx={{ width: "100%", color: "#6C4A6D" }}
+                    justifyContent="center"
+                    alignItems="center"
+                    paddingY={5}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Select
+                        value={selectedSizes["Hips"]}
+                        name="Hips"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                      >
+                        <MenuItem disabled value="">
+                          Select
+                        </MenuItem>
+                        {hipSize?.map((size) => (
+                          <MenuItem value={size} key={`HipSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  </Stack>
+                </Paper>
+              ) : (
+                <Paper
+                  sx={styles.sizeSelectCard}
+                  elevation={0}
+                  variant="outlined"
+                >
+                  <Stack
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Box>
+                      <Box sx={styles.avatarBox}>
+                        <img src={legsImgUrl} alt="Hips" width="60%" />
+                      </Box>
+                    </Box>
+                    <Box>{"Hips"}</Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Select
+                        value={selectedSizes["Hips"]}
+                        name="Hips"
+                        onChange={handleChange}
+                        displayEmpty
+                        sx={{
+                          width: "90%",
+                          backgroundColor: "#6C4A6D",
+                          borderRadius: "30px",
+                          padding: "0",
+                          paddingBottom: "0px",
+                          paddingTop: "0px",
+                          borderColor: "purple",
+                          color: "#fff",
+                          "&:hover": {
+                            color: "#6C4A6D",
+                            backgroundColor: "#FFE6F6",
+                            transition: "all 0.4s",
+                          },
+                        }}
+                        variant="outlined"
+                      >
+                        <MenuItem disabled value="">
+                          Select
+                        </MenuItem>
+                        {hipSize?.map((size) => (
+                          <MenuItem value={size} key={`HipSize_${size}`}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  </Stack>
+                </Paper>
+              )}
+            </Grid>
+
+            {tabletView && (
+              <Grid
+                item
+                container
+                xs={12}
+                justifyContent="center"
+                my={tabletView ? 4 : 2}
+              >
+                <Grid
+                  item
+                  xs={5}
+                  sm={6}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <IconButton
+                    sx={{ color: "#D3AED2" }}
+                    onClick={() =>
+                      dispatch(leaQuizActions.decrementSlideCount())
+                    }
+                  >
+                    <ArrowCircleLeftIcon fontSize="large" />
+                  </IconButton>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={5}
+                  sm={6}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                  }}
+                >
+                  <IconButton
+                    sx={{ color: "#6C4A6D" }}
+                    onClick={() => {
+                      dispatch(leaQuizActions.incrementSlideCount());
+                      if (progress)
+                        dispatch(
+                          leaQuizActions.incrementProgress({ progress })
+                        );
+                    }}
+                    disabled={isDisabled}
+                  >
+                    <ArrowCircleRightIcon fontSize="large" />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            )}
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={2}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <IconButton
-            sx={{ color: "#6C4A6D" }}
-            onClick={() => {
-              dispatch(leaQuizActions.incrementSlideCount());
-              if (progress)
-                dispatch(leaQuizActions.incrementProgress({ progress }));
+
+        {!tabletView && (
+          <Grid
+            item
+            xs={12}
+            sm={2}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            disabled={isDisabled}
           >
-            <ArrowCircleRightIcon fontSize="large" />
-          </IconButton>
-        </Grid>
+            <IconButton
+              sx={{ color: "#6C4A6D" }}
+              onClick={() => {
+                dispatch(leaQuizActions.incrementSlideCount());
+                if (progress)
+                  dispatch(leaQuizActions.incrementProgress({ progress }));
+              }}
+              disabled={isDisabled}
+            >
+              <ArrowCircleRightIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+        )}
       </Grid>
     </ThemeProvider>
   );

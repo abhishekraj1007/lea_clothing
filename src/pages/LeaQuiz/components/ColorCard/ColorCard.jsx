@@ -14,6 +14,9 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 export default function ColorCard(props) {
   const { instructionText, headingText, progress, isSkippable } = props;
   const dispatch = useDispatch();
@@ -21,6 +24,10 @@ export default function ColorCard(props) {
   const [selectedCards, setSelectedCards] = useState([]);
   const [questionIndex, setQuestionIndex] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
+  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     if (isSkippable === false && selectedCards.length === 0) {
@@ -53,36 +60,62 @@ export default function ColorCard(props) {
   };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" my={{ xs: 6, md: 6 }}>
+      {!tabletView && (
+        <Grid
+          item
+          xs={12}
+          sm={2}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <IconButton
+            sx={{ color: "#D3AED2" }}
+            onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+          >
+            <ArrowCircleLeftIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+      )}
       <Grid
         item
+        container
         xs={12}
-        sm={2}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        sm={10}
+        md={8}
+        justifyContent="center"
+        spacing={1}
       >
-        <IconButton
-          sx={{ color: "#D3AED2" }}
-          onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+        <Grid
+          item
+          xs={10}
+          sm={11}
+          md={12}
+          sx={tabletView ? styles.mobileHeadingText : styles.headingText}
         >
-          <ArrowCircleLeftIcon fontSize="large" />
-        </IconButton>
-      </Grid>
-      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
-        <Grid item xs={12} sx={styles.headingText}>
           {headingText}
         </Grid>
-        <Grid item xs={12} sx={styles.subHeadingText}>
+        <Grid
+          item
+          xs={10}
+          sm={11}
+          md={12}
+          sx={tabletView ? styles.mobileSubHeadingText : styles.subHeadingText}
+        >
           {instructionText}
         </Grid>
         <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Pastels")
+                tabletView
+                  ? selectedCards.includes("Pastels")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Pastels")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -98,19 +131,35 @@ export default function ColorCard(props) {
               >
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ marginLeft: "0px", backgroundColor: "#FFC5D1" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#C3D7F2" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#FFD6DC" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#E1F8E8" }}
                   />
                 </Box>
@@ -118,10 +167,14 @@ export default function ColorCard(props) {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Neutrals")
+                tabletView
+                  ? selectedCards.includes("Neutrals")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Neutrals")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -137,19 +190,35 @@ export default function ColorCard(props) {
               >
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ marginLeft: "0px", backgroundColor: "#848587" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#F6F4E7" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#1A1F32" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#C1946D" }}
                   />
                 </Box>
@@ -157,10 +226,14 @@ export default function ColorCard(props) {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Earthly Tones")
+                tabletView
+                  ? selectedCards.includes("Earthly Tones")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Earthly Tones")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -176,19 +249,35 @@ export default function ColorCard(props) {
               >
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ marginLeft: "0px", backgroundColor: "#707654" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#908478" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#BB7D58" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#772A28" }}
                   />
                 </Box>
@@ -196,10 +285,14 @@ export default function ColorCard(props) {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Bright Hues")
+                tabletView
+                  ? selectedCards.includes("Bright Hues")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Bright Hues")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -215,19 +308,35 @@ export default function ColorCard(props) {
               >
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ marginLeft: "0px", backgroundColor: "#FFD54D" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#F52549" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#9CBF1B" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#FB6777" }}
                   />
                 </Box>
@@ -235,10 +344,14 @@ export default function ColorCard(props) {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("Neons")
+                tabletView
+                  ? selectedCards.includes("Neons")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Neons")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -254,19 +367,35 @@ export default function ColorCard(props) {
               >
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ marginLeft: "0px", backgroundColor: "#FF4F59" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#FFA9D6" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#F1FE01" }}
                   />
                   <Box
-                    sx={styles.colorPalettes}
+                    sx={
+                      mobileView
+                        ? styles.mobileColorPalettes
+                        : styles.colorPalettes
+                    }
                     style={{ backgroundColor: "#4EC6E1" }}
                   />
                 </Box>
@@ -274,10 +403,14 @@ export default function ColorCard(props) {
               </Stack>
             </Paper>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={5} md={4}>
             <Paper
               sx={
-                selectedCards.includes("All")
+                tabletView
+                  ? selectedCards.includes("All")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("All")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
@@ -297,29 +430,77 @@ export default function ColorCard(props) {
             </Paper>
           </Grid>
         </Grid>
+
+        {tabletView && (
+          <Grid item container xs={12} justifyContent="center" my={2}>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                sx={{ color: "#D3AED2" }}
+                onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+              >
+                <ArrowCircleLeftIcon fontSize="large" />
+              </IconButton>
+            </Grid>
+
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                sx={{ color: "#6C4A6D" }}
+                onClick={() => {
+                  dispatch(leaQuizActions.incrementSlideCount());
+                  if (progress)
+                    dispatch(leaQuizActions.incrementProgress({ progress }));
+                }}
+                disabled={isDisabled}
+              >
+                <ArrowCircleRightIcon fontSize="large" />
+              </IconButton>
+            </Grid>
+          </Grid>
+        )}
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm={2}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <IconButton
-          sx={{ color: "#6C4A6D" }}
-          onClick={() => {
-            dispatch(leaQuizActions.incrementSlideCount());
-            if (progress)
-              dispatch(leaQuizActions.incrementProgress({ progress }));
+
+      {!tabletView && (
+        <Grid
+          item
+          xs={12}
+          sm={2}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          disabled={isDisabled}
         >
-          <ArrowCircleRightIcon fontSize="large" />
-        </IconButton>
-      </Grid>
+          <IconButton
+            sx={{ color: "#6C4A6D" }}
+            onClick={() => {
+              dispatch(leaQuizActions.incrementSlideCount());
+              if (progress)
+                dispatch(leaQuizActions.incrementProgress({ progress }));
+            }}
+            disabled={isDisabled}
+          >
+            <ArrowCircleRightIcon fontSize="large" />
+          </IconButton>
+        </Grid>
+      )}
     </Grid>
   );
 }

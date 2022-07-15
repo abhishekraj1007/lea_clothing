@@ -23,7 +23,8 @@ export default function ClothStyleCard(props) {
   const [questionIndex, setQuestionIndex] = useState("");
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
+  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(
@@ -49,7 +50,7 @@ export default function ClothStyleCard(props) {
 
   return (
     <Grid container justifyContent="center" sx={{ marginTop: 6 }}>
-      {!mobileView && (
+      {!tabletView && (
         <Grid
           item
           xs={12}
@@ -72,30 +73,52 @@ export default function ClothStyleCard(props) {
           </IconButton>
         </Grid>
       )}
-      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
+      <Grid
+        item
+        container
+        xs={12}
+        sm={10}
+        md={8}
+        justifyContent="center"
+        spacing={1}
+      >
         <Grid
           item
-          xs={12}
-          sx={mobileView ? styles.mobileSubHeadingText : styles.subHeadingText}
+          xs={10}
+          sm={11}
+          md={12}
+          sx={tabletView ? styles.mobileSubHeadingText : styles.subHeadingText}
         >
           {subHeadingText}
         </Grid>
-        <Grid item xs={12} sx={styles.headingText}>
+        <Grid
+          item
+          xs={10}
+          sm={11}
+          md={12}
+          sx={tabletView ? styles.mobileHeadingText : styles.headingText}
+        >
           {headingText}
         </Grid>
         <Grid
           item
-          xs={12}
-          sx={mobileView ? styles.mobileSubHeadingText : styles.subHeadingText}
+          xs={10}
+          sm={11}
+          md={12}
+          sx={tabletView ? styles.mobileSubHeadingText : styles.subHeadingText}
         >
           {instructionText}
         </Grid>
-        <Grid item container xs={12} spacing={1} justifyContent="center" my={2}>
+        <Grid item container xs={12} spacing={2} justifyContent="center" my={2}>
           {items?.map((item) => (
-            <Grid item xs={6} md={4} key={`${item.value.replace(/ /g, "")}`}>
+            <Grid item xs={5} md={4} key={`${item.value.replace(/ /g, "")}`}>
               <Paper
                 sx={
-                  selectedCards.includes(item.attribute)
+                  tabletView
+                    ? selectedCards.includes(item.attribute)
+                      ? styles.selectedCardStyle
+                      : styles.mobileOutlinedCard
+                    : selectedCards.includes(item.attribute)
                     ? styles.selectedCardStyle
                     : styles.outlinedCard
                 }
@@ -110,7 +133,12 @@ export default function ClothStyleCard(props) {
                   spacing={2}
                   sx={{ textTransform: "capitalize", textAlign: "center" }}
                 >
-                  <Box sx={{ width: "100%" }}>
+                  <Box
+                    sx={{
+                      width: "100%",
+                      minHeight: `${mobileView ? "100px" : "200px"}`,
+                    }}
+                  >
                     <img
                       src={item.imgUrl}
                       alt={item.attribute}
@@ -123,9 +151,66 @@ export default function ClothStyleCard(props) {
               </Paper>
             </Grid>
           ))}
+
+          {tabletView && (
+            <Grid
+              item
+              container
+              xs={12}
+              justifyContent="center"
+              mt={{ xs: 4, md: 2 }}
+              mb={2}
+            >
+              <Grid
+                item
+                xs={5}
+                sm={5}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  sx={{ color: "#D3AED2" }}
+                  onClick={() => {
+                    dispatch(leaQuizActions.decrementSlideCount());
+                    if (prevProgress)
+                      dispatch(
+                        leaQuizActions.decrementProgress({ prevProgress })
+                      );
+                  }}
+                >
+                  <ArrowCircleLeftIcon fontSize="large" />
+                </IconButton>
+              </Grid>
+
+              <Grid
+                item
+                xs={5}
+                sm={5}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  sx={{ color: "#6C4A6D" }}
+                  onClick={() => {
+                    dispatch(leaQuizActions.incrementSlideCount());
+                    if (progress)
+                      dispatch(leaQuizActions.incrementProgress({ progress }));
+                  }}
+                >
+                  <ArrowCircleRightIcon fontSize="large" />
+                </IconButton>
+              </Grid>
+            </Grid>
+          )}
         </Grid>
       </Grid>
-      {!mobileView && (
+      {!tabletView && (
         <Grid
           item
           xs={12}

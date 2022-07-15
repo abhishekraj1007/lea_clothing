@@ -109,6 +109,14 @@ const outlinedCard = {
   },
 };
 
+const mobileOutlinedCard = {
+  height: "100%",
+  px: 1,
+  py: 2,
+  backgroundColor: "transparent",
+  color: "#000",
+};
+
 const avatarBox = {
   display: "flex",
   justifyContent: "center",
@@ -123,6 +131,14 @@ const avatarBox = {
 const colorPalettes = {
   width: "56px",
   height: "56px",
+  borderRadius: "50%",
+  marginLeft: "-8px",
+  boxSizing: "content-box",
+};
+
+const mobileColorPalettes = {
+  width: "31px",
+  height: "31px",
   borderRadius: "50%",
   marginLeft: "-8px",
   boxSizing: "content-box",
@@ -146,6 +162,15 @@ const sliderPrice = {
   fontWeight: "500",
 };
 
+const mobileSliderPrice = {
+  width: "30%",
+  // textAlign: "center",
+  color: "#6C4A6D",
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "0.9rem",
+  fontWeight: "400",
+};
+
 const rangeCard = {
   display: "flex",
   justifyContent: "center",
@@ -164,12 +189,30 @@ const rangeChip = {
   width: "35%",
 };
 
+const mobileRangeChip = {
+  display: "flex",
+  position: "absolute",
+  top: "-20px",
+  backgroundColor: "#6C4A6D",
+  borderRadius: "30px",
+  width: "60%",
+};
+
+const mobileSizeSelectionChip = {
+  display: "flex",
+  position: "absolute",
+  top: "-20px",
+  backgroundColor: "#6C4A6D",
+  borderRadius: "30px",
+  width: "45%",
+};
+
 const rangeChipAvatar = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "40px",
-  height: "40px",
+  width: "35px",
+  height: "35px",
   backgroundColor: "#fff",
   color: "#6C4A6D",
   borderRadius: "50%",
@@ -185,6 +228,17 @@ const rangeChipText = {
   fontFamily: "Karla, sans-serif",
   fontSize: "1rem",
   fontWeight: "400",
+};
+
+const mobileRangeChipText = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "50%",
+  color: "#fff",
+  fontFamily: "Karla, sans-serif",
+  fontSize: "0.7rem",
+  fontWeight: "500",
 };
 
 export const styles = {
@@ -206,4 +260,10 @@ export const styles = {
   BasicSelectedOutlinedBtn,
   mobileBasicOutlinedBtn,
   mobileBasicSelectedOutlinedBtn,
+  mobileColorPalettes,
+  mobileOutlinedCard,
+  mobileSliderPrice,
+  mobileRangeChip,
+  mobileRangeChipText,
+  mobileSizeSelectionChip,
 };

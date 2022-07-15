@@ -118,11 +118,20 @@ const BasicQuiz = (props) => {
           )}
         </Grid>
       )}
-      <Grid item container xs={12} sm={8} justifyContent="center" spacing={1}>
+      <Grid
+        item
+        container
+        xs={12}
+        sm={10}
+        md={8}
+        justifyContent="center"
+        spacing={1}
+      >
         {supScriptTag ? (
           <Grid
             item
             xs={10}
+            sm={11}
             md={12}
             sx={
               mobileView ? styles.mobileSubHeadingText : styles.subHeadingText
@@ -134,6 +143,7 @@ const BasicQuiz = (props) => {
           <Grid
             item
             xs={10}
+            sm={11}
             md={12}
             sx={
               mobileView ? styles.mobileSubHeadingText : styles.subHeadingText
@@ -145,6 +155,7 @@ const BasicQuiz = (props) => {
         <Grid
           item
           xs={10}
+          sm={11}
           md={12}
           sx={mobileView ? styles.mobileHeadingText : styles.headingText}
         >
@@ -156,7 +167,7 @@ const BasicQuiz = (props) => {
               {mobileView ? (
                 <>
                   {buttonContent?.map((content, index) => (
-                    <Grid item xs={4} key={`button_${content}`}>
+                    <Grid item xs={5} key={`button_${content}`}>
                       <Button
                         variant="outlined"
                         size="large"
@@ -179,7 +190,7 @@ const BasicQuiz = (props) => {
               ) : (
                 <>
                   {buttonContent?.map((content, index) => (
-                    <Grid item xs={4} key={`button_${content}`}>
+                    <Grid item xs={4} md={4} key={`button_${content}`}>
                       <Button
                         variant="outlined"
                         size="large"
@@ -214,7 +225,7 @@ const BasicQuiz = (props) => {
                       justifyContent="center"
                       key={`button_${content}`}
                     >
-                      <Grid item xs={10} sm={6}>
+                      <Grid item xs={10} sm={10}>
                         <Button
                           variant="outlined"
                           size="large"
@@ -241,10 +252,11 @@ const BasicQuiz = (props) => {
                       container
                       item
                       xs={12}
+                      md={12}
                       justifyContent="center"
                       key={`button_${content}`}
                     >
-                      <Grid item xs={10} sm={6}>
+                      <Grid item xs={10} sm={6} md={6}>
                         <Button
                           variant="outlined"
                           size="large"
@@ -267,64 +279,73 @@ const BasicQuiz = (props) => {
               )}
             </>
           )}
-        </Grid>
-      </Grid>
-      {mobileView && (
-        <Grid item container xs={12} justifyContent="center" my={2}>
-          {slideCount !== 1 && (
+
+          {mobileView && (
             <Grid
               item
-              xs={5}
-              sm={5}
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
+              container
+              xs={10}
+              justifyContent="space-between"
+              mt={{ xs: 4, md: 2 }}
+              mb={2}
             >
-              <IconButton
-                sx={{ color: "#D3AED2" }}
-                onClick={() => {
-                  dispatch(leaQuizActions.decrementSlideCount());
-                  if (prevProgress)
-                    dispatch(
-                      leaQuizActions.decrementProgress({ prevProgress })
-                    );
+              {slideCount !== 1 && (
+                <Grid
+                  item
+                  xs={5}
+                  sm={4}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <IconButton
+                    sx={{ color: "#D3AED2" }}
+                    onClick={() => {
+                      dispatch(leaQuizActions.decrementSlideCount());
+                      if (prevProgress)
+                        dispatch(
+                          leaQuizActions.decrementProgress({ prevProgress })
+                        );
+                    }}
+                  >
+                    <ArrowCircleLeftIcon fontSize="large" />
+                  </IconButton>
+                </Grid>
+              )}
+
+              <Grid
+                item
+                xs={5}
+                sm={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: slideCount === 1 ? "center" : "flex-end",
+                  alignItems: "center",
                 }}
               >
-                <ArrowCircleLeftIcon fontSize="large" />
-              </IconButton>
+                <IconButton
+                  sx={{ color: "#6C4A6D" }}
+                  onClick={() => {
+                    if (selectedCards === "true") {
+                      checkAns("Yes");
+                    } else if (selectedCards === "false") {
+                      checkAns("No");
+                    } else {
+                      checkAns("");
+                    }
+                  }}
+                  disabled={isDisabled}
+                >
+                  <ArrowCircleRightIcon fontSize="large" />
+                </IconButton>
+              </Grid>
             </Grid>
           )}
-
-          <Grid
-            item
-            xs={5}
-            sm={5}
-            sx={{
-              display: "flex",
-              justifyContent: slideCount === 1 ? "center" : "flex-end",
-              alignItems: "center",
-            }}
-          >
-            <IconButton
-              sx={{ color: "#6C4A6D" }}
-              onClick={() => {
-                if (selectedCards === "true") {
-                  checkAns("Yes");
-                } else if (selectedCards === "false") {
-                  checkAns("No");
-                } else {
-                  checkAns("");
-                }
-              }}
-              disabled={isDisabled}
-            >
-              <ArrowCircleRightIcon fontSize="large" />
-            </IconButton>
-          </Grid>
         </Grid>
-      )}
+      </Grid>
+
       {!mobileView && (
         <Grid
           item

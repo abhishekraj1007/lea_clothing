@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LeaQuizApi from "../../../../services/api/LeaQuizApi";
 
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 export default function UserDetails(props) {
   const {
     subHeadingText,
@@ -29,6 +32,9 @@ export default function UserDetails(props) {
   const userDetailsEmail = useSelector(
     (state) => state.leaQuiz.userDeatils.Email
   );
+
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [userEmail, setUserEmail] = useState("");
   const [birthDate, setBirthDate] = useState("");
@@ -72,7 +78,7 @@ export default function UserDetails(props) {
       const recommendationData = await LeaQuizApi.getRecommendation(
         finalQuizObj
       );
-      console.log("---->Data", recommendationData);
+      console.log("---->DataUserDetails", recommendationData);
       if (recommendationData) {
         localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 90;
@@ -84,7 +90,7 @@ export default function UserDetails(props) {
 
         dispatch(
           recommendationActions.updateRecommendationData({
-            recommendationData,
+            recommendationData: recommendationData.response,
           })
         );
       }
@@ -157,41 +163,43 @@ export default function UserDetails(props) {
           })}
         >
           <Grid container justifyContent="center">
-            <Grid
-              item
-              xs={12}
-              sm={2}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <IconButton
-                sx={{ color: "#D3AED2" }}
-                onClick={() => {
-                  if (quizData[12].Answer === true) {
-                    dispatch(leaQuizActions.decrementSlideCount());
-                    if (prevProgress) {
-                      dispatch(
-                        leaQuizActions.decrementProgress({ prevProgress })
-                      );
-                    }
-                  }
-                  if (quizData[12].Answer === false) {
-                    dispatch(leaQuizActions.decrementSlideCount(20));
-                    if (prevProgress) {
-                      let prevProgress = 5;
-                      dispatch(
-                        leaQuizActions.decrementProgress({ prevProgress })
-                      );
-                    }
-                  }
+            {!mobileView && (
+              <Grid
+                item
+                xs={12}
+                sm={2}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                <ArrowCircleLeftIcon fontSize="large" />
-              </IconButton>
-            </Grid>
+                <IconButton
+                  sx={{ color: "#D3AED2" }}
+                  onClick={() => {
+                    if (quizData[12].Answer === true) {
+                      dispatch(leaQuizActions.decrementSlideCount());
+                      if (prevProgress) {
+                        dispatch(
+                          leaQuizActions.decrementProgress({ prevProgress })
+                        );
+                      }
+                    }
+                    if (quizData[12].Answer === false) {
+                      dispatch(leaQuizActions.decrementSlideCount(20));
+                      if (prevProgress) {
+                        let prevProgress = 5;
+                        dispatch(
+                          leaQuizActions.decrementProgress({ prevProgress })
+                        );
+                      }
+                    }
+                  }}
+                >
+                  <ArrowCircleLeftIcon fontSize="large" />
+                </IconButton>
+              </Grid>
+            )}
             <Grid
               item
               container
@@ -200,13 +208,36 @@ export default function UserDetails(props) {
               justifyContent="center"
               spacing={1}
             >
-              <Grid item xs={12} sx={styles.subHeadingText}>
+              <Grid
+                item
+                xs={11}
+                sm={12}
+                sx={
+                  mobileView
+                    ? styles.mobileSubHeadingText
+                    : styles.subHeadingText
+                }
+              >
                 {subHeadingText}
               </Grid>
-              <Grid item xs={12} sx={styles.headingText}>
+              <Grid
+                item
+                xs={11}
+                sm={12}
+                sx={mobileView ? styles.mobileHeadingText : styles.headingText}
+              >
                 {headingText}
               </Grid>
-              <Grid item xs={12} sx={styles.subHeadingText}>
+              <Grid
+                item
+                xs={11}
+                sm={12}
+                sx={
+                  mobileView
+                    ? styles.mobileSubHeadingText
+                    : styles.subHeadingText
+                }
+              >
                 {instructionText}
               </Grid>
               <Grid
@@ -336,7 +367,52 @@ export default function UserDetails(props) {
                 </Grid>
               </Grid>
               <Grid item container xs={12} justifyContent="center" marginY={2}>
-                <Grid item xs={6} md={3}>
+                {mobileView && (
+                  <Grid
+                    item
+                    xs={4}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <IconButton
+                      sx={{ color: "#D3AED2" }}
+                      onClick={() => {
+                        if (quizData[12].Answer === true) {
+                          dispatch(leaQuizActions.decrementSlideCount());
+                          if (prevProgress) {
+                            dispatch(
+                              leaQuizActions.decrementProgress({ prevProgress })
+                            );
+                          }
+                        }
+                        if (quizData[12].Answer === false) {
+                          dispatch(leaQuizActions.decrementSlideCount(20));
+                          if (prevProgress) {
+                            let prevProgress = 5;
+                            dispatch(
+                              leaQuizActions.decrementProgress({ prevProgress })
+                            );
+                          }
+                        }
+                      }}
+                    >
+                      <ArrowCircleLeftIcon fontSize="large" />
+                    </IconButton>
+                  </Grid>
+                )}
+                <Grid
+                  item
+                  xs={6}
+                  md={3}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <Button
                     size="large"
                     fullWidth
@@ -344,7 +420,9 @@ export default function UserDetails(props) {
                       borderRadius: "30px",
                       backgroundColor: "#6C4A6D",
                       textTransform: "none",
-                      p: 2,
+                      p: mobileView ? 1 : 2,
+                      fontSize: `${mobileView ? "0.8rem" : "1rem"}`,
+                      fontWeight: 500,
                       color: "#fff",
                       "&:hover": {
                         color: "#000",
@@ -360,16 +438,18 @@ export default function UserDetails(props) {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={2}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            ></Grid>
+            {!mobileView && (
+              <Grid
+                item
+                xs={12}
+                sm={2}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              ></Grid>
+            )}
           </Grid>
         </ThemeProvider>
       </LocalizationProvider>

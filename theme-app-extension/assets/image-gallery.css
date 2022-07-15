@@ -49,6 +49,13 @@ image-gallery .gallery__item--3 {
 
 image-gallery .gallery__item--4 {
   grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 6;
+}
+
+image-gallery .gallery__item--5 {
+  grid-column-start: 3;
   grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 6;

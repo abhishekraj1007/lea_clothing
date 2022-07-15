@@ -1,32 +1,41 @@
 let imagePopupTemplate = null;
+let base_url =
+  "https://f6da-2401-4900-1c36-2cdc-a65-9ce3-1481-2c1b.in.ngrok.io";
 
-fetch(
-  `https://cba3-2401-4900-1c36-1556-f56a-4367-20c1-bce8.in.ngrok.io/check-user?` +
-    new URLSearchParams({
-      email: "chandan.roy@algoscale.com",
-    }),
-  {
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
-)
-  .then((res) => res.json())
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+
 
 class ImageGallery extends HTMLElement {
   constructor() {
     super();
   }
 
-  connectedCallback() {
-    this.images = this.querySelectorAll("img");
-    console.log("images...", this.images);
-    this.images.forEach((image) => {
-      image.addEventListener("click", this.showPopup);
-    });
+  async connectedCallback() {
+    const response = await fetch(
+      `${base_url}/recommend?` +
+        new URLSearchParams({
+          email: "chandan.roy@algoscale.com",
+          product_title: "Tatiana Ruched Midi Corset Dress",
+        }),
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      this.images = this.querySelectorAll("img");
+      console.log('total image tags...', this.images);
+      for (let i = 0; i < this.images.length; i++) {
+        this.images[i].src = data.response.beautified_results[i]["IMGURL"];
+        this.images[i].addEventListener("click", this.showPopup);
+      }
+    } else {
+      console.log("Something went wrong...Z");
+    }
   }
 
   disconnectedCallback() {

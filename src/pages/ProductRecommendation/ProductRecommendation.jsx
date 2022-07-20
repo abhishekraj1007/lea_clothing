@@ -253,7 +253,7 @@ export default function ProductRecommendation() {
                       />
                     </Box>
                     <Box sx={styles.productTitle}>{product["Title"]}</Box>
-                    <Box sx={styles.productPrice}>{product["Price"]}</Box>
+                    <Box sx={styles.productPrice}>{`₹${product["Price"]}`}</Box>
                   </Stack>
                 </Grid>
               )}

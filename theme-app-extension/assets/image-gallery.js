@@ -1,8 +1,5 @@
 let imagePopupTemplate = null;
-let base_url =
-  "https://f6da-2401-4900-1c36-2cdc-a65-9ce3-1481-2c1b.in.ngrok.io";
-
-
+let base_url = "https://9dae-103-83-128-1.in.ngrok.io";
 
 class ImageGallery extends HTMLElement {
   constructor() {
@@ -28,7 +25,7 @@ class ImageGallery extends HTMLElement {
     if (response.ok) {
       const data = await response.json();
       this.images = this.querySelectorAll("img");
-      console.log('total image tags...', this.images);
+      console.log("total image tags...", this.images);
       for (let i = 0; i < this.images.length; i++) {
         this.images[i].src = data.response.beautified_results[i]["IMGURL"];
         this.images[i].addEventListener("click", this.showPopup);

@@ -1,5 +1,5 @@
 let imagePopupTemplate = null;
-let base_url = "https://26a7-122-161-93-97.in.ngrok.io";
+let base_url = "https://ae84-122-161-87-16.in.ngrok.io";
 
 class ImageGallery extends HTMLElement {
   constructor() {

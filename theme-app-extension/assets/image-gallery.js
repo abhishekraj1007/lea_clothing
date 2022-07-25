@@ -6,9 +6,15 @@ class ImageGallery extends HTMLElement {
     super();
   }
 
+  handleForwardBtn() {
+    console.log("got click");
+  }
+
   async connectedCallback() {
     const container = document.querySelector(".product-container");
     const header = document.querySelector(".title-text");
+    const customerSize = document.querySelector(".size");
+
     const response = await fetch(
       `${base_url}/recommend?` +
         new URLSearchParams({
@@ -27,17 +33,28 @@ class ImageGallery extends HTMLElement {
     if (response.ok) {
       const data = await response.json();
       header.textContent = data.response.display_text;
+
+      if (data.response.beautified_results[0].Size) {
+        customerSize.innerText = `${data.response.beautified_results[0].Size}`;
+      } else {
+        customerSize.innerText = "-";
+      }
+
       for (let item of data.response.beautified_results) {
         const product = document.createElement("div");
         product.setAttribute("class", "product");
-        const figure = document.createElement("figure");
+
+        const figure = document.createElement("div");
         figure.setAttribute("class", "image_wrapper");
+
         const image = document.createElement("img");
         image.setAttribute("class", "product_img");
+
         image.src = item.IMGURL;
         const productTitle = document.createElement("div");
         productTitle.setAttribute("class", "product_title");
         productTitle.textContent = item.Title;
+
         const productPrice = document.createElement("div");
         productPrice.setAttribute("class", "product_price");
         productPrice.textContent = `Rs. ${item.Price}`;
@@ -45,6 +62,7 @@ class ImageGallery extends HTMLElement {
         container.appendChild(product);
         product.appendChild(figure);
         figure.appendChild(image);
+
         product.appendChild(productTitle);
         product.appendChild(productPrice);
       }

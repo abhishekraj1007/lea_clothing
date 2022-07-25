@@ -1,5 +1,5 @@
 let imagePopupTemplate = null;
-let base_url = "https://ae84-122-161-87-16.in.ngrok.io";
+let base_url = "https://a19d-223-190-82-175.in.ngrok.io";
 
 class ImageGallery extends HTMLElement {
   constructor() {
@@ -7,6 +7,8 @@ class ImageGallery extends HTMLElement {
   }
 
   async connectedCallback() {
+    const container = document.querySelector(".product-container");
+    const header = document.querySelector(".title-text");
     const response = await fetch(
       `${base_url}/recommend?` +
         new URLSearchParams({
@@ -24,64 +26,32 @@ class ImageGallery extends HTMLElement {
 
     if (response.ok) {
       const data = await response.json();
-      this.images = this.querySelectorAll(".product_img");
-      console.log("total image tags...", this.images);
-      for (let i = 0; i < this.images.length; i++) {
-        this.images[i].src = data.response.beautified_results[i]["IMGURL"];
-        this.images[i].addEventListener("click", this.showPopup);
+      header.textContent = data.response.display_text;
+      for (let item of data.response.beautified_results) {
+        const product = document.createElement("div");
+        product.setAttribute("class", "product");
+        const figure = document.createElement("figure");
+        figure.setAttribute("class", "image_wrapper");
+        const image = document.createElement("img");
+        image.setAttribute("class", "product_img");
+        image.src = item.IMGURL;
+        const productTitle = document.createElement("div");
+        productTitle.setAttribute("class", "product_title");
+        productTitle.textContent = item.Title;
+        const productPrice = document.createElement("div");
+        productPrice.setAttribute("class", "product_price");
+        productPrice.textContent = `Rs. ${item.Price}`;
+
+        container.appendChild(product);
+        product.appendChild(figure);
+        figure.appendChild(image);
+        product.appendChild(productTitle);
+        product.appendChild(productPrice);
       }
     } else {
-      console.log("Something went wrong...Z");
+      console.log("Something went wrong...");
     }
   }
-
-  disconnectedCallback() {
-    this.images.forEach((image) => {
-      image.removeEventListener("click", this.showPopup);
-    });
-  }
-
-  showPopup({ currentTarget }) {
-    const popup = document.createElement("image-popup");
-    popup.img = currentTarget;
-    document.body.appendChild(popup);
-  }
 }
 
-class ImagePopup extends HTMLElement {
-  get template() {
-    return imagePopupTemplate && imagePopupTemplate.cloneNode(true);
-  }
-  set template(value) {
-    imagePopupTemplate = value;
-  }
-
-  constructor() {
-    super();
-    // If we haven't yet set our template, than we don't want to render this custom element right away,
-    // so store its contents and then remove it from the DOM.
-    if (this.hasAttribute("init")) this.remove();
-
-    // If the template is contained within the custom element,
-    // than its the instance of it that was included in the page response.
-    this.template = this.template || this.querySelector("template").content;
-  }
-
-  connectedCallback() {
-    this.appendChild(this.template);
-    this.img && this.appendChild(this.img.cloneNode());
-    this.querySelector("[close-button]").addEventListener(
-      "click",
-      () => this.remove(),
-      { once: true }
-    );
-    document.addEventListener(
-      "keydown",
-      ({ key }) => key === "Escape" && this.remove(),
-      { once: true }
-    );
-  }
-}
-
-customElements.define("image-popup", ImagePopup);
 customElements.define("image-gallery", ImageGallery);

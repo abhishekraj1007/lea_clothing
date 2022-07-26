@@ -57,6 +57,7 @@ image-gallery .title-text {
   line-height: 24px;
   text-align: center;
   letter-spacing: 0.185rem;
+  text-transform: uppercase;
 }
 
 image-gallery .tag-text {
@@ -111,6 +112,7 @@ image-gallery .product_title {
   color: #6c4a6d;
   text-align: center;
   text-transform: uppercase;
+  padding: 0.5rem;
 }
 
 image-gallery .product_price {
@@ -143,6 +145,11 @@ image-gallery .arrow-btn {
 image-gallery .arrow_icon {
   width: 100%;
   height: 100%;
+}
+
+image-gallery .disable-btn {
+  background-color: rgba(0, 0, 0, 0.26);
+  cursor: auto;
 }
 
 image-gallery .gallery {

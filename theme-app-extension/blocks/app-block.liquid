@@ -22,15 +22,15 @@
 
   <div class="carousel">
     <div class="carousel-btn">
-      <button class="arrow-btn" onclick="">
+      <button id="backBtn" class="arrow-btn disable-btn" onclick="handleCarousel('backward')">
         <img src="{{ 'Arrow_backward.png' | asset_url }}" loading="lazy" width="10" height="10" class="arrow_icon">
       </button>
     </div>
 
     <div class="product-container"></div>
 
-    <div class="carousel-btn" onclick="handleForwardBtn()">
-      <button class="arrow-btn">
+    <div class="carousel-btn">
+      <button id="nextBtn" class="arrow-btn" onclick="handleCarousel('forward')">
         <img src="{{ 'Arrow_forward.png' | asset_url }}" loading="lazy" width="10" height="10" class="arrow_icon">
       </button>
     </div>

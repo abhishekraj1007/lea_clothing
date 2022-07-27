@@ -4,7 +4,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import "dotenv/config";
-// import "./models/questionaire.js";
+import mailer from "nodemailer";
 
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
@@ -63,6 +63,44 @@ export async function createServer(
       if (!res.headersSent) {
         res.status(500).send(error.message);
       }
+    }
+  });
+
+  app.post("/send-coupon-mail", async (req, res) => {
+    try {
+      const params = req.body;
+
+      console.log(params);
+      let testAccount = await mailer.createTestAccount();
+
+      console.log("[TEST ACCOUNT]", testAccount);
+
+      let transporter = mailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: testAccount.user, // generated ethereal user
+          pass: testAccount.pass, // generated ethereal password
+        },
+      });
+
+      let info = await transporter.sendMail({
+        from: "support@leaclothingco.com", // sender address
+        to: "raj.abhishek0025@gmail.com", // list of receivers
+        subject: "Coupon Email", // Subject line
+        text: "This is a test email", // plain text body
+        html: "<b>Hello world?</b>", // html body
+      });
+
+      console.log("Message sent: %s", info.messageId);
+
+      console.log("Preview URL: %s", mailer.getTestMessageUrl(info));
+
+      res.status(200).send("Email sent successfully");
+    } catch (error) {
+      console.error("[ERROR]: ", error);
+      res.status(400).send("Email not sent");
     }
   });
 

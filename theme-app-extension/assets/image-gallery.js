@@ -10,6 +10,8 @@ class ImageGallery extends HTMLElement {
     console.log("got click");
   }
 
+  // ShopifyAnalytics.meta.product.variants[0]['name'].split(' - ')[0]
+
   async connectedCallback() {
     const container = document.querySelector(".product-container");
     const header = document.querySelector(".title-text");
@@ -19,7 +21,7 @@ class ImageGallery extends HTMLElement {
       `${base_url}/recommend?` +
         new URLSearchParams({
           email: "chandan.roy@algoscale.com",
-          product_title: "Tatiana Ruched Midi Corset Dress",
+          product_title: "Carla Mauve Silk Corset Top",
         }),
       {
         method: "GET",

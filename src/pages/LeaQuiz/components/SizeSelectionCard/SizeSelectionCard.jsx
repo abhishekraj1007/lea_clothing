@@ -78,7 +78,7 @@ export default function SizeSelectionCard(props) {
 
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
-  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
+  const tabletView = useMediaQuery("(max-width:1024px)");
 
   const classes = useStyles();
 
@@ -650,6 +650,7 @@ export default function SizeSelectionCard(props) {
                   item
                   xs={5}
                   sm={6}
+                  md={4.5}
                   sx={{
                     display: "flex",
                     justifyContent: "flex-start",
@@ -670,6 +671,7 @@ export default function SizeSelectionCard(props) {
                   item
                   xs={5}
                   sm={6}
+                  md={4.5}
                   sx={{
                     display: "flex",
                     justifyContent: "flex-end",

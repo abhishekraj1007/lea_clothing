@@ -29,7 +29,8 @@ export default function CardQuiz(props) {
   const [questionIndex, setQuestionIndex] = useState("");
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  // const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery("(max-width:1024px)");
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(

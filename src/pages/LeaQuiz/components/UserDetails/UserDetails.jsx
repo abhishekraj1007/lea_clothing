@@ -34,7 +34,8 @@ export default function UserDetails(props) {
   );
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
+  // const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery("(max-width:1024px)");
 
   const [userEmail, setUserEmail] = useState("");
   const [birthDate, setBirthDate] = useState("");
@@ -371,6 +372,7 @@ export default function UserDetails(props) {
                   <Grid
                     item
                     xs={4}
+                    md={5}
                     sx={{
                       display: "flex",
                       justifyContent: "flex-start",

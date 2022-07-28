@@ -29,7 +29,8 @@ const MultipleSelectBasicQuiz = (props) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  // const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery("(max-width:1024px)");
 
   useEffect(() => {
     if (isSkippable === false && selectedCards.length === 0) {

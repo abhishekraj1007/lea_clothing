@@ -21,7 +21,8 @@ export default function PriceRangeSlider(props) {
   const quizData = useSelector((state) => state.leaQuiz.quizData);
 
   const theme = useTheme();
-  const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  // const mobileView = useMediaQuery(theme.breakpoints.down("md"));
+  const mobileView = useMediaQuery("(max-width:1024px)");
 
   const initialRangeData = {
     Tops: [100, 10000],
@@ -595,6 +596,7 @@ export default function PriceRangeSlider(props) {
                 item
                 xs={6}
                 sm={6}
+                md={4}
                 sx={{
                   display: "flex",
                   justifyContent: "flex-start",
@@ -631,6 +633,7 @@ export default function PriceRangeSlider(props) {
                 item
                 xs={6}
                 sm={6}
+                md={4}
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",

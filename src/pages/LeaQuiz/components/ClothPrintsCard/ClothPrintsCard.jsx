@@ -38,7 +38,7 @@ export default function ClothPrintsCard(props) {
 
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
-  const tabletView = useMediaQuery(theme.breakpoints.down("md"));
+  const tabletView = useMediaQuery("(max-width:1024px)");
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(
@@ -389,6 +389,7 @@ export default function ClothPrintsCard(props) {
                 item
                 xs={5}
                 sm={5}
+                md={6}
                 sx={{
                   display: "flex",
                   justifyContent: "flex-start",
@@ -413,6 +414,7 @@ export default function ClothPrintsCard(props) {
                 item
                 xs={5}
                 sm={5}
+                md={6}
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",

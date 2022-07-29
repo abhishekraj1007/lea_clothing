@@ -46,9 +46,15 @@ const BasicOutlinedBtn = {
   borderColor: "#D3AED2",
   color: "#000",
   textTransform: "none",
+  cursor: "pointer",
   "&:hover": {
+    // color: "#000",
+    // backgroundColor: "#D3AED2",
+    // borderColor: "#D3AED2",
+    // transition: "all 0.4s",
+
     color: "#000",
-    backgroundColor: "#D3AED2",
+    backgroundColor: "transparent",
     borderColor: "#D3AED2",
     transition: "all 0.4s",
   },
@@ -58,6 +64,7 @@ const mobileBasicOutlinedBtn = {
   borderColor: "#D3AED2",
   color: "#000",
   textTransform: "none",
+  cursor: "pointer",
   "&:hover": {
     borderColor: "#D3AED2",
     transition: "all 0.4s",
@@ -69,9 +76,15 @@ const BasicSelectedOutlinedBtn = {
   backgroundColor: "#D3AED2",
   borderColor: "#D3AED2",
   textTransform: "none",
+  cursor: "pointer",
   "&:hover": {
+    // color: "#000",
+    // backgroundColor: "#D3AED2",
+    // borderColor: "#D3AED2",
+    // transition: "all 0.4s",
+
     color: "#000",
-    backgroundColor: "#D3AED2",
+    backgroundColor: "transparent",
     borderColor: "#D3AED2",
     transition: "all 0.4s",
   },
@@ -82,6 +95,7 @@ const mobileBasicSelectedOutlinedBtn = {
   backgroundColor: "#D3AED2 !important",
   borderColor: "#D3AED2",
   textTransform: "none",
+  cursor: "pointer",
   "&:hover": {
     borderColor: "#D3AED2",
     transition: "all 0.4s",
@@ -102,11 +116,12 @@ const outlinedCard = {
   py: 2,
   backgroundColor: "transparent",
   color: "#000",
-  "&:hover": {
-    color: "#FFF",
-    backgroundColor: "#6C4A6D",
-    transition: "all 0.4s",
-  },
+  cursor: "pointer",
+  // "&:hover": {
+  //   color: "#FFF",
+  //   backgroundColor: "#6C4A6D",
+  //   transition: "all 0.4s",
+  // },
 };
 
 const mobileOutlinedCard = {
@@ -151,6 +166,7 @@ const selectedCardStyle = {
 
   color: "#FFF",
   backgroundColor: "#6C4A6D",
+  cursor: "pointer",
 };
 
 const sliderPrice = {

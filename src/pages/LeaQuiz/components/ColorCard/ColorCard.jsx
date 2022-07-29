@@ -27,7 +27,7 @@ export default function ColorCard(props) {
 
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
-  const tabletView = useMediaQuery("(max-width:1024px)");
+  const tabletView = useMediaQuery("(max-width:1200px)");
 
   useEffect(() => {
     if (isSkippable === false && selectedCards.length === 0) {

@@ -192,19 +192,25 @@ class ImageGallery extends HTMLElement {
   }
 
   async connectedCallback() {
+    let userEmailId = localStorage.getItem("userEmailId");
     const container = document.querySelector(".product-container");
     const mobileProductContainer = document.querySelector(
       ".mobile-product-container"
     );
     const header = document.querySelector(".title-text");
-    const customerSize = document.querySelector(".size");
+    const customerSize = document.querySelector(".label-chip-bar");
     mainContainer = container;
     mobileContainer = mobileProductContainer;
 
+    if (!userEmailId) {
+      userEmailId = "guest@email.com";
+    }
+
+    console.log("user email app block:", userEmailId);
     const response = await fetch(
       `${base_url}/recommend?` +
         new URLSearchParams({
-          email: "chandan.roy@algoscale.com",
+          email: userEmailId,
           product_title: "Carla Mauve Silk Corset Top",
         }),
       {
@@ -221,9 +227,18 @@ class ImageGallery extends HTMLElement {
       header.textContent = data.response.display_text;
 
       if (data.response.beautified_results[0].Size) {
-        customerSize.innerText = `${data.response.beautified_results[0].Size}`;
+        customerSize.innerHTML = `
+          Your Ideal Size: 
+          <span class="size">
+            ${data.response.beautified_results[0].Size}
+          </span>
+        `;
       } else {
-        customerSize.innerText = "-";
+        customerSize.innerHTML = `
+          <a href="https://dev-store-1196.myshopify.com/pages/quiz" class="size-link">
+           Get Your Ideal Size
+          </a>
+        `;
       }
 
       responseResults = data.response.beautified_results;

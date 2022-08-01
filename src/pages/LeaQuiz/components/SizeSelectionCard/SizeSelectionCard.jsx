@@ -78,7 +78,7 @@ export default function SizeSelectionCard(props) {
 
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
-  const tabletView = useMediaQuery("(max-width:1024px)");
+  const tabletView = useMediaQuery("(max-width:1200px)");
 
   const classes = useStyles();
 

@@ -22,7 +22,7 @@ export default function PriceRangeSlider(props) {
 
   const theme = useTheme();
   // const mobileView = useMediaQuery(theme.breakpoints.down("md"));
-  const mobileView = useMediaQuery("(max-width:1024px)");
+  const mobileView = useMediaQuery("(max-width:1200px)");
 
   const initialRangeData = {
     Tops: [100, 10000],

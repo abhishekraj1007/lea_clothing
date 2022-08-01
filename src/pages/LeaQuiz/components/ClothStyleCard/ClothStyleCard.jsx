@@ -24,7 +24,7 @@ export default function ClothStyleCard(props) {
 
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
-  const tabletView = useMediaQuery("(max-width:1024px)");
+  const tabletView = useMediaQuery("(max-width:1200px)");
 
   useEffect(() => {
     const quesIndex = quizData?.findIndex(

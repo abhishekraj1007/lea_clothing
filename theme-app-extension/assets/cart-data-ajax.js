@@ -17,7 +17,7 @@ async function fetchCartData(email) {
     `${base_url}/cart?` +
       new URLSearchParams({
         email: email,
-        product_title: "Carla Mauve Silk Corset Top",
+        product_title: cartProducts?.items[0]['product_title'] || "Carla Mauve Silk Corset Top",
       }),
     {
       method: "GET",

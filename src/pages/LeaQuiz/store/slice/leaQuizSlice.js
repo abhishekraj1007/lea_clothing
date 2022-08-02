@@ -308,11 +308,11 @@ const leaQuizSlice = createSlice({
 
         if (value === "All") {
           state.quizData[questionIndex].Value = [
-            "Pastels",
-            "Neutrals",
+            "Pastel",
+            "Neutral",
             "Earthly Tones",
             "Bright Hues",
-            "Neons",
+            "Neon",
           ];
         }
       }
@@ -323,11 +323,11 @@ const leaQuizSlice = createSlice({
 
       if (answer === "All") {
         state.quizData[questionIndex].Answer = [
-          "Pastels",
-          "Neutrals",
+          "Pastel",
+          "Neutral",
           "Earthly Tones",
           "Bright Hues",
-          "Neons",
+          "Neon",
         ];
       }
     },

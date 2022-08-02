@@ -203,7 +203,7 @@ class ImageGallery extends HTMLElement {
     mobileContainer = mobileProductContainer;
 
     if (!userEmailId) {
-      userEmailId = "guest@email.com";
+      userEmailId = "abc@gmail.com";
     }
 
     console.log("user email app block:", userEmailId);

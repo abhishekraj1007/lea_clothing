@@ -147,15 +147,15 @@ export default function UserDetails(props) {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider
           theme={createTheme({
-            palette: { primary: { main: "#D3AED280" } },
+            palette: { primary: { main: "#6C4A6D" } },
             components: {
               MuiTextField: {
                 styleOverrides: {
                   root: {
                     color: "#6C4A6D",
                     "&.Mui-selected": {
-                      backgroundColor: "#FFE6F6",
-                      "&.Mui-focusVisible": { background: "#FFE6F6" },
+                      backgroundColor: "#6C4A6D",
+                      "&.Mui-focusVisible": { background: "#6C4A6D" },
                     },
                   },
                 },

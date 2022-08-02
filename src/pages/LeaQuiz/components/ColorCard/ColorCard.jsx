@@ -112,16 +112,16 @@ export default function ColorCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Pastels")
+                  ? selectedCards.includes("Pastel")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Pastels")
+                  : selectedCards.includes("Pastel")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Pastels", "Pastels")}
+              onClick={() => handleCards("Pastel", "Pastel")}
             >
               <Stack
                 direction="column"
@@ -171,16 +171,16 @@ export default function ColorCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Neutrals")
+                  ? selectedCards.includes("Neutral")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Neutrals")
+                  : selectedCards.includes("Neutral")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Neutrals", "Neutrals")}
+              onClick={() => handleCards("Neutral", "Neutral")}
             >
               <Stack
                 direction="column"
@@ -348,16 +348,16 @@ export default function ColorCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Neons")
+                  ? selectedCards.includes("Neon")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Neons")
+                  : selectedCards.includes("Neon")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Neons", "Neons")}
+              onClick={() => handleCards("Neon", "Neon")}
             >
               <Stack
                 direction="column"

@@ -192,6 +192,8 @@ class ImageGallery extends HTMLElement {
   }
 
   async connectedCallback() {
+    // window.cffCustomer -> undefined if user not logged in otherwise is an object containing user information
+    // {name: 'john doe', email: 'abhishek.raj@algoscale.com', hasAccount: 'true', id: '6260460978418'}
     let userEmailId = localStorage.getItem("userEmailId");
     const container = document.querySelector(".product-container");
     const mobileProductContainer = document.querySelector(

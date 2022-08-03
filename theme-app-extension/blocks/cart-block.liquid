@@ -1,14 +1,29 @@
-<div>
-    <h1>This is cart block</h1>
-</div>
+<cart-data-ajax data-id="{{ block.id }}" style="width: 400px;">
+  <div class="cart-container">
+    <div class="cart-head">
+      <div class="heading-text">
+        MORE FOR YOU
+      </div>
+      <div class="more-link">
+        <a href="https://leaclothingco.com/products" style="color: #6C4A6D;">
+          See More
+        </a>
+      </div>
+    </div>
+  
+    <div class="cart-product-container">
+    </div>
+  </div>
+</cart-data-ajax>
     
-    {% schema %}
-      {
-        "name": "Cart block",
-        "target": "section",
-        "javascript": "cart-data-ajax.js",
-        "templates": ["product", "cart"],
-        "settings": []
-      }
-    {% endschema %}
+{% schema %}
+  {
+    "name": "Cart block",
+    "target": "section",
+    "javascript": "cart-data-ajax.js",
+    "stylesheet": "cart-data-ajax.css",
+    "templates": ["product", "cart"],
+    "settings": []
+  }
+{% endschema %}
     

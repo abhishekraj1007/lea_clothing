@@ -210,20 +210,7 @@ export default function ProductRecommendation() {
                     // spacing={2}
                     sx={{ position: "relative", zIndex: 2, cursor: "pointer" }}
                     onClick={() => {
-                      let data = {
-                        email: "niyantasingh@yahoo.co.in",
-                        product_title: "arla Mauve Silk Corset Top",
-                      };
-                      dispatch(
-                        recommendationActions.updateSingleProductRecommned({
-                          data,
-                        })
-                      );
                       window.open(`${product["URL"]}`, "_blank");
-                      window.open(
-                        `https://51c1-2409-4065-e99-c021-c04-ff72-9aba-ce5f.ngrok.io/recommend/${product["Title"]}`,
-                        "_blank"
-                      );
                     }}
                   >
                     <Box

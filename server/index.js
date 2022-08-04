@@ -4,7 +4,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import "dotenv/config";
-import mailer from "nodemailer";
+
+import emailer from './emailer.js';
+
 
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
@@ -27,9 +29,6 @@ Shopify.Context.initialize({
   SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
 });
 
-console.log("API_KEY", process.env.SHOPIFY_API_KEY);
-console.log("API_SECRET_KEY", process.env.SHOPIFY_API_SECRET);
-
 // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
 // persist this object in your app.
 const ACTIVE_SHOPIFY_SHOPS = {};
@@ -46,12 +45,13 @@ export async function createServer(
   isProd = process.env.NODE_ENV === "production"
 ) {
   const app = express();
+  app.use(express.json());
   app.set("top-level-oauth-cookie", TOP_LEVEL_OAUTH_COOKIE);
   app.set("active-shopify-shops", ACTIVE_SHOPIFY_SHOPS);
   app.set("use-online-tokens", USE_ONLINE_TOKENS);
 
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
-
+  app.use(emailer);
   applyAuthMiddleware(app);
 
   app.post("/webhooks", async (req, res) => {
@@ -63,44 +63,6 @@ export async function createServer(
       if (!res.headersSent) {
         res.status(500).send(error.message);
       }
-    }
-  });
-
-  app.post("/send-coupon-mail", async (req, res) => {
-    try {
-      const params = req.body;
-
-      console.log(params);
-      let testAccount = await mailer.createTestAccount();
-
-      console.log("[TEST ACCOUNT]", testAccount);
-
-      let transporter = mailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: testAccount.user, // generated ethereal user
-          pass: testAccount.pass, // generated ethereal password
-        },
-      });
-
-      let info = await transporter.sendMail({
-        from: "support@leaclothingco.com", // sender address
-        to: "raj.abhishek0025@gmail.com", // list of receivers
-        subject: "Coupon Email", // Subject line
-        text: "This is a test email", // plain text body
-        html: "<b>Hello world?</b>", // html body
-      });
-
-      console.log("Message sent: %s", info.messageId);
-
-      console.log("Preview URL: %s", mailer.getTestMessageUrl(info));
-
-      res.status(200).send("Email sent successfully");
-    } catch (error) {
-      console.error("[ERROR]: ", error);
-      res.status(400).send("Email not sent");
     }
   });
 
@@ -122,8 +84,6 @@ export async function createServer(
       res.status(500).send(error.message);
     }
   });
-
-  app.use(express.json());
 
   app.use((req, res, next) => {
     const shop = req.query.shop;
@@ -155,7 +115,6 @@ export async function createServer(
    */
   let vite;
   if (!isProd) {
-    console.log("This is not production...");
     vite = await import("vite").then(({ createServer }) =>
       createServer({
         root,

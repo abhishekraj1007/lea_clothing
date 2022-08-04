@@ -69,17 +69,13 @@ export default function UserDetails(props) {
     setBirthDate(datestring);
   }, [value]);
 
-  useEffect(() => {
-    console.log("loading", loading);
-  }, [loading]);
-
   const recommend = async (finalQuizObj, userEmail) => {
     dispatch(leaQuizActions.updateLoadingStatus(true));
     try {
       const recommendationData = await LeaQuizApi.getRecommendation(
         finalQuizObj
       );
-      console.log("---->DataUserDetails", recommendationData);
+      console.log("---->DataUserDetails", recommendationData, userEmail);
       if (recommendationData) {
         localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 90;
@@ -94,6 +90,30 @@ export default function UserDetails(props) {
             recommendationData: recommendationData.response,
           })
         );
+
+        // making an API call to the customer about this
+        const emailerResponse = await fetch(
+          `http://localhost:8081/send-coupon-mail`,
+          {
+            method: "POST",
+            mode: "cors",
+            cache: `no-cache`,
+            body: JSON.stringify({
+              personalizeResponse: recommendationData,
+              email: userEmail,
+              discountData: "",
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (emailerResponse.ok) {
+          alert("Mail sent successfully");
+        } else {
+          alert("could not send the email");
+        }
       }
     } catch (error) {
       console.log(error);
@@ -133,6 +153,9 @@ export default function UserDetails(props) {
       dispatch(
         leaQuizActions.updateUserDetails({ email: userEmail, dob: birthDate })
       );
+
+      // response of personalize
+
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
       recommend(finalQuizObj, userEmail);
       // dispatch(leaQuizActions.incrementProgress({ progress }));

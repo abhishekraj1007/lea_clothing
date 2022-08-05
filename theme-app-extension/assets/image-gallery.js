@@ -178,7 +178,19 @@ class ImageGallery extends HTMLElement {
   async connectedCallback() {
     // window.cffCustomer -> undefined if user not logged in otherwise is an object containing user information
     // {name: 'john doe', email: 'abhishek.raj@algoscale.com', hasAccount: 'true', id: '6260460978418'}
-    let userEmailId = localStorage.getItem("userEmailId");
+    let userEmailId =
+      localStorage.getItem("userEmailId") || window.cffCustomer
+        ? window.cffCustomer?.email
+        : "abhishek.raj@algoscale.com";
+
+    let product_title =
+      window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];
+
+    if (!userEmailId && !product_title) {
+      alert("invalid parameters for recommend API");
+      return;
+    }
+
     const container = document.querySelector(".product-container");
     const mobileProductContainer = document.querySelector(
       ".mobile-product-container"
@@ -188,15 +200,11 @@ class ImageGallery extends HTMLElement {
     mainContainer = container;
     mobileContainer = mobileProductContainer;
 
-    if (!userEmailId) {
-      userEmailId = "abc@gmail.com";
-    }
-
     const response = await fetch(
       `${base_url}/recommend?` +
         new URLSearchParams({
           email: userEmailId,
-          product_title: "Carla Mauve Silk Corset Top",
+          product_title,
         }),
       {
         method: "GET",
@@ -220,7 +228,7 @@ class ImageGallery extends HTMLElement {
         `;
       } else {
         customerSize.innerHTML = `
-          <a href="https://dev-store-1196.myshopify.com/pages/quiz" class="size-link">
+          <a href="https://lea-clothing.herokuapp.com" class="size-link">
            Get Your Ideal Size
           </a>
         `;

@@ -91,7 +91,7 @@ export default function UserDetails(props) {
 
         // making an API call to the customer about this
         const emailerResponse = await fetch(
-          `http://localhost:8081/send-coupon-mail`,
+          `https://lea-clothing.herokuapp.com/send-coupon-mail`,
           {
             method: "POST",
             mode: "cors",
@@ -109,11 +109,10 @@ export default function UserDetails(props) {
 
         if (emailerResponse.ok) {
           alert("Mail sent successfully");
-        } else {
-          alert("could not send the email");
         }
       }
     } catch (error) {
+      alert("could not send the email");
       console.log(error);
     }
     dispatch(leaQuizActions.updateLoadingStatus(false));

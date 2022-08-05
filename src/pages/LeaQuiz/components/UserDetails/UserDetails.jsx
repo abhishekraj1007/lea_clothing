@@ -93,7 +93,7 @@ export default function UserDetails(props) {
 
         // making an API call to the customer about this
         const emailerResponse = await fetch(
-          `http://localhost:8081/send-coupon-mail`,
+          `https://lea-clothing.herokuapp.com/send-coupon-mail`,
           {
             method: "POST",
             mode: "cors",

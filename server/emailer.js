@@ -9,6 +9,8 @@ router.post("/send-coupon-mail", async (req, res) => {
     // we will process the discount data when we have it
     const productUrls = personalizeResponse.response.map((item) => item.IMGURL);
 
+    const ideal_size = personalizeResponse?.response[0].Size || '';
+
     let transporter = mailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: 465,
@@ -291,7 +293,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                         width: 20%;
                         margin: auto;"
                       >
-                        XL
+                        ${ideal_size}
                       </span>
                     </div>
                   </td>

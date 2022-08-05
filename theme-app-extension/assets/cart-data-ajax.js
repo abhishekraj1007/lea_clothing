@@ -65,10 +65,11 @@ class CartDataAjax extends HTMLElement {
     const container = document.querySelector(".cart-product-container");
     mainContainer = container;
 
+
     let userEmailId =
-      localStorage.getItem("userEmailId") || window.cffCustomer
+      !localStorage.getItem("userEmailId") ? window.cffCustomer
         ? window.cffCustomer?.email
-        : "abhishek.raj@algoscale.com";
+        :  "abhishek.raj@algoscale.com" : localStorage.getItem("userEmailId");
 
     let product_title = cartProducts?.items[0]["product_title"];
 

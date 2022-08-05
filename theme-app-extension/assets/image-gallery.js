@@ -179,9 +179,9 @@ class ImageGallery extends HTMLElement {
     // window.cffCustomer -> undefined if user not logged in otherwise is an object containing user information
     // {name: 'john doe', email: 'abhishek.raj@algoscale.com', hasAccount: 'true', id: '6260460978418'}
     let userEmailId =
-      localStorage.getItem("userEmailId") || window.cffCustomer
+      !localStorage.getItem("userEmailId") ? window.cffCustomer
         ? window.cffCustomer?.email
-        : "abhishek.raj@algoscale.com";
+        :  "abhishek.raj@algoscale.com" : localStorage.getItem("userEmailId");
 
     let product_title =
       window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];

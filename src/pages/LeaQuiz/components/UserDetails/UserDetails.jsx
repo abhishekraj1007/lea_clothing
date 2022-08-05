@@ -111,11 +111,10 @@ export default function UserDetails(props) {
 
         if (emailerResponse.ok) {
           alert("Mail sent successfully");
-        } else {
-          alert("could not send the email");
         }
       }
     } catch (error) {
+      alert("could not send the email");
       console.log(error);
     }
     dispatch(leaQuizActions.updateLoadingStatus(false));

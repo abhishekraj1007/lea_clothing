@@ -12,34 +12,6 @@ const base_url = "https://api.leaclothingco.com";
 let mainContainer = "";
 let productsRes = "";
 
-// async function fetchCartData(email) {
-//   const cartProducts = await cartContents();
-//   console.log("cartProducts", cartProducts?.items);
-//   const response = await fetch(
-//     `${base_url}/cart?` +
-//       new URLSearchParams({
-//         email: email,
-//         product_title: cartProducts?.items[0]['product_title'] || "Carla Mauve Silk Corset Top",
-//       }),
-//     {
-//       method: "GET",
-//       mode: "cors",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     console.log("CART DATA", data);
-//   } else {
-//     console.log("Something went wrong...");
-//   }
-// }
-
-// fetchCartData("chandan.roy@algoscale.com");
-
 function createElements() {
   let products = productsRes.length;
   if (productsRes.length > 4) {
@@ -88,27 +60,29 @@ class CartDataAjax extends HTMLElement {
     cartSection.style =
       "display: flex; justify-content: flex-end; margin: 2rem 0;";
 
+    const cartProducts = await cartContents();
+
     const container = document.querySelector(".cart-product-container");
     mainContainer = container;
 
-    console.log("mainContainer cart:", mainContainer);
 
-    let userEmailId = localStorage.getItem("userEmailId");
-    if (!userEmailId) {
-      userEmailId = "abc@gmail.com";
+    let userEmailId =
+      localStorage.getItem("userEmailId") || window.cffCustomer
+        ? window.cffCustomer?.email
+        : "abhishek.raj@algoscale.com";
+
+    let product_title = cartProducts?.items[0]["product_title"];
+
+    if (!userEmailId && !product_title) {
+      alert("invalid parameters for cart API");
+      return;
     }
-    console.log("user email cart app block:", userEmailId);
-
-    const cartProducts = await cartContents();
-    console.log("cartProducts", cartProducts?.items);
 
     const response = await fetch(
       `${base_url}/cart?` +
         new URLSearchParams({
           email: userEmailId,
-          product_title:
-            cartProducts?.items[0]["product_title"] ||
-            "Carla Mauve Silk Corset Top",
+          product_title,
         }),
       {
         method: "GET",
@@ -121,8 +95,6 @@ class CartDataAjax extends HTMLElement {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("CART DATA", data);
-
       productsRes = data.response;
       createElements();
     } else {

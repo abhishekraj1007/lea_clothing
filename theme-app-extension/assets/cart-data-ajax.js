@@ -55,7 +55,7 @@ class CartDataAjax extends HTMLElement {
 
   async connectedCallback() {
     let cartSection = document.getElementById(
-      "shopify-block-d600a638-4568-4951-aa78-7c8f0bdac267"
+      "shopify-block-f7b99d12-5df0-425e-9ef2-1024abc53885"
     );
     cartSection.style =
       "display: flex; justify-content: flex-end; margin: 2rem 0;";
@@ -65,11 +65,18 @@ class CartDataAjax extends HTMLElement {
     const container = document.querySelector(".cart-product-container");
     mainContainer = container;
 
+    const cartContainer = document.querySelector(".cart-container");
+    if (cartProducts.items.length === 0) {
+      cartContainer.style = "display: none;";
+    } else {
+      cartContainer.style = "display: flex;";
+    }
 
-    let userEmailId =
-      !localStorage.getItem("userEmailId") ? window.cffCustomer
+    let userEmailId = !localStorage.getItem("userEmailId")
+      ? window.cffCustomer
         ? window.cffCustomer?.email
-        :  "abhishek.raj@algoscale.com" : localStorage.getItem("userEmailId");
+        : "abhishek.raj@algoscale.com"
+      : localStorage.getItem("userEmailId");
 
     let product_title = cartProducts?.items[0]["product_title"];
 

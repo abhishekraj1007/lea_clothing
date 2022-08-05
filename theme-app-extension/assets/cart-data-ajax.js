@@ -60,6 +60,7 @@ class CartDataAjax extends HTMLElement {
     cartSection.style =
       "display: flex; justify-content: flex-end; margin: 2rem 0;";
 
+    const cartContainer = document.querySelector(".cart-container");
     const container = document.querySelector(".cart-product-container");
     mainContainer = container;
 
@@ -68,6 +69,12 @@ class CartDataAjax extends HTMLElement {
       userEmailId = "abc@gmail.com";
     }
     const cartProducts = await cartContents();
+
+    if (cartProducts.items.length === 0) {
+      cartContainer.style = "display: none;";
+    } else {
+      cartContainer.style = "display: flex;";
+    }
 
     const response = await fetch(
       `${base_url}/cart?` +

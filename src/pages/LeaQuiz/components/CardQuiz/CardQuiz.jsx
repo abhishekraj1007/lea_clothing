@@ -41,10 +41,6 @@ export default function CardQuiz(props) {
     setSelectedCards(answers);
   }, [quizData]);
 
-  // useEffect(() => {
-  //   console.log("selectedCards->", selectedCards);
-  // }, [selectedCards]);
-
   const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,

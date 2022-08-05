@@ -71,7 +71,6 @@ function createMobileElements() {
 }
 
 function handleCarousel(clickedItem) {
-  console.log("click item:", clickedItem);
   if (clickedItem === "forward" && endIndex >= responseResults.length - 1)
     return;
   if (clickedItem === "backward" && startIndex <= 0) return;
@@ -84,7 +83,6 @@ function handleCarousel(clickedItem) {
     if (endIndex >= responseResults.length - 1) {
       let nextBtn = document.getElementById("nextBtn");
       nextBtn.classList.add("disable-btn");
-      console.log("next btn class added");
       startIndex = responseResults.length - 4;
       endIndex = responseResults.length - 1;
     }
@@ -101,15 +99,12 @@ function handleCarousel(clickedItem) {
       endIndex = 3;
     }
   }
-  console.log("startIndex:", startIndex);
-  console.log("endIndex:", endIndex);
 
   if (endIndex < responseResults.length - 1) {
     let nextBtn = document.getElementById("nextBtn");
 
     if (nextBtn.classList.contains("disable-btn")) {
       nextBtn.classList.remove("disable-btn");
-      console.log("next btn class removed!");
     }
   }
   if (startIndex !== 0) {
@@ -117,19 +112,15 @@ function handleCarousel(clickedItem) {
 
     if (backBtn.classList.contains("disable-btn")) {
       backBtn.classList.remove("disable-btn");
-      console.log("back btn class removed!");
     }
   }
 
   let allProducts = document.querySelector(".product-container");
-  console.log("all products:", allProducts);
   allProducts.innerHTML = "";
   createElements();
-  console.log("element created");
 }
 
 function mobileHandleCarousel(clickedItem) {
-  console.log("mobile click item:", clickedItem);
   if (clickedItem === "forward" && mobileEndIndex >= responseResults.length - 1)
     return;
   if (clickedItem === "backward" && mobileStartIndex <= 0) return;
@@ -142,7 +133,6 @@ function mobileHandleCarousel(clickedItem) {
     if (mobileEndIndex >= responseResults.length - 1) {
       let mobileNextBtn = document.getElementById("mobileNextBtn");
       mobileNextBtn.classList.add("disable-btn");
-      console.log("mobile next btn class added");
       mobileStartIndex = responseResults.length - 4;
       mobileEndIndex = responseResults.length - 1;
     }
@@ -159,15 +149,12 @@ function mobileHandleCarousel(clickedItem) {
       mobileEndIndex = 3;
     }
   }
-  console.log("mobileStartIndex:", mobileStartIndex);
-  console.log("mobileEndIndex:", mobileEndIndex);
 
   if (mobileEndIndex < responseResults.length - 1) {
     let mobileNextBtn = document.getElementById("mobileNextBtn");
 
     if (mobileNextBtn.classList.contains("disable-btn")) {
       mobileNextBtn.classList.remove("disable-btn");
-      console.log("mobile next btn class removed!");
     }
   }
   if (mobileStartIndex !== 0) {
@@ -175,15 +162,12 @@ function mobileHandleCarousel(clickedItem) {
 
     if (mobileBackBtn.classList.contains("disable-btn")) {
       mobileBackBtn.classList.remove("disable-btn");
-      console.log("mobile back btn class removed!");
     }
   }
 
   let allProductsMobile = document.querySelector(".mobile-product-container");
-  console.log("all products mobile:", allProductsMobile);
   allProductsMobile.innerHTML = "";
   createMobileElements();
-  console.log("mobile element created");
 }
 
 class ImageGallery extends HTMLElement {
@@ -208,7 +192,6 @@ class ImageGallery extends HTMLElement {
       userEmailId = "abc@gmail.com";
     }
 
-    console.log("user email app block:", userEmailId);
     const response = await fetch(
       `${base_url}/recommend?` +
         new URLSearchParams({

@@ -233,14 +233,11 @@ const leaQuizSlice = createSlice({
     updateBasicQuestion(state, action) {
       const array = [...current(state.quizData)];
       const { question, answer, value } = action.payload;
-      console.log("questionArray", array);
-      console.log("question", question);
-      console.log("question", answer);
-      console.log("***value--->", value);
+
       const isSameQuestion = array?.findIndex(
         (ques) => ques.Question === question
       );
-      //   console.log('isSameQuestion', isSameQuestion);
+
       if (isSameQuestion !== -1) {
         if (answer === "Yes") {
           state.quizData[isSameQuestion].Answer = true;
@@ -259,7 +256,6 @@ const leaQuizSlice = createSlice({
             state.quizData[isSameQuestion].Value = value;
           }
         }
-        // array[isSameQuestion] = { ...action.payload };
       } else {
         console.log("question not match", isSameQuestion);
       }
@@ -267,10 +263,7 @@ const leaQuizSlice = createSlice({
     updateCardQuestion(state, action) {
       const array = [...current(state.quizData)];
       const { questionIndex, answer, value } = action.payload;
-      // console.log("questionArray", array);
-      // console.log("questionIndex--->", questionIndex);
-      // console.log("question", answer);
-      // console.log("value---->", value);
+
       if (state.quizData[questionIndex]["Answer"] === "") {
         state.quizData[questionIndex].Answer = [];
       }
@@ -278,13 +271,10 @@ const leaQuizSlice = createSlice({
         state.quizData[questionIndex].Value = [];
       }
 
-      // console.log("------>", current(state.quizData[questionIndex]));
       if (state.quizData[questionIndex].Answer.includes(answer)) {
-        // console.log(answer, "already selected");
         const filteredArray = state.quizData[questionIndex].Answer.filter(
           (item) => item !== answer
         );
-        // console.log("filteredArray", filteredArray);
         state.quizData[questionIndex].Answer = filteredArray;
       } else {
         state.quizData[questionIndex].Answer.push(answer);
@@ -292,11 +282,9 @@ const leaQuizSlice = createSlice({
 
       if (value) {
         if (state.quizData[questionIndex].Value.includes(value)) {
-          // console.log(answer, "already selected");
           const filteredArray = state.quizData[questionIndex].Value.filter(
             (item) => item !== value
           );
-          // console.log("filteredArray", filteredArray);
           state.quizData[questionIndex].Value = filteredArray;
         } else {
           state.quizData[questionIndex].Value.push(value);
@@ -333,7 +321,6 @@ const leaQuizSlice = createSlice({
     },
     updateValues(state, action) {
       const { questionIndex, name, value } = action.payload;
-      console.log("---->>>>>", { questionIndex, name, value });
       state.quizData[questionIndex].Answer[name] = value;
       state.quizData[questionIndex].Value[name] = value;
     },
@@ -361,19 +348,10 @@ const leaQuizSlice = createSlice({
     },
     updateQuizData(state, action) {
       const { fromData } = action.payload;
-      console.log("fromData:::", fromData);
       let newData = [...current(state.quizData)];
-      console.log("new data", newData);
+
       for (let i = 0; i < newData.length; i++) {
         const qName = newData[i]["Name"];
-        // if (newData[i].Name !== "start easy") {
-        // console.log("//***", qName);
-
-        // newData[i] = {
-        //   Answer: fromData[`${qName}`]["attribute"],
-        //   Value: fromData[`${qName}`]["value"],
-
-        // };
 
         newData[i] = {
           QNo: fromData[`${qName}`]["qno"] + 1,
@@ -382,9 +360,7 @@ const leaQuizSlice = createSlice({
           Answer: fromData[`${qName}`]["attribute"],
           Value: fromData[`${qName}`]["value"],
         };
-        // }
       }
-      console.log("filled Data:", newData);
       state.quizData = [...newData];
       state.userDeatils.Email = fromData.email.value;
     },

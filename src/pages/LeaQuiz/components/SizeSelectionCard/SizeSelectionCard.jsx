@@ -4,10 +4,8 @@ import {
   IconButton,
   Paper,
   Stack,
-  Avatar,
   Select,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
@@ -16,7 +14,6 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 import waistImgUrl from "../../../../assets/waist.png";
@@ -45,17 +42,6 @@ const useStyles = makeStyles({
   },
 });
 
-const LayoutRoot = styled("MenuItem")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  background: `-webkit-radial-gradient(${gradientDirection}, rgba(211, 174, 210, 0.5) 0%, rgba(255, 255, 255, 0.2) 46.88%, rgba(0, 0, 0, 0) 100%)`,
-  minHeight: "100vh",
-  width: "100%",
-  position: "relative",
-  overflow: "hidden",
-}));
-
 export default function SizeSelectionCard(props) {
   const {
     subHeadingText,
@@ -66,7 +52,6 @@ export default function SizeSelectionCard(props) {
     isSkippable,
   } = props;
   const dispatch = useDispatch();
-  const [topSelectSize, setTopSelectSize] = useState("");
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedSizes, setSelectedSizes] = useState({
     Bust: "",
@@ -80,10 +65,7 @@ export default function SizeSelectionCard(props) {
   const mobileView = useMediaQuery(theme.breakpoints.down("sm"));
   const tabletView = useMediaQuery("(max-width:1200px)");
 
-  const classes = useStyles();
-
   useEffect(() => {
-    console.log("selectedSizes:", selectedSizes);
     if (
       isSkippable === false &&
       selectedSizes.Bust !== "" &&
@@ -104,10 +86,6 @@ export default function SizeSelectionCard(props) {
     const answers = { ...quizData[quesIndex].Answer };
     setSelectedSizes(answers);
   }, [quizData]);
-
-  useEffect(() => {
-    console.log("top Select Size", topSelectSize);
-  }, [topSelectSize]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

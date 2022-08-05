@@ -42,7 +42,6 @@ export default function UserDetails(props) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isError, setIsError] = useState(false);
   const [value, setValue] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
 
   const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
@@ -75,7 +74,6 @@ export default function UserDetails(props) {
       const recommendationData = await LeaQuizApi.getRecommendation(
         finalQuizObj
       );
-      console.log("---->DataUserDetails", recommendationData, userEmail);
       if (recommendationData) {
         localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 90;
@@ -123,18 +121,13 @@ export default function UserDetails(props) {
 
   const getQuizPayload = (userEmail, birthDate) => {
     let obj = { ...finalQuizData };
-    console.log("obj", obj);
     for (let i = 0; i < quizData.length; i++) {
-      // const { Name, Question, Answer, Value} = quizData[i];
-      // if (quizData[i].Name !== "start easy") {
       obj[`${quizData[i].Name}`] = {
         qno: i + 1,
         question: quizData[i].Question,
         attribute: quizData[i].Answer,
         value: quizData[i].Value,
       };
-      // }
-      console.log("--->", obj[`${quizData[i].Name}`]);
     }
     obj.email = {
       value: userEmail,
@@ -142,7 +135,6 @@ export default function UserDetails(props) {
     obj.dob = {
       value: birthDate,
     };
-    console.log("<<<----", obj);
     return obj;
   };
 
@@ -154,14 +146,8 @@ export default function UserDetails(props) {
         leaQuizActions.updateUserDetails({ email: userEmail, dob: birthDate })
       );
 
-      // response of personalize
-
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
       recommend(finalQuizObj, userEmail);
-      // dispatch(leaQuizActions.incrementProgress({ progress }));
-      // dispatch(leaQuizActions.incrementSlideCount());
-      // navigate("/recommendation");
-      // window.location.reload();
     }
   };
 

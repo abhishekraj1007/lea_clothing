@@ -17,42 +17,42 @@ import {
 } from "./components";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-//Slide 1
+//Style Slide 1 Images
 import PixieBabyBlue from "../../assets/Pixie Baby Blue.webp";
 import LavenderTatiana from "../../assets/Lavender Tatiana.webp";
 import TwylaMeshCorsetTee from "../../assets/Twyla Mesh Corset Tee.webp";
 import CarlaMauve from "../../assets/Carla Mauve.webp";
 import CadyRegina from "../../assets/Cady + Regina.webp";
 import MiaDress from "../../assets/Mia Dress.webp";
-//Slide 2
+//Style Slide 2 Images
 import SashaWhite from "../../assets/Sasha White.webp";
 import CassidyCorsetBeltGiselleTop from "../../assets/Cassidy Corset Belt + Giselle Top.webp";
 import GenevieveDress from "../../assets/Genevieve Dress.webp";
 import IreneEstrella from "../../assets/Irene + Estrella.webp";
 import BrieBrielleBettySet from "../../assets/Brie, Brielle, Betty Set.webp";
 import BabyPinkSchiffliPixie from "../../assets/Baby Pink Schiffli Pixie.webp";
-//Slide 3
+///Style Slide 3 Images
 import AnastasiaGown from "../../assets/Anastasia Gown.webp";
 import CamilleOrganzaDress from "../../assets/Camille Organza Dress.webp";
 import BelleLavender from "../../assets/Belle Lavender.webp";
 import ReeseDress from "../../assets/Reese Dress.webp";
 import CalliopeTop from "../../assets/Calliope Top.webp";
 import DonnaJessica from "../../assets/Donna + Jessica.webp";
-//Slide 4
+///Style Slide 4 Images
 import AltheaLavenderGown from "../../assets/Althea Lavender Gown.webp";
 import KaiaKaylaSet from "../../assets/Kaia + Kayla Set.webp";
 import TwylaDaisyAvaJeans from "../../assets/Twyla Daisy + Ava Jeans.webp";
 import DiannaCorset from "../../assets/Dianna Corset.webp";
 import LauraCharliePants from "../../assets/Laura + Charlie Pants.webp";
 import RainRileyRory from "../../assets/Rain, Riley, Rory.webp";
-//Slide 5
+///Style Slide 5 Images
 import IsabelleDress from "../../assets/Isabelle Dress.webp";
 import CarlaBlack from "../../assets/Carla Black.webp";
 import StacyLoungeSet from "../../assets/Stacy Lounge Set.webp";
 import AnnaliseDress from "../../assets/Annalise Dress.webp";
 import FleurFreya from "../../assets/Fleur + Freya.webp";
 import CarinaSet from "../../assets/Carina Set.webp";
-//Slide 6
+///Style Slide 6 Images
 import ReinaRamona from "../../assets/Reina + Ramona.webp";
 import DixieCorsetEvieJeans from "../../assets/Dixie Corset + Evie Jeans.webp";
 import ElianaCarmen from "../../assets/Eliana + Carmen.webp";
@@ -63,10 +63,6 @@ import KendallHailey from "../../assets/Kendall + Hailey.webp";
 const LeaQuiz = () => {
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
   const loading = useSelector((state) => state.leaQuiz.loading);
-
-  useEffect(() => {
-    console.log("global loading", loading);
-  }, [loading]);
 
   const validateRegex = (value, regex) => {
     const re = new RegExp(regex);

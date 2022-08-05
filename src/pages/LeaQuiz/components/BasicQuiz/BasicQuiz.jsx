@@ -48,7 +48,6 @@ const BasicQuiz = (props) => {
   }, [quizData]);
 
   const checkAns = (content) => {
-    console.log("content:", content);
     if (headingText === "Are you a fan of Prints?") {
       if (content === "Yes") {
         dispatch(leaQuizActions.incrementSlideCount());

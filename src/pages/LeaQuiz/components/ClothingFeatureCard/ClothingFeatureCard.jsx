@@ -30,15 +30,10 @@ export default function ClothingFeatureCard(props) {
     const quesIndex = quizData?.findIndex(
       (data) => data.Question === headingText
     );
-    console.log("questionIndex---->", quesIndex);
     setQuestionIndex(quesIndex);
     const answers = [...quizData[quesIndex].Answer];
     setSelectedCards(answers);
   }, [quizData]);
-
-  useEffect(() => {
-    console.log("selectedCards->", selectedCards);
-  }, [selectedCards]);
 
   const handleCards = (selectedItem, value) => {
     const quizObj = {

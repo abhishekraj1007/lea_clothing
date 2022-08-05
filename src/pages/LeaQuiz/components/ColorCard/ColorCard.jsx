@@ -1,12 +1,4 @@
-import {
-  Grid,
-  Box,
-  IconButton,
-  Paper,
-  Stack,
-  Avatar,
-  AvatarGroup,
-} from "@mui/material";
+import { Grid, Box, IconButton, Paper, Stack } from "@mui/material";
 import { styles } from "../../styles";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
@@ -45,10 +37,6 @@ export default function ColorCard(props) {
     const answers = [...quizData[quesIndex].Answer];
     setSelectedCards(answers);
   }, [quizData]);
-
-  // useEffect(() => {
-  //   console.log("selectedCards->", selectedCards);
-  // }, [selectedCards]);
 
   const handleCards = (selectedItem, value) => {
     const quizObj = {

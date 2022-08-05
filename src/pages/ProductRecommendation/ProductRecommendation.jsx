@@ -43,11 +43,9 @@ export default function ProductRecommendation() {
   const tabletView = useMediaQuery(theme.breakpoints.down("md"));
 
   const getUserInfo = async (emailId) => {
-    console.log("+++", emailId);
     dispatch(recommendationActions.updateLoadingStatus(true));
     try {
       const data = await UserDataApi.getUserData(emailId);
-      console.log("---->Data", data);
       if (data) {
         dispatch(recommendationActions.updateLoadingStatus(false));
 
@@ -75,7 +73,6 @@ export default function ProductRecommendation() {
 
   useEffect(() => {
     const emailId = localStorage.getItem("userEmailId");
-    console.log(emailId);
     if (emailId) {
       getUserInfo(emailId);
     }

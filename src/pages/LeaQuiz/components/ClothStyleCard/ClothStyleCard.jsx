@@ -35,10 +35,6 @@ export default function ClothStyleCard(props) {
     setSelectedCards(answers);
   }, [quizData]);
 
-  useEffect(() => {
-    console.log("items", items);
-  }, [items]);
-
   const handleCards = (selectedItem, value) => {
     const quizObj = {
       questionIndex,

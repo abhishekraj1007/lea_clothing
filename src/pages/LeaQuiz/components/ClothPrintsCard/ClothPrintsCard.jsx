@@ -17,12 +17,6 @@ import graphicsPrintUrl from "../../../../assets/graphics.jpg";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-// import sashaWhite2ImgUrl from "../../../../assets/Sasha-White-2.jpg";
-// import sashaWhite3ImgUrl from "../../../../assets/Sasha-White-3.jpg";
-// import sashaWhite4ImgUrl from "../../../../assets/Sasha-White-4.jpg";
-// import sashaWhite5ImgUrl from "../../../../assets/Sasha-White-5.jpg";
-// import sashaWhite6ImgUrl from "../../../../assets/Sasha-White-6.jpg";
-
 export default function ClothPrintsCard(props) {
   const {
     subHeadingText,
@@ -48,10 +42,6 @@ export default function ClothPrintsCard(props) {
     const answers = [...quizData[quesIndex].Answer];
     setSelectedCards(answers);
   }, [quizData]);
-
-  // useEffect(() => {
-  //   console.log("selectedCards->", selectedCards);
-  // }, [selectedCards]);
 
   const handleCards = (selectedItem, value) => {
     const quizObj = {

@@ -8,8 +8,6 @@ const QuizLayout = (props) => {
     leftBall = balls.leftBall;
     rightBall = balls.rightBall;
   }
-  // const { leftBall, rightBall } = balls;
-
   const LayoutRoot = styled("div")(({ theme }) => ({
     display: "flex",
     justifyContent: "center",

@@ -75,7 +75,7 @@ class CartDataAjax extends HTMLElement {
     let userEmailId = !localStorage.getItem("userEmailId")
       ? window.cffCustomer
         ? window.cffCustomer?.email
-        : "abhishek.raj@algoscale.com"
+        : ""
       : localStorage.getItem("userEmailId");
 
     let product_title = cartProducts?.items[0]["product_title"];

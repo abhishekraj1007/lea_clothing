@@ -181,7 +181,7 @@ class ImageGallery extends HTMLElement {
     let userEmailId =
       !localStorage.getItem("userEmailId") ? window.cffCustomer
         ? window.cffCustomer?.email
-        :  "abhishek.raj@algoscale.com" : localStorage.getItem("userEmailId");
+        :  "" : localStorage.getItem("userEmailId");
 
     let product_title =
       window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];

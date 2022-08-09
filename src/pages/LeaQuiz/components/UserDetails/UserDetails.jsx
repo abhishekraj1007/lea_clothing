@@ -91,7 +91,7 @@ export default function UserDetails(props) {
 
         // making an API call to the customer about this
         const emailerResponse = await fetch(
-          `https://d649-2405-201-a807-6073-744f-490e-bf51-4850.ngrok.io/send-coupon-mail`,
+          `https://lea-clothing.herokuapp.com/send-coupon-mail`,
           {
             method: "POST",
             mode: "cors",

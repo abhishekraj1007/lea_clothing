@@ -76,7 +76,7 @@ export default function UserDetails(props) {
       );
       if (recommendationData) {
         localStorage.setItem("userEmailId", `${userEmail}`);
-        let prevProgress = 90;
+        let prevProgress = 95;
         dispatch(leaQuizActions.decrementSlideCount(1));
         // dispatch(leaQuizActions.incrementProgress({ progress }));
         dispatch(leaQuizActions.decrementProgress({ prevProgress }));
@@ -91,7 +91,7 @@ export default function UserDetails(props) {
 
         // making an API call to the customer about this
         const emailerResponse = await fetch(
-          `https://lea-clothing.herokuapp.com/send-coupon-mail`,
+          `https://d649-2405-201-a807-6073-744f-490e-bf51-4850.ngrok.io/send-coupon-mail`,
           {
             method: "POST",
             mode: "cors",

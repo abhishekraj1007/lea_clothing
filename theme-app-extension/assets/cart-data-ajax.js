@@ -13,12 +13,12 @@ let mainContainer = "";
 let productsRes = "";
 
 function createElements() {
-  let products = productsRes.length;
-  if (productsRes.length > 4) {
-    products = 4;
-  }
+  // let products = productsRes.length;
+  // if (productsRes.length > 4) {
+  //   products = 4;
+  // }
 
-  for (let i = 0; i < products; i++) {
+  for (let i = 0; i < productsRes.length; i++) {
     let item = productsRes[i];
     const product = document.createElement("div");
     product.setAttribute("class", "product");
@@ -54,11 +54,11 @@ class CartDataAjax extends HTMLElement {
   }
 
   async connectedCallback() {
-    let cartSection = document.getElementById(
-      "shopify-block-f7b99d12-5df0-425e-9ef2-1024abc53885"
-    );
-    cartSection.style =
-      "display: flex; justify-content: flex-end; margin: 2rem 0;";
+    // let cartSection = document.getElementById(
+    //   "shopify-block-f7b99d12-5df0-425e-9ef2-1024abc53885"
+    // );
+    // cartSection.style =
+    //   "display: flex; justify-content: flex-end; margin: 2rem 0;";
 
     const cartProducts = await cartContents();
 
@@ -75,7 +75,7 @@ class CartDataAjax extends HTMLElement {
     let userEmailId = !localStorage.getItem("userEmailId")
       ? window.cffCustomer
         ? window.cffCustomer?.email
-        : "abhishek.raj@algoscale.com"
+        : "guest@email.com"
       : localStorage.getItem("userEmailId");
 
     let product_title = cartProducts?.items[0]["product_title"];

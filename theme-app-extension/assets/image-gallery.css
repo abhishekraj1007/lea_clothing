@@ -104,7 +104,6 @@ image-gallery .product {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  cursor: pointer;
   width: 25%;
   /* gap: 0.5rem; */
   padding: 0.5rem;
@@ -191,6 +190,15 @@ image-gallery .disable-btn {
 }
 
 image-gallery .size-link {
+  font-family: Karla, sans-serif;
+  border: 1px solid #d3aed2;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 22px;
+  border-radius: 5rem;
+  padding: 1.5rem 3rem;
+  letter-spacing: -0.035rem;
+  text-transform: capitalize;
   text-decoration: none;
   color: #6c4a6d;
   cursor: pointer;
@@ -258,6 +266,12 @@ image-gallery .size-link {
   image-gallery .product_price {
     font-size: 0.8rem;
     font-weight: 600;
+  }
+
+  image-gallery .size-link {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 1rem 4rem;
   }
 }
 

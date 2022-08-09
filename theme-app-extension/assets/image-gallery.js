@@ -178,10 +178,11 @@ class ImageGallery extends HTMLElement {
   async connectedCallback() {
     // window.cffCustomer -> undefined if user not logged in otherwise is an object containing user information
     // {name: 'john doe', email: 'abhishek.raj@algoscale.com', hasAccount: 'true', id: '6260460978418'}
-    let userEmailId =
-      !localStorage.getItem("userEmailId") ? window.cffCustomer
+    let userEmailId = !localStorage.getItem("userEmailId")
+      ? window.cffCustomer
         ? window.cffCustomer?.email
-        :  "abhishek.raj@algoscale.com" : localStorage.getItem("userEmailId");
+        : "guest@email.com"
+      : localStorage.getItem("userEmailId");
 
     let product_title =
       window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];
@@ -195,8 +196,8 @@ class ImageGallery extends HTMLElement {
     const mobileProductContainer = document.querySelector(
       ".mobile-product-container"
     );
-    const header = document.querySelector(".title-text");
-    const customerSize = document.querySelector(".label-chip-bar");
+    // const header = document.querySelector(".title-text");
+    const customerSize = document.querySelector(".head");
     mainContainer = container;
     mobileContainer = mobileProductContainer;
 
@@ -217,20 +218,38 @@ class ImageGallery extends HTMLElement {
 
     if (response.ok) {
       const data = await response.json();
-      header.textContent = data.response.display_text;
+      // header.textContent = data.response.display_text;
 
       if (data.response.beautified_results[0].Size) {
         customerSize.innerHTML = `
-          Your Ideal Size: 
-          <span class="size">
-            ${data.response.beautified_results[0].Size}
-          </span>
+        <div class="chip-bar-wrapper">
+          <div class="label-chip-bar">
+            Your Ideal Size: 
+            <span class="size">
+              ${data.response.beautified_results[0].Size}
+            </span>
+          </div>
+        </div>
+
+        <div class="title-text-wrapper">
+          <div class="title-text">
+            ${data.response.display_text}
+          </div>
+        </div>
         `;
       } else {
         customerSize.innerHTML = `
-          <a href="https://lea-clothing.herokuapp.com" class="size-link">
-           Get Your Ideal Size
+        <div class="chip-bar-wrapper">
+          <a href="https://dev-store-1196.myshopify.com/pages/quiz" class="size-link">
+              Find Your Ideal Size
           </a>
+        </div>
+
+        <div class="title-text-wrapper">
+          <div class="title-text">
+            ${data.response.display_text}
+          </div>
+        </div>
         `;
       }
 

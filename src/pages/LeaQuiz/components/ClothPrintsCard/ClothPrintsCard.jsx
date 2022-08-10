@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import floralPrintUrl from "../../../../assets/floral3.jpg";
-import abstractPrintUrl from "../../../../assets/abstract2.jpg";
+import handEmbroideryPrintUrl from "../../../../assets/3D_Embroidery_Quiz_Image.jpg";
 import resortPrintUrl from "../../../../assets/resort.jpg";
+import pearlEmbroideryUrl from "../../../../assets/Pearl_Embroidery_Quiz_Image.jpg";
 import geometricPrintUrl from "../../../../assets/geometric-pattern2.jpg";
-import stripPrintUrl from "../../../../assets/stripa1.jpg";
-import checkeredPrintUrl from "../../../../assets/checkered3.jpg";
+import sequinsRhinestonesUrl from "../../../../assets/Sequin_Rhinestone_Quiz_Image.jpg";
 import graphicsPrintUrl from "../../../../assets/graphics.jpg";
 
 import { useTheme } from "@mui/material/styles";
@@ -152,16 +152,18 @@ export default function ClothPrintsCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Abstract")
+                  ? selectedCards.includes("3-D/Hand Embroidery")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Abstract")
+                  : selectedCards.includes("3-D/Hand Embroidery")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Abstract", "Abstract")}
+              onClick={() =>
+                handleCards("3-D/Hand Embroidery", "3-D, Hand Embroidery")
+              }
             >
               <Stack
                 direction="column"
@@ -171,13 +173,13 @@ export default function ClothPrintsCard(props) {
               >
                 <Box sx={{ width: "100%" }}>
                   <img
-                    src={abstractPrintUrl}
-                    alt="abstract"
+                    src={handEmbroideryPrintUrl}
+                    alt="3-D/Hand Embroidery"
                     width="100%"
                     height="100%"
                   />
                 </Box>
-                <Box>{"Abstract"}</Box>
+                <Box>{"3-D/Hand Embroidery"}</Box>
               </Stack>
             </Paper>
           </Grid>
@@ -218,6 +220,41 @@ export default function ClothPrintsCard(props) {
             <Paper
               sx={
                 tabletView
+                  ? selectedCards.includes("Pearl Embroidery")
+                    ? styles.selectedCardStyle
+                    : styles.mobileOutlinedCard
+                  : selectedCards.includes("Pearl Embroidery")
+                  ? styles.selectedCardStyle
+                  : styles.outlinedCard
+              }
+              elevation={0}
+              variant="outlined"
+              onClick={() =>
+                handleCards("Pearl Embroidery", "Pearl Embroidery")
+              }
+            >
+              <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                spacing={2}
+              >
+                <Box sx={{ width: "100%" }}>
+                  <img
+                    src={pearlEmbroideryUrl}
+                    alt="Pearl Embroidery"
+                    width="100%"
+                    height="100%"
+                  />
+                </Box>
+                <Box>{"Pearl Embroidery"}</Box>
+              </Stack>
+            </Paper>
+          </Grid>
+          <Grid item xs={5} md={3}>
+            <Paper
+              sx={
+                tabletView
                   ? selectedCards.includes("Geometric")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
@@ -251,16 +288,18 @@ export default function ClothPrintsCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Stripes")
+                  ? selectedCards.includes("Sequins/Rhinestones")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Stripes")
+                  : selectedCards.includes("Sequins/Rhinestones")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Stripes", "Stripes")}
+              onClick={() =>
+                handleCards("Sequins/Rhinestones", "Sequins, Rhinestones")
+              }
             >
               <Stack
                 direction="column"
@@ -270,46 +309,13 @@ export default function ClothPrintsCard(props) {
               >
                 <Box sx={{ width: "100%" }}>
                   <img
-                    src={stripPrintUrl}
-                    alt="strip"
+                    src={sequinsRhinestonesUrl}
+                    alt="Sequins/Rhinestones"
                     width="100%"
                     height="100%"
                   />
                 </Box>
-                <Box>{"Stripes"}</Box>
-              </Stack>
-            </Paper>
-          </Grid>
-          <Grid item xs={5} md={3}>
-            <Paper
-              sx={
-                tabletView
-                  ? selectedCards.includes("Checkered")
-                    ? styles.selectedCardStyle
-                    : styles.mobileOutlinedCard
-                  : selectedCards.includes("Checkered")
-                  ? styles.selectedCardStyle
-                  : styles.outlinedCard
-              }
-              elevation={0}
-              variant="outlined"
-              onClick={() => handleCards("Checkered", "Checkered")}
-            >
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-              >
-                <Box sx={{ width: "100%" }}>
-                  <img
-                    src={checkeredPrintUrl}
-                    alt="Sasha White 6"
-                    width="100%"
-                    height="100%"
-                  />
-                </Box>
-                <Box>{"Checkered"}</Box>
+                <Box>{"Sequins/Rhinestones"}</Box>
               </Stack>
             </Paper>
           </Grid>

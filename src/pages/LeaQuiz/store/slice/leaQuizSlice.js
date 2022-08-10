@@ -4,7 +4,7 @@ const initialQuizData = [
   {
     QNo: 1,
     Name: "start easy",
-    Question: "Let's start easy, what brings you here today?",
+    Question: "Let’s start easy—What brings you to Lea?",
     Answer: "",
     Value: "",
   },
@@ -62,14 +62,14 @@ const initialQuizData = [
   {
     QNo: 9,
     Name: "prints_fan",
-    Question: "Are you a fan of Prints?",
+    Question: "Are you a fan of prints or embroideries?",
     Answer: "",
     Value: "",
   },
   {
     QNo: 10,
     Name: "prints",
-    Question: "What kind of prints are you attracted to?",
+    Question: "What kind of prints and embroideries are you attracted to?",
     Answer: "",
     Value: "",
   },
@@ -83,6 +83,7 @@ const initialQuizData = [
       Bottoms: [100, 10000],
       Loungewear: [100, 10000],
       Accessories: [100, 10000],
+      Ethnicwear: [100, 10000],
     },
     Value: {
       Tops: [100, 10000],
@@ -90,6 +91,7 @@ const initialQuizData = [
       Bottoms: [100, 10000],
       Loungewear: [100, 10000],
       Accessories: [100, 10000],
+      Ethnicwear: [100, 10000],
     },
   },
   {
@@ -109,7 +111,7 @@ const initialQuizData = [
   {
     QNo: 14,
     Name: "occasion",
-    Question: "Are you shopping for a specific ocassion?",
+    Question: "What occasion are you shopping for?",
     Answer: "",
     Value: "",
   },

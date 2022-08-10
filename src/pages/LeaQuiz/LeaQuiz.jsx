@@ -84,18 +84,22 @@ const LeaQuiz = () => {
           ResultComponent={
             <MultipleSelectBasicQuiz
               subHeadingText={"Life is too short to wear boring clothes."}
-              headingText={"Let's start easy, what brings you here today?"}
+              headingText={"Let’s start easy—What brings you to Lea?"}
               buttonDirection="row"
               buttonContent={[
                 "I'm interested in trying corsets.",
                 "I've worn all my clothes to death and need an upgrade.",
                 "I've recently had new changes to my body and am looking to find my ideal fit.",
+                "Looking to revamp my ethnic wardrobe.",
+                "Browing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
               values={[
                 "I'm interested in trying corsets.",
                 "I've worn all my clothes to death and need an upgrade.",
                 "I've recently had new changes to my body and am looking to find my ideal fit.",
+                "Looking to revamp my ethnic wardrobe.",
+                "Browing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
               progress={5}
@@ -305,7 +309,7 @@ const LeaQuiz = () => {
           }}
           ResultComponent={
             <BasicQuiz
-              headingText={"Are you a fan of Prints?"}
+              headingText={"Are you a fan of prints or embroideries?"}
               buttonDirection="column"
               buttonContent={["Yes", "No"]}
               values={["Yes", "No"]}
@@ -332,7 +336,9 @@ const LeaQuiz = () => {
           ResultComponent={
             <ClothPrintsCard
               subHeadingText={"We love prints too!"}
-              headingText={"What kind of prints are you attracted to?"}
+              headingText={
+                "What kind of prints and embroideries are you attracted to?"
+              }
               instructionText={"No pressure, you can select more than one."}
               progress={3}
               prevProgress={2}
@@ -757,31 +763,33 @@ const LeaQuiz = () => {
               subHeadingText={
                 "There are exactly as many special occasions in life as we choose to celebrate. - Robert Breault"
               }
-              headingText={"Are you shopping for a specific ocassion?"}
+              headingText={"What occasion are you shopping for?"}
               buttonDirection="row"
               buttonContent={[
                 "Birthday",
                 "Graduation",
-                "Bridal Shower",
-                "Bachelorette",
+                "Mehendi/Haldi",
+                "Bridal Shower/Bachelorette",
+                "Cocktail",
                 "Date Night",
-                "Concert",
-                "Beach Vacation",
-                "Party",
+                "Festive Wear",
+                "Beach/Resort Wear",
+                "Wedding Wear",
+                "Party/Concert",
                 "Elevated Basics",
-                "Others",
               ]}
               values={[
                 "Birthday",
                 "Graduation",
-                "Bridal Shower",
-                "Bachelorette",
+                "Mehendi, Haldi",
+                "Bridal Shower, Bachelorette",
+                "Cocktail",
                 "Date Night",
-                "Concert",
-                "Beach Vacation",
-                "Party",
+                "Festive Wear",
+                "Beach, Resort Wear",
+                "Wedding Wear",
+                "Party, Concert",
                 "Elevated Basics",
-                "Others",
               ]}
               progress={3}
               prevProgress={2}

@@ -14,6 +14,7 @@ import dressesImgUrl from "../../../../assets/dress.png";
 import bottomsImgUrl from "../../../../assets/legs-1.png";
 import loungewearImgUrl from "../../../../assets/Loungewear.png";
 import accessoriesImgUrl from "../../../../assets/accessories.png";
+import ethnicwearImgUrl from "../../../../assets/accessories.png";
 
 export default function PriceRangeSlider(props) {
   const { subHeadingText, headingText, progress, prevProgress } = props;
@@ -30,6 +31,7 @@ export default function PriceRangeSlider(props) {
     Bottoms: [100, 10000],
     Loungewear: [100, 10000],
     Accessories: [100, 10000],
+    Ethnicwear: [100, 10000],
   };
   const [rangeData, setRangeData] = useState(initialRangeData);
   const [questionIndex, setQuestionIndex] = useState("");
@@ -585,6 +587,105 @@ export default function PriceRangeSlider(props) {
                   <Box
                     sx={styles.sliderPrice}
                   >{`₹${rangeData["Accessories"][1]}`}</Box>
+                </Stack>
+              </Paper>
+            )}
+          </Grid>
+          <Grid item xs={12} md={8}>
+            {mobileView ? (
+              <Paper sx={styles.rangeCard} elevation={0} variant="outlined">
+                <Box sx={styles.mobileRangeChip}>
+                  <Box sx={{ width: "30%" }}>
+                    <Box sx={styles.rangeChipAvatar}>
+                      <img
+                        src={accessoriesImgUrl}
+                        alt="Ethnicwear"
+                        width="60%"
+                      />
+                    </Box>
+                  </Box>
+                  <Box sx={styles.mobileRangeChipText}>{"ETHNICWEAR"}</Box>
+                </Box>
+
+                <Stack
+                  direction="column"
+                  spacing={2}
+                  sx={{ width: "100%", color: "#6C4A6D" }}
+                  justifyContent="center"
+                  alignItems="center"
+                  paddingY={4}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "85%",
+                    }}
+                  >
+                    <Box
+                      sx={styles.mobileSliderPrice}
+                    >{`₹${rangeData["Ethnicwear"][0]}`}</Box>
+                    <Box
+                      sx={styles.mobileSliderPrice}
+                      style={{ textAlign: "end" }}
+                    >{`₹${rangeData["Ethnicwear"][1]}`}</Box>
+                  </Box>
+
+                  <Box sx={{ width: "80%" }}>
+                    <Slider
+                      value={rangeData["Ethnicwear"]}
+                      name="Ethnicwear"
+                      min={100}
+                      max={10000}
+                      onChange={handleChange}
+                      getAriaLabel={() => "Minimum distance"}
+                      disableSwap
+                      sx={{ color: "#6C4A6D" }}
+                    />
+                  </Box>
+                </Stack>
+              </Paper>
+            ) : (
+              <Paper sx={styles.rangeCard} elevation={0} variant="outlined">
+                <Box sx={styles.rangeChip}>
+                  <Box sx={{ width: "30%" }}>
+                    <Box sx={styles.rangeChipAvatar}>
+                      <img
+                        src={ethnicwearImgUrl}
+                        alt="Ethnicwear"
+                        width="60%"
+                      />
+                    </Box>
+                  </Box>
+                  <Box sx={styles.rangeChipText}>{"ETHNICWEAR"}</Box>
+                </Box>
+
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  sx={{ width: "100%", color: "#6C4A6D" }}
+                  justifyContent="center"
+                  alignItems="center"
+                  paddingY={4}
+                >
+                  <Box
+                    sx={styles.sliderPrice}
+                  >{`₹${rangeData["Ethnicwear"][0]}`}</Box>
+                  <Box sx={{ width: "60%" }}>
+                    <Slider
+                      value={rangeData["Ethnicwear"]}
+                      name="Ethnicwear"
+                      min={100}
+                      max={10000}
+                      onChange={handleChange}
+                      getAriaLabel={() => "Minimum distance"}
+                      disableSwap
+                      sx={{ color: "#6C4A6D" }}
+                    />
+                  </Box>
+                  <Box
+                    sx={styles.sliderPrice}
+                  >{`₹${rangeData["Ethnicwear"][1]}`}</Box>
                 </Stack>
               </Paper>
             )}

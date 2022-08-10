@@ -48,7 +48,7 @@ const BasicQuiz = (props) => {
   }, [quizData]);
 
   const checkAns = (content) => {
-    if (headingText === "Are you a fan of Prints?") {
+    if (headingText === "Are you a fan of prints or embroideries?") {
       if (content === "Yes") {
         dispatch(leaQuizActions.incrementSlideCount());
         if (progress) {

@@ -14,6 +14,7 @@ import LeaQuizApi from "../../../../services/api/LeaQuizApi";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import toast from "react-hot-toast";
 
 export default function UserDetails(props) {
   const {
@@ -66,6 +67,7 @@ export default function UserDetails(props) {
         "/" +
         value.getFullYear();
     setBirthDate(datestring);
+    console.log({ datestring, value });
   }, [value]);
 
   const recommend = async (finalQuizObj, userEmail) => {
@@ -108,11 +110,11 @@ export default function UserDetails(props) {
         );
 
         if (emailerResponse.ok) {
-          alert("Mail sent successfully");
+          toast.success("Mail sent successfully");
         }
       }
     } catch (error) {
-      alert("could not send the email");
+      toast.error("could not send the email");
       console.log(error);
     }
     dispatch(leaQuizActions.updateLoadingStatus(false));
@@ -305,7 +307,21 @@ export default function UserDetails(props) {
                     {"Your Date of Birth"}
                   </Box>
                   <Grid container spacing={2}>
-                    <Grid item xs={4}>
+                    <Grid item xs={12}>
+                      <MobileDatePicker
+                        label="Day/ Month/ Year"
+                        inputFormat="dd/MM/yyyy"
+                        disableFuture
+                        value={value}
+                        onChange={(newValue) => {
+                          setValue(newValue);
+                        }}
+                        renderInput={(params) => (
+                          <TextField {...params} fullWidth />
+                        )}
+                      />
+                    </Grid>
+                    {/* <Grid item xs={4}>
                       <MobileDatePicker
                         views={["day"]}
                         label="Day"
@@ -326,8 +342,8 @@ export default function UserDetails(props) {
                           />
                         )}
                       />
-                    </Grid>
-                    <Grid item xs={4}>
+                    </Grid> */}
+                    {/* <Grid item xs={4}>
                       <MobileDatePicker
                         views={["month"]}
                         label="Month"
@@ -371,7 +387,7 @@ export default function UserDetails(props) {
                           />
                         )}
                       />
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
               </Grid>

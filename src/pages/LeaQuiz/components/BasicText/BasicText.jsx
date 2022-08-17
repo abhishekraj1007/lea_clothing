@@ -4,6 +4,7 @@ import { leaQuizActions } from "../../store/slice/leaQuizSlice";
 import { styles } from "../../styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useEffect } from "react";
 
 export default function BasicText({ subHeadingText, headingText }) {
   const dispatch = useDispatch();
@@ -11,9 +12,15 @@ export default function BasicText({ subHeadingText, headingText }) {
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleSlide = () => {
-    dispatch(leaQuizActions.incrementSlideCount());
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(leaQuizActions.incrementSlideCount());
+    }, 2000);
+  }, []);
+
+  // const handleSlide = () => {
+  //   dispatch(leaQuizActions.incrementSlideCount());
+  // };
 
   return (
     <Grid container justifyContent="center" spacing={1}>
@@ -32,7 +39,7 @@ export default function BasicText({ subHeadingText, headingText }) {
         sm={10}
         md={8}
         sx={mobileView ? styles.mobileHeadingText : styles.headingText}
-        onClick={handleSlide}
+        // onClick={handleSlide}
       >
         {headingText}
       </Grid>

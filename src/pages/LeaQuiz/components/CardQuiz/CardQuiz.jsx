@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import hourglassImgUrl from "../../../../assets/Hourglass.png";
+import hourglassImgUrl from "../../../../assets/Hourglass-2.svg";
 import rectangleImgUrl from "../../../../assets/Rectangle.png";
 import pearImgUrl from "../../../../assets/Pear.png";
 import appleImgUrl from "../../../../assets/Apple.png";

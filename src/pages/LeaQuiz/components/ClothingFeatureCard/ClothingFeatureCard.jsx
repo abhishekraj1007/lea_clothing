@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import waistImgUrl from "../../../../assets/waist.png";
-import legsImgUrl from "../../../../assets/legs-1.png";
+import waistImgUrl from "../../../../assets/waist-2.svg";
+import legsImgUrl from "../../../../assets/legs-2.svg";
 import leftArmImgUrl from "../../../../assets/left-arm.png";
 import neckImgUrl from "../../../../assets/neck.png";
 import backImgUrl from "../../../../assets/back.png";

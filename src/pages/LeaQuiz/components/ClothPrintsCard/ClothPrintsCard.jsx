@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import floralPrintUrl from "../../../../assets/floral3.jpg";
-import handEmbroideryPrintUrl from "../../../../assets/3D_Embroidery_Quiz_Image.jpg";
+import handEmbroideryPrintUrl from "../../../../assets/3D_Embroidery_Quiz_Image-edit.jpg";
 import resortPrintUrl from "../../../../assets/resort.jpg";
 import pearlEmbroideryUrl from "../../../../assets/Pearl_Embroidery_Quiz_Image.jpg";
 import geometricPrintUrl from "../../../../assets/geometric-pattern2.jpg";
@@ -288,17 +288,17 @@ export default function ClothPrintsCard(props) {
             <Paper
               sx={
                 tabletView
-                  ? selectedCards.includes("Sequins/Rhinestones")
+                  ? selectedCards.includes("Sequins / Rhinestones")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Sequins/Rhinestones")
+                  : selectedCards.includes("Sequins / Rhinestones")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
               onClick={() =>
-                handleCards("Sequins/Rhinestones", "Sequins, Rhinestones")
+                handleCards("Sequins / Rhinestones", "Sequins, Rhinestones")
               }
             >
               <Stack
@@ -315,7 +315,7 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sequins/Rhinestones"}</Box>
+                <Box>{"Sequins / Rhinestones"}</Box>
               </Stack>
             </Paper>
           </Grid>

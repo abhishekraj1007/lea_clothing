@@ -12,9 +12,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import topImgUrl from "../../../../assets/crop-top-1.png";
 import dressesImgUrl from "../../../../assets/dress.png";
 import bottomsImgUrl from "../../../../assets/legs-1.png";
-import loungewearImgUrl from "../../../../assets/Loungewear.png";
+import loungewearImgUrl from "../../../../assets/Loungewear.svg";
 import accessoriesImgUrl from "../../../../assets/accessories.png";
-import ethnicwearImgUrl from "../../../../assets/accessories.png";
+import ethnicwearImgUrl from "../../../../assets/Ethnicwear.svg";
 
 export default function PriceRangeSlider(props) {
   const { subHeadingText, headingText, progress, prevProgress } = props;
@@ -598,7 +598,7 @@ export default function PriceRangeSlider(props) {
                   <Box sx={{ width: "30%" }}>
                     <Box sx={styles.rangeChipAvatar}>
                       <img
-                        src={accessoriesImgUrl}
+                        src={ethnicwearImgUrl}
                         alt="Ethnicwear"
                         width="60%"
                       />

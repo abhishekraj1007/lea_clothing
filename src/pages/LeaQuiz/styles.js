@@ -7,7 +7,6 @@ const headingText = {
   fontWeight: "500",
   textAlign: "center",
   lineHeight: "3rem",
-  cursor: "pointer",
 };
 
 const mobileHeadingText = {

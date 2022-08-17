@@ -13,7 +13,7 @@ import topImgUrl from "../../../../assets/crop-top-1.png";
 import dressesImgUrl from "../../../../assets/dress.png";
 import bottomsImgUrl from "../../../../assets/legs-1.png";
 import loungewearImgUrl from "../../../../assets/Loungewear.svg";
-import accessoriesImgUrl from "../../../../assets/accessories.png";
+import accessoriesImgUrl from "../../../../assets/accessories.svg";
 import ethnicwearImgUrl from "../../../../assets/Ethnicwear.svg";
 
 export default function PriceRangeSlider(props) {

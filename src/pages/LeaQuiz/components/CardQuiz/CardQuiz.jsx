@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import hourglassImgUrl from "../../../../assets/Hourglass-2.svg";
-import rectangleImgUrl from "../../../../assets/Rectangle.png";
-import pearImgUrl from "../../../../assets/Pear.png";
-import appleImgUrl from "../../../../assets/Apple.png";
-import triangleImgUrl from "../../../../assets/Inverted-Triangle.png";
+import hourglassImgUrl from "../../../../assets/Hourglass.svg";
+import rectangleImgUrl from "../../../../assets/Rectangle.svg";
+import pearImgUrl from "../../../../assets/Pear.svg";
+import appleImgUrl from "../../../../assets/Apple.svg";
+import triangleImgUrl from "../../../../assets/Inverted-Triangle.svg";
 
 import hourglassShapImg from "../../../../assets/hourglass-shap.png";
 import rectangleShapImg from "../../../../assets/rectangle-shap.png";

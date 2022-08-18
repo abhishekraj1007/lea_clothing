@@ -14,7 +14,7 @@ import dressesImgUrl from "../../../../assets/dress.png";
 import bottomsImgUrl from "../../../../assets/legs-1.png";
 import loungewearImgUrl from "../../../../assets/Loungewear.svg";
 import accessoriesImgUrl from "../../../../assets/accessories.svg";
-import ethnicwearImgUrl from "../../../../assets/Ethnicwear icon.png";
+import ethnicwearImgUrl from "../../../../assets/Ethnicwear-icon.png";
 
 export default function PriceRangeSlider(props) {
   const { subHeadingText, headingText, progress, prevProgress } = props;
@@ -600,7 +600,7 @@ export default function PriceRangeSlider(props) {
                       <img
                         src={ethnicwearImgUrl}
                         alt="Ethnicwear"
-                        width="60%"
+                        width="80%"
                       />
                     </Box>
                   </Box>
@@ -653,7 +653,7 @@ export default function PriceRangeSlider(props) {
                       <img
                         src={ethnicwearImgUrl}
                         alt="Ethnicwear"
-                        width="60%"
+                        width="80%"
                       />
                     </Box>
                   </Box>

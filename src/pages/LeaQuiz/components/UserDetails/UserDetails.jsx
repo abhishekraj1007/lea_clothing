@@ -139,7 +139,7 @@ export default function UserDetails(props) {
     return obj;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async  () => {
     if (userEmail === "") setIsSubmit(true);
     if (!isError) {
       const finalQuizObj = getQuizPayload(userEmail, birthDate);
@@ -148,7 +148,7 @@ export default function UserDetails(props) {
       );
 
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
-      recommend(finalQuizObj, userEmail);
+      await recommend(finalQuizObj, userEmail);
     }
   };
 

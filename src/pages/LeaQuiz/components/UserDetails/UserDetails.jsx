@@ -76,6 +76,8 @@ export default function UserDetails(props) {
       const recommendationData = await LeaQuizApi.getRecommendation(
         finalQuizObj
       );
+
+      console.log('recommendationData...................', recommendationData);
       if (recommendationData) {
         localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 95;
@@ -92,29 +94,30 @@ export default function UserDetails(props) {
         );
 
         // making an API call to the customer about this
-        const emailerResponse = await fetch(
-          `https://lea-clothing.herokuapp.com/send-coupon-mail`,
-          {
-            method: "POST",
-            mode: "cors",
-            cache: `no-cache`,
-            body: JSON.stringify({
-              personalizeResponse: recommendationData,
-              email: userEmail,
-              discountData: "",
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (emailerResponse.ok) {
-          toast.success("Mail sent successfully");
-        }
+        fetch(`https://lea-clothing.herokuapp.com/send-coupon-mail`, {
+          method: "POST",
+          mode: "cors",
+          cache: `no-cache`,
+          body: JSON.stringify({
+            personalizeResponse: recommendationData,
+            email: userEmail,
+            discountData: "",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              toast.success("Mail sent successfully");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error("could not send the email");
+          });
       }
     } catch (error) {
-      toast.error("could not send the email");
       console.log(error);
     }
     dispatch(leaQuizActions.updateLoadingStatus(false));
@@ -139,7 +142,7 @@ export default function UserDetails(props) {
     return obj;
   };
 
-  const handleSubmit = async  () => {
+  const handleSubmit = () => {
     if (userEmail === "") setIsSubmit(true);
     if (!isError) {
       const finalQuizObj = getQuizPayload(userEmail, birthDate);
@@ -148,7 +151,9 @@ export default function UserDetails(props) {
       );
 
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
-      await recommend(finalQuizObj, userEmail);
+      recommend(finalQuizObj, userEmail)
+        .then()
+        .catch((error) => console.error(error));
     }
   };
 

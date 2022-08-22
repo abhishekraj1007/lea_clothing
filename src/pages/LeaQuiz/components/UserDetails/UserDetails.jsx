@@ -97,22 +97,19 @@ export default function UserDetails(props) {
         );
 
         // making an API call to the customer about this
-        fetch(
-          `https://11d5-2409-4065-48f-d544-f528-b8c7-43dd-e51a.ngrok.io/send-coupon-mail`,
-          {
-            method: "POST",
-            mode: "cors",
-            cache: `no-cache`,
-            body: JSON.stringify({
-              personalizeResponse: recommendationData,
-              email: userEmail,
-              discountData: "",
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        fetch(`https://lea-clothing.herokuapp.com/send-coupon-mail`, {
+          method: "POST",
+          mode: "cors",
+          cache: `no-cache`,
+          body: JSON.stringify({
+            personalizeResponse: recommendationData,
+            email: userEmail,
+            discountData: "",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
           .then((response) => {
             if (response.ok) {
               toast.success("Mail sent successfully");

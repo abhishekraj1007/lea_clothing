@@ -10,7 +10,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function ColorCard(props) {
-  const { instructionText, headingText, progress, isSkippable } = props;
+  const { instructionText, headingText, progress, prevProgress, isSkippable } =
+    props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -62,7 +63,11 @@ export default function ColorCard(props) {
         >
           <IconButton
             sx={{ color: "#D3AED2" }}
-            onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+            onClick={() => {
+              dispatch(leaQuizActions.decrementSlideCount(8));
+              if (prevProgress)
+                dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+            }}
           >
             <ArrowCircleLeftIcon fontSize="large" />
           </IconButton>
@@ -434,7 +439,13 @@ export default function ColorCard(props) {
             >
               <IconButton
                 sx={{ color: "#D3AED2" }}
-                onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+                onClick={() => {
+                  dispatch(leaQuizActions.decrementSlideCount(8));
+                  if (prevProgress)
+                    dispatch(
+                      leaQuizActions.decrementProgress({ prevProgress })
+                    );
+                }}
               >
                 <ArrowCircleLeftIcon fontSize="large" />
               </IconButton>

@@ -76,7 +76,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                   style="
                     font-family: 'Roboto', sans-serif;
                     font-size: 2.3rem;
-                    font-weight: 700;
+                    font-weight: 500;
                     color: #6c4a6d;
                     line-height: 35px;
                     text-transform: uppercase;
@@ -104,7 +104,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     style="
                       font-family: 'Roboto', sans-serif;
                       font-size: 1.8rem;
-                      font-weight: 600;
+                      font-weight: 400;
                       color: #fff;
                       line-height: 18px;
                       text-transform: uppercase;
@@ -126,7 +126,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     style="
                       font-family: 'Montserrat', sans-serif;
                       font-size: 1.9rem;
-                      font-weight: 300;
+                      font-weight: 200;
                       color: #6c4a6d;
                       line-height: 42px;
                       letter-spacing: 1.2px;
@@ -148,7 +148,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     style="
                       font-family: 'Roboto', sans-serif;
                       font-size: 3rem;
-                      font-weight: 800;
+                      font-weight: 500;
                       color: #d3aed2;
                       line-height: 50px;
                       text-transform: uppercase;
@@ -179,7 +179,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                       display: flex;
                       font-family: 'Roboto', sans-serif;
                       font-size: 1.5rem;
-                      font-weight: 500;
+                      font-weight: 400;
                       line-height: 24px;
                       width: 50%;
                       justify-content: center;
@@ -205,7 +205,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                       display: flex;
                       font-family: 'Roboto', sans-serif;
                       font-size: 1.8rem;
-                      font-weight: 600;
+                      font-weight: 500;
                       line-height: 24px;
                       width: 20%;
                       margin: auto;
@@ -325,7 +325,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     background-color: #d3aed2;
                     color: #fff;
                     font-size: 1.5rem;
-                    font-weight: 600;
+                    font-weight: 400;
                     line-height: 25px;
                     text-transform: uppercase;
                     padding: 1.5rem;
@@ -349,7 +349,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     background-color: transparent;
                     color: #d3aed2;
                     font-size: 1.4rem;
-                    font-weight: 600;
+                    font-weight: 400;
                     line-height: 20px;
                     text-transform: uppercase;
                     padding: 1.2rem;

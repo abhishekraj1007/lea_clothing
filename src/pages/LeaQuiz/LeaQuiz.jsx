@@ -91,7 +91,7 @@ const LeaQuiz = () => {
                 "I've worn all my clothes to death and need an upgrade.",
                 "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "Looking to revamp my ethnic wardrobe.",
-                "Browing for Bridesmaid/Wedding Duty.",
+                "Browsing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
               values={[
@@ -99,7 +99,7 @@ const LeaQuiz = () => {
                 "I've worn all my clothes to death and need an upgrade.",
                 "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "Looking to revamp my ethnic wardrobe.",
-                "Browing for Bridesmaid/Wedding Duty.",
+                "Browsing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
               progress={5}
@@ -172,6 +172,7 @@ const LeaQuiz = () => {
               instructionText={"All sizes are in"}
               boldText={"Inches"}
               progress={10}
+              prevProgress={5}
               isSkippable={false}
             />
           }
@@ -289,6 +290,7 @@ const LeaQuiz = () => {
               headingText={"What colour palettes are you most attracted to?"}
               instructionText={"Pick as many as you'd like!"}
               progress={5}
+              prevProgress={5}
               isSkippable={false}
             />
           }

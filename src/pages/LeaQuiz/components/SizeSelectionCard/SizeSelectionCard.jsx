@@ -48,6 +48,7 @@ export default function SizeSelectionCard(props) {
     headingText,
     instructionText,
     progress,
+    prevProgress,
     boldText,
     isSkippable,
   } = props;
@@ -176,7 +177,11 @@ export default function SizeSelectionCard(props) {
           >
             <IconButton
               sx={{ color: "#D3AED2" }}
-              onClick={() => dispatch(leaQuizActions.decrementSlideCount())}
+              onClick={() => {
+                dispatch(leaQuizActions.decrementSlideCount(2));
+                if (prevProgress)
+                  dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+              }}
             >
               <ArrowCircleLeftIcon fontSize="large" />
             </IconButton>
@@ -637,9 +642,13 @@ export default function SizeSelectionCard(props) {
                 >
                   <IconButton
                     sx={{ color: "#D3AED2" }}
-                    onClick={() =>
-                      dispatch(leaQuizActions.decrementSlideCount())
-                    }
+                    onClick={() => {
+                      dispatch(leaQuizActions.decrementSlideCount(2));
+                      if (prevProgress)
+                        dispatch(
+                          leaQuizActions.decrementProgress({ prevProgress })
+                        );
+                    }}
                   >
                     <ArrowCircleLeftIcon fontSize="large" />
                   </IconButton>

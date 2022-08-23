@@ -5,8 +5,7 @@ import cookieParser from "cookie-parser";
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import "dotenv/config";
 
-import emailer from './emailer.js';
-
+import emailer from "./emailer.js";
 
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
@@ -32,10 +31,48 @@ Shopify.Context.initialize({
 // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
 // persist this object in your app.
 const ACTIVE_SHOPIFY_SHOPS = {};
+
 Shopify.Webhooks.Registry.addHandler("APP_UNINSTALLED", {
   path: "/webhooks",
   webhookHandler: async (topic, shop, body) => {
     delete ACTIVE_SHOPIFY_SHOPS[shop];
+  },
+});
+
+Shopify.Webhooks.Registry.addHandler("PRODUCTS_CREATE", {
+  path: "/webhooks",
+  webhookHandler: async function (topic, shop, body) {
+    console.log("PRODUCT CREATE EVENT TRIGGERED", body);
+    fetch("https://a3bc-223-190-87-73.in.ngrok.io/test-webhooks", {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Request successful");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+});
+
+Shopify.Webhooks.Registry.addHandler("PRODUCTS_UPDATE", {
+  path: "/webhooks",
+  webhookHandler: async function (topic, shop, body) {
+    console.log("PRODUCT UPDATE EVENT TRIGGERED", body);
+  },
+});
+
+Shopify.Webhooks.Registry.addHandler("PRODUCTS_DELETE", {
+  path: "/webhooks",
+  webhookHandler: async function (topic, shop, body) {
+    console.log("PRODUCT UPDATE EVENT TRIGGERED", body);
   },
 });
 

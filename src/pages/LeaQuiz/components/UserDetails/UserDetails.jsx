@@ -77,8 +77,7 @@ export default function UserDetails(props) {
         finalQuizObj
       );
 
-      console.log('recommendationData...................', recommendationData);
-      if (recommendationData) {
+      if (recommendationData && recommendationData?.response) {
         localStorage.setItem("userEmailId", `${userEmail}`);
         let prevProgress = 95;
         dispatch(leaQuizActions.decrementSlideCount(1));
@@ -117,10 +116,11 @@ export default function UserDetails(props) {
             toast.error("could not send the email");
           });
       }
+
+      dispatch(leaQuizActions.updateLoadingStatus(false));
     } catch (error) {
       console.log(error);
     }
-    dispatch(leaQuizActions.updateLoadingStatus(false));
   };
 
   const getQuizPayload = (userEmail, birthDate) => {
@@ -142,7 +142,7 @@ export default function UserDetails(props) {
     return obj;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (userEmail === "") setIsSubmit(true);
     if (!isError) {
       const finalQuizObj = getQuizPayload(userEmail, birthDate);
@@ -151,9 +151,7 @@ export default function UserDetails(props) {
       );
 
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
-      recommend(finalQuizObj, userEmail)
-        .then()
-        .catch((error) => console.error(error));
+      await recommend(finalQuizObj, userEmail);
     }
   };
 

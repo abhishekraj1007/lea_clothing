@@ -39,43 +39,6 @@ Shopify.Webhooks.Registry.addHandler("APP_UNINSTALLED", {
   },
 });
 
-// Shopify.Webhooks.Registry.addHandler("PRODUCTS_CREATE", {
-//   path: "/webhooks",
-//   webhookHandler: async function (topic, shop, body) {
-//     console.log("PRODUCT CREATE EVENT TRIGGERED", body);
-//     fetch("https://a3bc-223-190-87-73.in.ngrok.io/test-webhooks", {
-//       method: "POST",
-//       mode: "no-cors",
-//       body: JSON.stringify(body),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//       .then((response) => {
-//         if (response.ok) {
-//           console.log("Request successful");
-//         }
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   },
-// });
-
-// Shopify.Webhooks.Registry.addHandler("PRODUCTS_UPDATE", {
-//   path: "/webhooks",
-//   webhookHandler: async function (topic, shop, body) {
-//     console.log("PRODUCT UPDATE EVENT TRIGGERED", body);
-//   },
-// });
-
-// Shopify.Webhooks.Registry.addHandler("PRODUCTS_DELETE", {
-//   path: "/webhooks",
-//   webhookHandler: async function (topic, shop, body) {
-//     console.log("PRODUCT UPDATE EVENT TRIGGERED", body);
-//   },
-// });
-
 // export for test use only
 export async function createServer(
   root = process.cwd(),

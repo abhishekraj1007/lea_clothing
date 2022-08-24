@@ -8,15 +8,33 @@ import TableRow from "@mui/material/TableRow";
 import { Box, Card, IconButton, Paper } from "@mui/material";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import AddEditStyleProduct from "./AddEditStyleProduct";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import StyleProductApi from "../../services/api/StyleProductApi";
+import { styleProductActions } from "./store/slice/styleProductSlice";
 // import { useNavigate } from "react-router-dom";
 
 export default function StyleProductTable() {
   //   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [selectedProductIndex, setSelectedProductIndex] = useState(null);
   const [openProuctModal, setOpenProductModal] = useState(false);
   const rowsData = useSelector((state) => state.styleProduct.allStyleProducts);
+
+  useEffect(async () => {
+    try {
+      const resData = await StyleProductApi.getAllStyles();
+
+      if (resData) {
+        console.log("resData---", resData);
+        let updateArray = resData;
+        dispatch(styleProductActions.updateStyleProduct({ updateArray }));
+        dispatch(styleProductActions.updateSlideStyles({ updateArray }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const onEditHandler = (rowID) => {
     // navigate(`/style-product/${rowID}/edit`);

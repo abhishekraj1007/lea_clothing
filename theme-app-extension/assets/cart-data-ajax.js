@@ -14,9 +14,9 @@ let productsRes = "";
 
 function createElements() {
   let products = productsRes.length;
-  if (productsRes.length > 4) {
-    products = 4;
-  }
+  // if (productsRes.length > 4) {
+  //   products = 4;
+  // }
 
   for (let i = 0; i < products; i++) {
     let item = productsRes[i];

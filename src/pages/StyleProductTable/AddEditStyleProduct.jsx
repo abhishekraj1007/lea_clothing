@@ -14,9 +14,11 @@ import {
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { styleProductActions } from "./store/slice/styleProductSlice";
 import CloseIcon from "@mui/icons-material/Close";
+import StyleProductApi from "../../services/api/StyleProductApi";
+import toast from "react-hot-toast";
 
 const AddEditStyleProduct = ({
   openProuctModal,
@@ -31,6 +33,8 @@ const AddEditStyleProduct = ({
   const [attribute, setAttribute] = useState("");
   const [value, setValue] = useState("");
 
+  const rowsData = useSelector((state) => state.styleProduct.allStyleProducts);
+
   useEffect(() => {
     console.log("value", value);
     console.log("attribute", attribute);
@@ -43,19 +47,37 @@ const AddEditStyleProduct = ({
     }
   }, [value, attribute, imgURL]);
 
-  const handleSubmit = () => {
+  const updateStyles = async (updateArray) => {
     setLoading(true);
+    try {
+      const resData = await StyleProductApi.updateStyle(updateArray);
+
+      if (resData) {
+        dispatch(styleProductActions.updateStyleProduct({ updateArray }));
+        dispatch(styleProductActions.updateSlideStyles({ updateArray }));
+        toast.success(`${resData.response}`);
+        setLoading(false);
+        setOpenProductModal(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("could not able to update product");
+    }
+    setLoading(false);
+  };
+
+  const handleSubmit = () => {
     let index = selectedProductIndex;
     let newProductData = {
       attribute: attribute,
       value: value,
       imgUrl: imgURL,
     };
-    dispatch(styleProductActions.updateStyleProduct({ newProductData, index }));
-    setTimeout(() => {
-      setLoading(false);
-      setOpenProductModal(false);
-    }, 2000);
+    let copyAllStyleProducts = [...rowsData];
+    copyAllStyleProducts[index] = { ...newProductData };
+    const updateArray = copyAllStyleProducts;
+    // calling API function
+    updateStyles(updateArray);
   };
 
   return (
@@ -103,7 +125,11 @@ const AddEditStyleProduct = ({
         </Grid>
 
         <DialogActions>
-          <Button variant="outlined" onClick={() => setOpenProductModal(false)}>
+          <Button
+            variant="outlined"
+            onClick={() => setOpenProductModal(false)}
+            disabled={loading}
+          >
             {"Close"}
           </Button>
           <LoadingButton

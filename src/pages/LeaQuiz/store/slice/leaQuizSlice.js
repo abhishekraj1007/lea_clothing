@@ -212,6 +212,7 @@ const initialState = {
   userDeatils: { Email: "", DOB: "" },
   isQuizTaken: false,
   loading: false,
+  isRetake: false,
 };
 
 const leaQuizSlice = createSlice({
@@ -416,6 +417,10 @@ const leaQuizSlice = createSlice({
           state.quizData[questionIndex].Value.push(value);
         }
       }
+    },
+
+    updateRetakeQuiz(state, action) {
+      state.isRetake = action.payload;
     },
   },
 });

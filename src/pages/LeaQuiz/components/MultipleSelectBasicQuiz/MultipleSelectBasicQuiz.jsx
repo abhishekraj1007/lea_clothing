@@ -24,6 +24,7 @@ const MultipleSelectBasicQuiz = (props) => {
   const dispatch = useDispatch();
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
   const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const retake = useSelector((state) => state.leaQuiz.isRetake);
   const [selectedCards, setSelectedCards] = useState([]);
   const [questionIndex, setQuestionIndex] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -237,9 +238,16 @@ const MultipleSelectBasicQuiz = (props) => {
               <IconButton
                 sx={{ color: "#6C4A6D" }}
                 onClick={() => {
-                  dispatch(leaQuizActions.incrementSlideCount());
-                  if (progress)
-                    dispatch(leaQuizActions.incrementProgress({ progress }));
+                  if (slideCount === 1 && retake === true) {
+                    dispatch(leaQuizActions.incrementSlideCount(3));
+                    if (progress) {
+                      dispatch(leaQuizActions.incrementProgress({ progress }));
+                    }
+                  } else {
+                    dispatch(leaQuizActions.incrementSlideCount());
+                    if (progress)
+                      dispatch(leaQuizActions.incrementProgress({ progress }));
+                  }
                 }}
                 disabled={isDisabled}
               >
@@ -263,9 +271,16 @@ const MultipleSelectBasicQuiz = (props) => {
           <IconButton
             sx={{ color: "#6C4A6D" }}
             onClick={() => {
-              dispatch(leaQuizActions.incrementSlideCount());
-              if (progress)
-                dispatch(leaQuizActions.incrementProgress({ progress }));
+              if (slideCount === 1 && retake === true) {
+                dispatch(leaQuizActions.incrementSlideCount(3));
+                if (progress) {
+                  dispatch(leaQuizActions.incrementProgress({ progress }));
+                }
+              } else {
+                dispatch(leaQuizActions.incrementSlideCount());
+                if (progress)
+                  dispatch(leaQuizActions.incrementProgress({ progress }));
+              }
             }}
             disabled={isDisabled}
           >

@@ -54,6 +54,7 @@ export default function SizeSelectionCard(props) {
   } = props;
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.leaQuiz.quizData);
+  const retake = useSelector((state) => state.leaQuiz.isRetake);
   const [selectedSizes, setSelectedSizes] = useState({
     Bust: "",
     Waist: "",
@@ -178,9 +179,19 @@ export default function SizeSelectionCard(props) {
             <IconButton
               sx={{ color: "#D3AED2" }}
               onClick={() => {
-                dispatch(leaQuizActions.decrementSlideCount(2));
-                if (prevProgress)
-                  dispatch(leaQuizActions.decrementProgress({ prevProgress }));
+                if (retake === true) {
+                  dispatch(leaQuizActions.decrementSlideCount(1));
+                  if (prevProgress)
+                    dispatch(
+                      leaQuizActions.decrementProgress({ prevProgress })
+                    );
+                } else {
+                  dispatch(leaQuizActions.decrementSlideCount(2));
+                  if (prevProgress)
+                    dispatch(
+                      leaQuizActions.decrementProgress({ prevProgress })
+                    );
+                }
               }}
             >
               <ArrowCircleLeftIcon fontSize="large" />
@@ -643,11 +654,19 @@ export default function SizeSelectionCard(props) {
                   <IconButton
                     sx={{ color: "#D3AED2" }}
                     onClick={() => {
-                      dispatch(leaQuizActions.decrementSlideCount(2));
-                      if (prevProgress)
-                        dispatch(
-                          leaQuizActions.decrementProgress({ prevProgress })
-                        );
+                      if (retake === true) {
+                        dispatch(leaQuizActions.decrementSlideCount(1));
+                        if (prevProgress)
+                          dispatch(
+                            leaQuizActions.decrementProgress({ prevProgress })
+                          );
+                      } else {
+                        dispatch(leaQuizActions.decrementSlideCount(2));
+                        if (prevProgress)
+                          dispatch(
+                            leaQuizActions.decrementProgress({ prevProgress })
+                          );
+                      }
                     }}
                   >
                     <ArrowCircleLeftIcon fontSize="large" />

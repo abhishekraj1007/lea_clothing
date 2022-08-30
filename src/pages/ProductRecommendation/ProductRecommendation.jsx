@@ -85,6 +85,7 @@ export default function ProductRecommendation() {
 
   const handleRetake = () => {
     dispatch(leaQuizActions.updateQuizStatus(false));
+    dispatch(leaQuizActions.updateRetakeQuiz(true));
   };
 
   return (

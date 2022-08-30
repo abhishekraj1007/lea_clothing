@@ -151,6 +151,7 @@ export default function UserDetails(props) {
       );
 
       dispatch(leaQuizActions.updateFinalQuizData({ finalQuizObj }));
+      dispatch(leaQuizActions.updateRetakeQuiz(false));
       await recommend(finalQuizObj, userEmail);
     }
   };

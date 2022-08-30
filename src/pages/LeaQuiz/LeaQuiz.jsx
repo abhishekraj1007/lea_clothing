@@ -67,6 +67,7 @@ const LeaQuiz = () => {
   const dispatch = useDispatch();
   const slideCount = useSelector((state) => state.leaQuiz.slideCount);
   const loading = useSelector((state) => state.leaQuiz.loading);
+  const retake = useSelector((state) => state.leaQuiz.isRetake);
   const styleSlides = useSelector((state) => state.styleProduct.slideStyles);
 
   useEffect(async () => {
@@ -122,7 +123,7 @@ const LeaQuiz = () => {
                 "Browsing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
-              progress={5}
+              progress={retake ? 10 : 5}
               isSkippable={false}
             />
           }
@@ -192,7 +193,7 @@ const LeaQuiz = () => {
               instructionText={"All sizes are in"}
               boldText={"Inches"}
               progress={10}
-              prevProgress={5}
+              prevProgress={retake ? 10 : 5}
               isSkippable={false}
             />
           }

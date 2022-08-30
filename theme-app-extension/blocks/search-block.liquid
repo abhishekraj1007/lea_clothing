@@ -1,22 +1,44 @@
-<!-- <cart-data-ajax data-id="{{ block.id }}">
-    <div class="cart-container">
-      <div class="cart-head">
-        <div class="heading-text">
-          MORE FOR YOU
-        </div>
-        <div class="more-link">
-       
-        </div>
+<search-block data-id="{{ block.id }}">
+  <div class="container">
+  
+    <div class="head">
+    </div>
+  
+    <div class="carousel">
+      <div class="carousel-btn">
+        <button id="backBtn" class="arrow-btn disable-btn" onclick="handleCarousel('backward')">
+          <img src="{{ 'Arrow_backward.png' | asset_url }}" loading="lazy" width="10" height="10" class="arrow_icon">
+        </button>
       </div>
-    
-      <div class="cart-product-container">
+  
+      <div class="product-container"></div>
+  
+      <div class="carousel-btn">
+        <button id="nextBtn" class="arrow-btn" onclick="handleCarousel('forward')">
+          <img src="{{ 'Arrow_forward.png' | asset_url }}" loading="lazy" width="10" height="10" class="arrow_icon">
+        </button>
       </div>
     </div>
-  </cart-data-ajax> -->
-
-  <div>
-    <h1>This is the search block</h1>
+  
+    <div class="mobile-carousel">
+      <div class="mobile-product-container"></div>
+  
+      <div class="mobile-btn-container">
+        <div class="mobile-carousel-btn arrow_back">
+          <button id="mobileBackBtn" class="arrow-btn disable-btn" onclick="mobileHandleCarousel('backward')">
+            <img src="{{ 'Arrow_backward.png' | asset_url }}" loading="lazy" width="20" height="20" class="arrow_icon">
+          </button>
+        </div>
+        <div class="mobile-carousel-btn arrow_next">
+          <button id="mobileNextBtn" class="arrow-btn arrow_next" onclick="mobileHandleCarousel('forward')">
+            <img src="{{ 'Arrow_forward.png' | asset_url }}" loading="lazy" width="10" height="10" class="arrow_icon">
+          </button>
+        </div>
+      </div>
+    </div>
+  
   </div>
+  </search-block>
       
   {% schema %}
     {

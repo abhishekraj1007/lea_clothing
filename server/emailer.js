@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import mailer from "nodemailer";
+import emoji from "node-emoji";
 
 router.post("/send-coupon-mail", async (req, res) => {
   try {
@@ -29,7 +30,10 @@ router.post("/send-coupon-mail", async (req, res) => {
     let info = await transporter.sendMail({
       from: "notifications@leaclothingco.com",
       to: email,
-      subject: "Coupon Email", // Subject line
+      subject: `The results are in--you have GREAT style! ${emoji.get(
+        "smiley"
+      )}`, // Subject line
+      text: "Welcome to your style room, shop personalized Lea Looks for you!",
       html: `<!DOCTYPE html>
       <html lang="en">
         <head>

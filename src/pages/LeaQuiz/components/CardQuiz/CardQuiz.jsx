@@ -48,6 +48,9 @@ export default function CardQuiz(props) {
       value,
     };
     dispatch(leaQuizActions.updateCardQuiz(quizObj));
+
+    dispatch(leaQuizActions.incrementSlideCount());
+    if (progress) dispatch(leaQuizActions.incrementProgress({ progress }));
   };
 
   return (

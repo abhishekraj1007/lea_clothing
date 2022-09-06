@@ -3,6 +3,8 @@ const router = express.Router();
 import mailer from "nodemailer";
 import emoji from "node-emoji";
 
+console.log(emoji.search("smi"));
+
 router.post("/send-coupon-mail", async (req, res) => {
   try {
     const { personalizeResponse, email, discountData } = req.body;
@@ -10,7 +12,7 @@ router.post("/send-coupon-mail", async (req, res) => {
     // we will process the discount data when we have it
     const productUrls = personalizeResponse.response.map((item) => item.IMGURL);
 
-    const ideal_size = personalizeResponse?.response[0].Size || "";
+    const ideal_size = personalizeResponse.response[0].Size || "";
 
     let transporter = mailer.createTransport({
       host: process.env.EMAIL_HOST,
@@ -87,7 +89,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     text-shadow: 2.1px 1px 1.8px rgba(108, 74, 109, 0.3);
                   "
                 >
-                  YOU'RE AWESOME, AND SO ARE YOUR CHOICES!
+                Welcome to your style room, shop personalized Lea Looks for you!
                 </h2>
               </td>
             </tr>

@@ -132,14 +132,17 @@ export default function ClothStyleCard(props) {
                   <Box
                     sx={{
                       width: "100%",
-                      minHeight: `${mobileView ? "100px" : "200px"}`,
+                      height: `${mobileView ? "150px" : "300px"}`,
                     }}
                   >
                     <img
                       src={item.imgUrl}
                       alt={item.attribute}
-                      width="100%"
-                      height="100%"
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
                     />
                   </Box>
                   <Box>{item.attribute}</Box>

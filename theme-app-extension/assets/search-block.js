@@ -47,7 +47,7 @@ function createElements() {
 
     const productPrice = document.createElement("div");
     productPrice.setAttribute("class", "product_price");
-    productPrice.textContent = `Rs. ${item.Price}`;
+    productPrice.textContent = `${item.Price}`;
 
     mainContainer.appendChild(product);
     product.appendChild(figure);
@@ -78,7 +78,7 @@ function createMobileElements() {
 
     const productPrice = document.createElement("div");
     productPrice.setAttribute("class", "product_price");
-    productPrice.textContent = `Rs. ${item.Price}`;
+    productPrice.textContent = `${item.Price}`;
 
     mobileContainer.appendChild(product);
     product.appendChild(figure);

@@ -37,7 +37,7 @@ function createElements() {
 
     const productPrice = document.createElement("div");
     productPrice.setAttribute("class", "product_price");
-    productPrice.textContent = `Rs. ${item.Price}`;
+    productPrice.textContent = `${item.Price}`;
 
     mainContainer.appendChild(product);
     product.appendChild(figure);
@@ -57,8 +57,7 @@ class CartDataAjax extends HTMLElement {
     let cartSection = document.getElementById(
       "shopify-block-f7b99d12-5df0-425e-9ef2-1024abc53885"
     );
-    cartSection.style =
-      "display: flex; justify-content: flex-end; margin: 2rem 0;";
+    cartSection.style = "margin: 2rem 0;";
 
     const cartProducts = await cartContents();
 

@@ -111,13 +111,14 @@ image-gallery .product {
 
 image-gallery .image_wrapper {
   width: 100%;
-  min-height: 200px;
+  height: 300px;
   margin-bottom: 0.5rem;
 }
 
 image-gallery .product_img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 image-gallery .product_title {
@@ -255,6 +256,10 @@ image-gallery .size-link {
   image-gallery .product {
     width: 50%;
     padding: 0.5rem;
+  }
+
+  image-gallery .image_wrapper {
+    height: 150px;
   }
 
   image-gallery .product_title {

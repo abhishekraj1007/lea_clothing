@@ -3,11 +3,9 @@ const router = express.Router();
 import mailer from "nodemailer";
 import emoji from "node-emoji";
 
-console.log(emoji.search("smi"));
-
 router.post("/send-coupon-mail", async (req, res) => {
   try {
-    const { personalizeResponse, email, discountData } = req.body;
+    const { personalizeResponse, email } = req.body;
 
     // we will process the discount data when we have it
     const productUrls = personalizeResponse.response.map((item) => item.IMGURL);
@@ -32,9 +30,9 @@ router.post("/send-coupon-mail", async (req, res) => {
     let info = await transporter.sendMail({
       from: "notifications@leaclothingco.com",
       to: email,
-      subject: `The results are in--you have GREAT style! ${emoji.get(
-        "smiley"
-      )}`, // Subject line
+      subject: `The results are in--you have GREAT style!${emoji.get(
+        "heart_eyes"
+      )}${emoji.get("smiley")}${emoji.get("dancer")}`, // Subject line
       text: "Welcome to your style room, shop personalized Lea Looks for you!",
       html: `<!DOCTYPE html>
       <html lang="en">

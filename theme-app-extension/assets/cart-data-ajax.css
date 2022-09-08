@@ -60,13 +60,14 @@ cart-data-ajax .product {
 
 cart-data-ajax .image_wrapper {
   width: 100%;
-  min-height: 200px;
+  height: 340px;
   margin-bottom: 0.5rem;
 }
 
 cart-data-ajax .product_img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 cart-data-ajax .product_title {
@@ -98,6 +99,9 @@ cart-data-ajax .product_price {
   cart-data-ajax .product {
     width: 25%;
   }
+  cart-data-ajax .image_wrapper {
+    height: 340px;
+  }
 
   cart-data-ajax .cart-product-container::-webkit-scrollbar {
     height: 0.8rem;
@@ -118,11 +122,26 @@ cart-data-ajax .product_price {
   cart-data-ajax .product {
     width: 70%;
   }
+  cart-data-ajax .image_wrapper {
+    height: 200px;
+  }
 }
 
 @media only screen and (min-width: 375px) {
   cart-data-ajax .product {
     width: 50%;
+  }
+  cart-data-ajax .image_wrapper {
+    height: 220px;
+  }
+}
+
+@media only screen and (min-width: 425px) {
+  cart-data-ajax .product {
+    width: 50%;
+  }
+  cart-data-ajax .image_wrapper {
+    height: 240px;
   }
 }
 
@@ -130,11 +149,17 @@ cart-data-ajax .product_price {
   cart-data-ajax .product {
     width: 30%;
   }
+  cart-data-ajax .image_wrapper {
+    height: 280px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   cart-data-ajax .product {
     width: 25%;
+  }
+  cart-data-ajax .image_wrapper {
+    height: 340px;
   }
 
   cart-data-ajax .cart-product-container::-webkit-scrollbar {

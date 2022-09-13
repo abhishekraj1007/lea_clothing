@@ -111,13 +111,14 @@ search-block .product {
 
 search-block .image_wrapper {
   width: 100%;
-  min-height: 200px;
+  height: 300px;
   margin-bottom: 0.5rem;
 }
 
 search-block .product_img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 search-block .product_title {
@@ -255,6 +256,10 @@ search-block .size-link {
   search-block .product {
     width: 50%;
     padding: 0.5rem;
+  }
+
+  search-block .image_wrapper {
+    height: 150px;
   }
 
   search-block .product_title {

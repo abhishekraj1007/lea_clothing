@@ -82,7 +82,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     font-size: 2.3rem;
                     font-weight: 500;
                     color: #6c4a6d;
-                    line-height: 35px;
+                    line-height: 50px;
                     text-transform: uppercase;
                     text-shadow: 2.1px 1px 1.8px rgba(108, 74, 109, 0.3);
                   "

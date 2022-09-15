@@ -93,7 +93,7 @@ export default function UserDetails(props) {
         );
 
         // making an API call to the customer about this
-        fetch(`https://lea-clothing.herokuapp.com/send-coupon-mail`, {
+        fetch(`https://app.leaclothingco.com/send-coupon-mail`, {
           method: "POST",
           mode: "cors",
           cache: `no-cache`,

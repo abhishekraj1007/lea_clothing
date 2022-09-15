@@ -321,7 +321,7 @@ router.post("/send-coupon-mail", async (req, res) => {
             <tr>
               <td align="center" style="padding: 1rem 0;">
                 <a
-                  href="https://lea-clothing.herokuapp.com"
+                  href="https://app.leaclothingco.com"
                   class="style-room-link"
                   style="
                     display: inline-flex;
@@ -345,7 +345,7 @@ router.post("/send-coupon-mail", async (req, res) => {
             <tr>
               <td align="center" style="padding: 1rem 0;">
                 <a
-                  href="https://lea-clothing.herokuapp.com"
+                  href="https://app.leaclothingco.com"
                   class="retake-link"
                   style="
                     display: inline-flex;

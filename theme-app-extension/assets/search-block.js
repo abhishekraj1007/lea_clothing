@@ -197,17 +197,17 @@ class SearchBlock extends HTMLElement {
   async connectedCallback() {
     // window.cffCustomer -> undefined if user not logged in otherwise is an object containing user information
     // {name: 'john doe', email: 'abhishek.raj@algoscale.com', hasAccount: 'true', id: '6260460978418'}
-    // let userEmailId = !localStorage.getItem("userEmailId")
-    //   ? window.cffCustomer
-    //     ? window.cffCustomer?.email
-    //     : ""
-    //   : localStorage.getItem("userEmailId");
+    let userEmailId = !localStorage.getItem("userEmailId")
+      ? window.cffCustomer
+        ? window.cffCustomer?.email
+        : ""
+      : localStorage.getItem("userEmailId");
 
     // let product_title =
     //   window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];
 
-    // if (!userEmailId && !product_title) {
-    //   alert("invalid parameters for recommend API");
+    // if (!userEmailId) {
+    //   console.log("invalid parameters for recommend API");
     //   return;
     // }
 
@@ -222,7 +222,7 @@ class SearchBlock extends HTMLElement {
 
     const params = new URLSearchParams(window.location.search);
     const response = await fetch(
-      `${base_url}/search?query=${params.get("q")}`,
+      `${base_url}/search?query=${params.get("q")}&email=${userEmailId}`,
       { method: "GET", mode: "cors" }
     );
 

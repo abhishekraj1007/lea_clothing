@@ -188,7 +188,7 @@ class ImageGallery extends HTMLElement {
       window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];
 
     if (!userEmailId && !product_title) {
-      alert("invalid parameters for recommend API");
+      console.log("invalid parameters for recommend API");
       return;
     }
 

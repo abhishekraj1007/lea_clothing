@@ -144,7 +144,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Floral"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Floral"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -179,7 +187,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"3-D/Hand Embroidery"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"3-D/Hand Embroidery"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -212,7 +228,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Resort"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Resort"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -247,7 +271,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Pearl Embroidery"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Pearl Embroidery"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -280,7 +312,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Geometric"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Geometric"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -315,7 +355,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Sequins / Rhinestones"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Sequins / Rhinestones"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -348,7 +396,15 @@ export default function ClothPrintsCard(props) {
                     height="100%"
                   />
                 </Box>
-                <Box>{"Graphic"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Graphic"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -374,7 +430,15 @@ export default function ClothPrintsCard(props) {
                 spacing={2}
                 sx={{ height: "100%" }}
               >
-                <Box>{"None"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"None"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>

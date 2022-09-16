@@ -145,7 +145,15 @@ export default function ClothStyleCard(props) {
                       }}
                     />
                   </Box>
-                  <Box>{item.attribute}</Box>
+                  <Box
+                    sx={
+                      mobileView
+                        ? styles.titleTextMobile
+                        : styles.titleTextDesktop
+                    }
+                  >
+                    {item.attribute}
+                  </Box>
                 </Stack>
               </Paper>
             </Grid>

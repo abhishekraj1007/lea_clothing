@@ -112,6 +112,11 @@ export default function ColorCard(props) {
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
+              style={
+                !selectedCards.includes("Pastel")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
+              }
               elevation={0}
               variant="outlined"
               onClick={() => handleCards("Pastel", "Pastel")}
@@ -156,7 +161,15 @@ export default function ColorCard(props) {
                     style={{ backgroundColor: "#E1F8E8" }}
                   />
                 </Box>
-                <Box>{"Pastels"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Pastels"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -172,6 +185,11 @@ export default function ColorCard(props) {
                   : styles.outlinedCard
               }
               elevation={0}
+              style={
+                !selectedCards.includes("Neutral")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
+              }
               variant="outlined"
               onClick={() => handleCards("Neutral", "Neutral")}
             >
@@ -215,7 +233,15 @@ export default function ColorCard(props) {
                     style={{ backgroundColor: "#C1946D" }}
                   />
                 </Box>
-                <Box>{"Neutrals"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Neutrals"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -231,6 +257,11 @@ export default function ColorCard(props) {
                   : styles.outlinedCard
               }
               elevation={0}
+              style={
+                !selectedCards.includes("Earthly Tones")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
+              }
               variant="outlined"
               onClick={() => handleCards("Earthly Tones", "Earthly Tones")}
             >
@@ -274,7 +305,15 @@ export default function ColorCard(props) {
                     style={{ backgroundColor: "#772A28" }}
                   />
                 </Box>
-                <Box>{"Earthly Tones"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Earthly Tones"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -288,6 +327,11 @@ export default function ColorCard(props) {
                   : selectedCards.includes("Bright Hues")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
+              }
+              style={
+                !selectedCards.includes("Bright Hues")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
               }
               elevation={0}
               variant="outlined"
@@ -333,7 +377,15 @@ export default function ColorCard(props) {
                     style={{ backgroundColor: "#FB6777" }}
                   />
                 </Box>
-                <Box>{"Bright Hues"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Bright Hues"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -347,6 +399,11 @@ export default function ColorCard(props) {
                   : selectedCards.includes("Neon")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
+              }
+              style={
+                !selectedCards.includes("Neon")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
               }
               elevation={0}
               variant="outlined"
@@ -392,7 +449,15 @@ export default function ColorCard(props) {
                     style={{ backgroundColor: "#4EC6E1" }}
                   />
                 </Box>
-                <Box>{"Neons"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"Neons"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>
@@ -407,6 +472,11 @@ export default function ColorCard(props) {
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
+              style={
+                !selectedCards.includes("All")
+                  ? { color: "#6C4A6D" }
+                  : { color: "" }
+              }
               elevation={0}
               variant="outlined"
               onClick={() => handleCards("All", "All")}
@@ -418,7 +488,15 @@ export default function ColorCard(props) {
                 spacing={2}
                 sx={{ height: "100%" }}
               >
-                <Box>{"All"}</Box>
+                <Box
+                  sx={
+                    mobileView
+                      ? styles.titleTextMobile
+                      : styles.titleTextDesktop
+                  }
+                >
+                  {"All"}
+                </Box>
               </Stack>
             </Paper>
           </Grid>

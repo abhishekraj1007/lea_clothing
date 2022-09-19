@@ -16,7 +16,7 @@ function LinearProgressWithLabel(props) {
           variant="determinate"
           sx={{
             backgroundColor: "transparent",
-            height: "6px",
+            height: "7px",
             "& .MuiLinearProgress-bar": {
               backgroundColor: "#6C4A6D",
             },

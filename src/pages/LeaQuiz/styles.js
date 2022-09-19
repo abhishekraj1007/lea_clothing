@@ -83,7 +83,7 @@ const BasicSelectedOutlinedBtn = {
     // transition: "all 0.4s",
 
     color: "#000",
-    backgroundColor: "transparent",
+    backgroundColor: "#D3AED2",
     borderColor: "#D3AED2",
     transition: "all 0.4s",
   },
@@ -256,6 +256,24 @@ const mobileRangeChipText = {
   fontWeight: "500",
 };
 
+const titleTextDesktop = {
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "1rem",
+  fontWeight: "400",
+};
+
+const mobileStyleTitleText = {
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "0.7rem",
+  fontWeight: "400",
+};
+
+const titleTextMobile = {
+  fontFamily: "Montserrat, sans-serif",
+  fontSize: "0.75rem",
+  fontWeight: "500",
+};
+
 export const styles = {
   headingText,
   subHeadingText,
@@ -281,4 +299,7 @@ export const styles = {
   mobileRangeChip,
   mobileRangeChipText,
   mobileSizeSelectionChip,
+  titleTextDesktop,
+  mobileStyleTitleText,
+  titleTextMobile,
 };

@@ -12,7 +12,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import waistImgUrl from "../../../../assets/waist-2.svg";
 import legsImgUrl from "../../../../assets/legs-1.svg";
 import leftArmImgUrl from "../../../../assets/left-arm.png";
-import neckImgUrl from "../../../../assets/neck.png";
+import bellyImgUrl from "../../../../assets/Belly-Icon.png";
 import backImgUrl from "../../../../assets/back.png";
 
 export default function ClothingFeatureCard(props) {
@@ -221,16 +221,16 @@ export default function ClothingFeatureCard(props) {
             <Paper
               sx={
                 mobileView
-                  ? selectedCards.includes("Collarbones")
+                  ? selectedCards.includes("Stomach/Hips")
                     ? styles.selectedCardStyle
                     : styles.mobileOutlinedCard
-                  : selectedCards.includes("Collarbones")
+                  : selectedCards.includes("Stomach/Hips")
                   ? styles.selectedCardStyle
                   : styles.outlinedCard
               }
               elevation={0}
               variant="outlined"
-              onClick={() => handleCards("Collarbones", values[4])}
+              onClick={() => handleCards("Stomach/Hips", values[4])}
             >
               <Stack
                 direction="column"
@@ -240,12 +240,12 @@ export default function ClothingFeatureCard(props) {
               >
                 <Box>
                   <Avatar
-                    alt="Collarbones"
-                    src={neckImgUrl}
+                    alt="Stomach/Hips"
+                    src={bellyImgUrl}
                     sx={{ width: 56, height: 56 }}
                   />
                 </Box>
-                <Box>{"Collarbones"}</Box>
+                <Box>{"Stomach/Hips"}</Box>
               </Stack>
             </Paper>
           </Grid>

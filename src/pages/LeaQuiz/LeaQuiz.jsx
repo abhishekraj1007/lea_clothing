@@ -235,7 +235,7 @@ const LeaQuiz = () => {
                 "Sleeveless",
                 "Mini",
                 "Backless",
-                "Off-Shoulder, Strapless",
+                "Skater, Longline, Peplum",
               ]}
             />
           }
@@ -252,7 +252,7 @@ const LeaQuiz = () => {
               }
               progress={5}
               prevProgress={5}
-              values={["Waist", "Arms", "Legs", "Back", "Collarbones"]}
+              values={["Waist", "Arms", "Legs", "Back", "Stomach/Hips"]}
             />
           }
         />

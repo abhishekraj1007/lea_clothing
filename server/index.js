@@ -85,20 +85,20 @@ export async function createServer(
     }
   });
 
-  app.use((req, res, next) => {
-    const shop = req.query.shop;
-    if (Shopify.Context.IS_EMBEDDED_APP && shop) {
-      console.log('I am inside...', Shopify.Context.IS_EMBEDDED_APP, shop);
-      res.setHeader(
-        "Content-Security-Policy",
-        `frame-ancestors https://${shop} https://admin.shopify.com;`
-      );
-    } else {
-      console.log("I am not...");
-      res.setHeader("Content-Security-Policy", `frame-ancestors 'self';`);
-    }
-    next();
-  });
+  // app.use((req, res, next) => {
+  //   const shop = req.query.shop;
+  //   if (Shopify.Context.IS_EMBEDDED_APP && shop) {
+  //     console.log('I am inside...', Shopify.Context.IS_EMBEDDED_APP, shop);
+  //     res.setHeader(
+  //       "Content-Security-Policy",
+  //       `frame-ancestors https://${shop} https://admin.shopify.com;`
+  //     );
+  //   } else {
+  //     console.log("I am not...");
+  //     res.setHeader("Content-Security-Policy", `frame-ancestors 'self';`);
+  //   }
+  //   next();
+  // });
 
   app.use("/*", (req, res, next) => {
     const { shop } = req.query;

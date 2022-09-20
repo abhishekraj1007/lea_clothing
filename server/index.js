@@ -91,11 +91,11 @@ export async function createServer(
       console.log('I am inside...', Shopify.Context.IS_EMBEDDED_APP, shop);
       res.setHeader(
         "Content-Security-Policy",
-        `frame-ancestors self`
+        `frame-ancestors https://${shop} https://admin.shopify.com;`
       );
     } else {
       console.log("I am not...");
-      res.setHeader("Content-Security-Policy", `frame-ancestors 'none';`);
+      res.setHeader("Content-Security-Policy", `frame-ancestors 'self';`);
     }
     next();
   });

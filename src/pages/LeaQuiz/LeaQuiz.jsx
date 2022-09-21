@@ -108,17 +108,16 @@ const LeaQuiz = () => {
               headingText={"Let’s start easy—What brings you to Lea?"}
               buttonDirection="row"
               buttonContent={[
-                "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "I've worn all my clothes to death and need an upgrade.",
+                "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "I'm interested in trying corsets.",
-                ,
                 "Looking to revamp my ethnic wardrobe.",
                 "Browsing for Bridesmaid/Wedding Duty.",
                 "Just browsing.",
               ]}
               values={[
-                "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "I've worn all my clothes to death and need an upgrade.",
+                "I've recently had new changes to my body and am looking to find my ideal fit.",
                 "I'm interested in trying corsets.",
                 "Looking to revamp my ethnic wardrobe.",
                 "Browsing for Bridesmaid/Wedding Duty.",

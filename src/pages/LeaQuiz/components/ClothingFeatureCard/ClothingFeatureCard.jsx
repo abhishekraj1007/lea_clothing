@@ -12,7 +12,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import waistImgUrl from "../../../../assets/waist-2.svg";
 import legsImgUrl from "../../../../assets/legs-1.svg";
 import leftArmImgUrl from "../../../../assets/left-arm.png";
-import bellyImgUrl from "../../../../assets/Belly-Icon.png";
+import bellyImgUrl from "../../../../assets/Belly-Icon-1.png";
 import backImgUrl from "../../../../assets/back.png";
 
 export default function ClothingFeatureCard(props) {

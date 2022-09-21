@@ -152,7 +152,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                     style="
                       font-family: 'Roboto', sans-serif;
                       font-size: 3rem;
-                      font-weight: 500;
+                      font-weight: 400;
                       color: #d3aed2;
                       line-height: 50px;
                       text-transform: uppercase;

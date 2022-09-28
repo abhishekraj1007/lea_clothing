@@ -110,7 +110,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                       font-size: 1.8rem;
                       font-weight: 400;
                       color: #fff;
-                      line-height: 18px;
+                      line-height: 40px;
                       text-transform: uppercase;
                       padding: 1.8rem 2rem;
                       border-radius: 4rem;
@@ -221,11 +221,11 @@ router.post("/send-coupon-mail", async (req, res) => {
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding: 2rem 0 0.3rem 0;">
-                <div class="img-container" style="display: inline-flex; width: 90%;">
+              <td align="center" style="padding: 2rem 0 0.3rem 0; min-height: 300px">
+                <div class="img-container" style="display: inline-flex; justify-content: center; width: 90%; flex-wrap: wrap;">
                   <div
                     class="img-wrapper"
-                    style="width: 33.33%; min-height: 250px; background-color: gray;"
+                    style="min-width: 33.33%; max-width: 300px; min-height: 250px; background-color: gray; margin-bottom: 10px"
                   >
                     <img
                       src="${productUrls[0]}"
@@ -237,10 +237,12 @@ router.post("/send-coupon-mail", async (req, res) => {
                   <div
                     class="img-wrapper"
                     style="
-                      width: 33.33%;
+                      min-width: 33.33%;
+                      max-width: 300px;
                       min-height: 250px;
                       background-color: gray;
                       margin-left: 0.5rem;
+                      margin-bottom: 10px
                     "
                   >
                     <img
@@ -253,10 +255,12 @@ router.post("/send-coupon-mail", async (req, res) => {
                   <div
                     class="img-wrapper"
                     style="
-                      width: 33.33%;
+                      min-width: 33.33%;
+                      max-width: 300px;
                       min-height: 250px;
                       background-color: gray;
                       margin-left: 0.5rem;
+                      margin-bottom: 10px
                     "
                   >
                     <img
@@ -270,11 +274,11 @@ router.post("/send-coupon-mail", async (req, res) => {
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding: 0 0 2rem 0;">
-                <div class="img-container" style="display: inline-flex; width: 90%;">
+              <td align="center" style="padding: 0 0 2rem 0; min-height: 300px">
+                <div class="img-container" style="display: inline-flex; justify-content: center; width: 90%; flex-wrap: wrap">
                   <div
                     class="img-wrapper"
-                    style="width: 33.33%; min-height: 250px; background-color: gray;"
+                    style="min-width: 33.33%; max-width: 300px; min-height: 250px; background-color: gray; margin-bottom: 10px"
                   >
                     <img
                       src="${productUrls[3]}"
@@ -286,10 +290,12 @@ router.post("/send-coupon-mail", async (req, res) => {
                   <div
                     class="img-wrapper"
                     style="
-                      width: 33.33%;
+                      min-width: 33.33%;
+                      max-width: 300px;
                       min-height: 250px;
                       background-color: gray;
                       margin-left: 0.5rem;
+                      margin-bottom: 10px;
                     "
                   >
                     <img
@@ -302,10 +308,12 @@ router.post("/send-coupon-mail", async (req, res) => {
                   <div
                     class="img-wrapper"
                     style="
-                      width: 33.33%;
+                      min-width: 33.33%;
+                      max-width: 300px;
                       min-height: 250px;
                       background-color: gray;
                       margin-left: 0.5rem;
+                      margin-bottom: 10px;
                     "
                   >
                     <img

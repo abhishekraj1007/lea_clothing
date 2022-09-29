@@ -329,7 +329,7 @@ router.post("/send-coupon-mail", async (req, res) => {
             <tr>
               <td align="center" style="padding: 1rem 0;">
                 <a
-                  href="https://app.leaclothingco.com"
+                  href="https://leaclothingco.com/pages/personalize-quiz"
                   class="style-room-link"
                   style="
                     display: inline-flex;
@@ -353,7 +353,7 @@ router.post("/send-coupon-mail", async (req, res) => {
             <tr>
               <td align="center" style="padding: 1rem 0;">
                 <a
-                  href="https://app.leaclothingco.com"
+                  href="https://leaclothingco.com/pages/personalize-quiz"
                   class="retake-link"
                   style="
                     display: inline-flex;

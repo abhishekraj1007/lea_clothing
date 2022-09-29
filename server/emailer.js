@@ -79,7 +79,7 @@ router.post("/send-coupon-mail", async (req, res) => {
                   class="main-heading"
                   style="
                     font-family: 'Roboto', sans-serif;
-                    font-size: 2.3rem;
+                    font-size: 2rem;
                     font-weight: 500;
                     color: #6c4a6d;
                     line-height: 50px;
@@ -107,12 +107,12 @@ router.post("/send-coupon-mail", async (req, res) => {
                     class="tag-bar"
                     style="
                       font-family: 'Roboto', sans-serif;
-                      font-size: 1.8rem;
+                      font-size: 1.6rem;
                       font-weight: 400;
                       color: #fff;
                       line-height: 40px;
                       text-transform: uppercase;
-                      padding: 1.8rem 2rem;
+                      padding: 1.6rem 1.8rem;
                       border-radius: 4rem;
                       background-color: #d3aed2;
                     "
@@ -146,12 +146,12 @@ router.post("/send-coupon-mail", async (req, res) => {
             </tr>
             <tr>
               <td align="center">
-                <div style="width: 60%; text-align: center;">
+                <div style="width: 80%; text-align: center;">
                   <p
                     class="hashtag-text"
                     style="
                       font-family: 'Roboto', sans-serif;
-                      font-size: 3rem;
+                      font-size: 2.5rem;
                       font-weight: 400;
                       color: #d3aed2;
                       line-height: 50px;

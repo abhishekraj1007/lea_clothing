@@ -170,7 +170,7 @@ const LeaQuiz = () => {
           ResultComponent={
             <BasicText
               subHeadingText={"Alright!"}
-              headingText={"Let’s find your perfect fit!."}
+              headingText={"Let’s find your perfect fit!"}
             />
           }
         />

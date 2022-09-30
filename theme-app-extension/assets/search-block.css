@@ -8,7 +8,7 @@ search-block .container {
 
 search-block .head {
   display: flex;
-  margin: 2rem 0 6rem 0;
+  margin: 2rem 0 1rem 0;
   width: 100%;
 }
 
@@ -217,7 +217,7 @@ search-block .size-link {
   search-block .head {
     display: flex;
     flex-direction: row;
-    margin: 2rem 0 6rem 0;
+    margin: 2rem 0 1rem 0;
     width: 100%;
   }
 
@@ -321,7 +321,7 @@ search-block .size-link {
 
   search-block .head {
     flex-direction: column;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 1rem 0;
   }
 
   search-block .chip-bar-wrapper {
@@ -396,7 +396,7 @@ search-block .size-link {
 
   search-block .head {
     flex-direction: column;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 1rem 0;
   }
 
   search-block .chip-bar-wrapper {
@@ -474,7 +474,7 @@ search-block .size-link {
 
   search-block .head {
     flex-direction: column;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 1rem 0;
   }
 
   search-block .chip-bar-wrapper {
@@ -549,7 +549,7 @@ search-block .size-link {
 
   search-block .head {
     flex-direction: column;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 1rem 0;
   }
 
   search-block .chip-bar-wrapper {
@@ -629,7 +629,7 @@ search-block .size-link {
   search-block .head {
     display: flex;
     flex-direction: row;
-    margin: 2rem 0 6rem 0;
+    margin: 2rem 0 1rem 0;
     width: 100%;
   }
 

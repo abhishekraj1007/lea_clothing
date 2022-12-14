@@ -67,7 +67,7 @@ export default function UserDetails(props) {
         "/" +
         value.getFullYear();
     setBirthDate(datestring);
-    console.log({ datestring, value });
+    // console.log({ datestring, value });
   }, [value]);
 
   const recommend = async (finalQuizObj, userEmail) => {

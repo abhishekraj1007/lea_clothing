@@ -26,7 +26,7 @@ export default function StyleProductTable() {
       const resData = await StyleProductApi.getAllStyles();
 
       if (resData) {
-        console.log("resData---", resData);
+        // console.log("resData---", resData);
         let updateArray = resData;
         dispatch(styleProductActions.updateStyleProduct({ updateArray }));
         dispatch(styleProductActions.updateSlideStyles({ updateArray }));

@@ -260,7 +260,7 @@ const leaQuizSlice = createSlice({
           }
         }
       } else {
-        console.log("question not match", isSameQuestion);
+        // console.log("question not match", isSameQuestion);
       }
     },
     updateCardQuestion(state, action) {

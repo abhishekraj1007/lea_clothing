@@ -36,9 +36,9 @@ const AddEditStyleProduct = ({
   const rowsData = useSelector((state) => state.styleProduct.allStyleProducts);
 
   useEffect(() => {
-    console.log("value", value);
-    console.log("attribute", attribute);
-    console.log("imgURL", imgURL);
+    // console.log("value", value);
+    // console.log("attribute", attribute);
+    // console.log("imgURL", imgURL);
 
     if (value && attribute && imgURL) {
       setDisableBtn(false);

@@ -66,7 +66,7 @@ export default function ProductRecommendation() {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     dispatch(recommendationActions.updateLoadingStatus(false));
   };

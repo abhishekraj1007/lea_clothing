@@ -15,7 +15,6 @@ const styleProductSlice = createSlice({
     updateSlideStyles(state, action) {
       let copyAllStyleProducts = action.payload.updateArray;
       // let obj = { ...current(state.slideStyles) };
-      console.log("copyAllStyleProducts", copyAllStyleProducts);
       let slide1 = [];
       let slide2 = [];
       let slide3 = [];
@@ -50,7 +49,6 @@ const styleProductSlice = createSlice({
         slide5,
         slide6,
       };
-      console.log("obj after add", obj);
       state.slideStyles = { ...obj };
     },
   },

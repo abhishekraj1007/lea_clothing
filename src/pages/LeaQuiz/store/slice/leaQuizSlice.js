@@ -259,8 +259,6 @@ const leaQuizSlice = createSlice({
             state.quizData[isSameQuestion].Value = value;
           }
         }
-      } else {
-        console.log("question not match", isSameQuestion);
       }
     },
     updateCardQuestion(state, action) {

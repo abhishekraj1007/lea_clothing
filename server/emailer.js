@@ -381,8 +381,6 @@ router.post("/send-coupon-mail", async (req, res) => {
       `,
     });
 
-    console.log("Message sent: %s", info.messageId);
-
     res.status(200).send("Email sent successfully");
   } catch (error) {
     console.error("[ERROR]: ", error);

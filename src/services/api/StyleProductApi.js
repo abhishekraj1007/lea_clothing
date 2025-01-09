@@ -7,7 +7,7 @@ const getAllStyles = async () => {
 
     return response.data;
   } catch (e) {
-    console.log("error", e);
+    console.error(e);
     if (!axios.isCancel(e)) {
       throw e;
     }
@@ -23,7 +23,7 @@ const updateStyle = async (newProductStyle) => {
 
     return response.data;
   } catch (e) {
-    console.log("error", e);
+    console.error(e);
     if (!axios.isCancel(e)) {
       throw e;
     }

@@ -11,7 +11,7 @@ const getRecommendation = async ({ ...finalQuizData }) => {
 
     return response.data;
   } catch (e) {
-    console.log("error", e);
+    console.error("error", e);
     if (!axios.isCancel(e)) {
       throw e;
     }

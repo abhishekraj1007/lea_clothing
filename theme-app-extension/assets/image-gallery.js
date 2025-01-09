@@ -187,10 +187,7 @@ class ImageGallery extends HTMLElement {
     let product_title =
       window.ShopifyAnalytics.meta.product.variants[0]["name"].split(" - ")[0];
 
-    if (!userEmailId && !product_title) {
-      console.log("invalid parameters for recommend API");
-      return;
-    }
+    if (!userEmailId && !product_title) return;
 
     const container = document.querySelector(".product-container");
     const mobileProductContainer = document.querySelector(
@@ -256,8 +253,6 @@ class ImageGallery extends HTMLElement {
       responseResults = data.response.beautified_results;
       createElements();
       createMobileElements();
-    } else {
-      console.log("Something went wrong...");
     }
   }
 }

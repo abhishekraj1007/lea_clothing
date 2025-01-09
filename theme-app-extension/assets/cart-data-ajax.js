@@ -103,8 +103,6 @@ class CartDataAjax extends HTMLElement {
       const data = await response.json();
       productsRes = data.response;
       createElements();
-    } else {
-      console.log("Something went wrong...");
     }
   }
 }

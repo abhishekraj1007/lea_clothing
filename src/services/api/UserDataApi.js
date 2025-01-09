@@ -9,7 +9,7 @@ const getUserData = async (emailId) => {
 
     return response.data;
   } catch (e) {
-    console.log("error", e);
+    console.error(e);
     if (!axios.isCancel(e)) {
       throw e;
     }

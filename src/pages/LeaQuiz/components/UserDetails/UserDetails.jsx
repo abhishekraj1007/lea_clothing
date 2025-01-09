@@ -67,7 +67,6 @@ export default function UserDetails(props) {
         "/" +
         value.getFullYear();
     setBirthDate(datestring);
-    console.log({ datestring, value });
   }, [value]);
 
   const recommend = async (finalQuizObj, userEmail) => {
@@ -119,7 +118,7 @@ export default function UserDetails(props) {
 
       dispatch(leaQuizActions.updateLoadingStatus(false));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

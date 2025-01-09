@@ -266,8 +266,6 @@ class SearchBlock extends HTMLElement {
       responseResults = data.response.beautified_results;
       createElements();
       createMobileElements();
-    } else {
-      console.log("Something went wrong...");
     }
   }
 }
